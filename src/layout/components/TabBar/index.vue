@@ -8,7 +8,6 @@
       @tab-remove="closeTab"
   >
     <el-tab-pane
-
         v-for="item in tabList"
         :key="item.path"
         :label="item.title"
@@ -18,10 +17,10 @@
   </el-tabs>
 </template>
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from 'vue'
-import {useStore} from 'vuex'
-import {useRoute, useRouter} from 'vue-router'
-import {Itab} from '@/store/type'
+import {computed, onMounted, ref, watch} from "vue"
+import {useStore} from "vuex"
+import {useRoute, useRouter} from "vue-router"
+import {Itab} from "@/store/type"
 
 const store = useStore()
 const route = useRoute()
@@ -36,13 +35,15 @@ const addTab = () => {
   const {meta, path} = route
   const tabItem: Itab = {
     path: path,
-    title: meta.title as string
+    title: meta.title as string,
   }
-  store.commit('addTab', tabItem)
+  store.commit("addTab", tabItem)
 }
 // 检测路由变化，变化则更新key
-const activeKey = ref('')
-watch(() => route.path, () => {
+const activeKey = ref("")
+watch(
+    () => route.path,
+    () => {
       activeKey.value = route.path
       addTab()
     }
@@ -57,7 +58,7 @@ const changeRouter = (event: any) => {
 const closeTab = (targetName: string) => {
   // 至少留一个tab
   if (tabList.value.length === 1) {
-    return alert('这是最后一个')
+    return alert("这是最后一个")
   }
   tabList.value.forEach((item: Itab, index: number) => {
     if (targetName === activeKey.value) {
@@ -67,20 +68,19 @@ const closeTab = (targetName: string) => {
     }
   })
   // 更改store中的tabList
-  store.commit('delTab', targetName)
-
+  store.commit("delTab", targetName)
 }
 
 // 在本地储存tabList
 const refresh = () => {
-  window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem('TABS_ROUTES', JSON.stringify(tabList.value))
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.setItem("TABS_ROUTES", JSON.stringify(tabList.value))
   })
 
-  const session = sessionStorage.getItem('TABS_ROUTES')
+  const session = sessionStorage.getItem("TABS_ROUTES")
   if (session) {
     console.log(JSON.parse(session))
-    store.commit('addAllTab', JSON.parse(session))
+    store.commit("addAllTab", JSON.parse(session))
   }
 }
 

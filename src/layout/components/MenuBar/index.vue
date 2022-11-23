@@ -1,7 +1,7 @@
 <template>
-  <el-menu default-active="1" class="el-menu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
+  <el-menu default-active='1' class="el-menu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
            background-color="$menuBg">
-    <el-menu-item v-for="(item, index) in menuItem" :key="item.id" :index="item.id" @click="toPath(item.path)">
+    <el-menu-item v-for="(item) in menuItem" :key=item.id :index=item.id @click=toPath(item.path)>
       <el-icon>
         <component :is="item.icon"></component>
       </el-icon>
@@ -28,7 +28,7 @@ const toPath = (path: string) => {
 
 // 定义导航菜单对象接口
 interface menuItemType {
-  id: number
+  id: string
   icon: string
   name: string
   path: string
@@ -37,19 +37,19 @@ interface menuItemType {
 // 生成导航菜单各项对象
 const menuItem: menuItemType[] = [
   {
-    id: 1,
+    id: '1',
     icon: 'HomeFilled',
     name: '首页',
     path: '/Home'
   },
   {
-    id: 2,
+    id: '2',
     icon: 'Edit',
     name: '权限管理',
     path: '/Authority'
   },
   {
-    id: 3,
+    id: '3',
     icon: 'Avatar',
     name: '员工管理',
     path: '/Employee'
