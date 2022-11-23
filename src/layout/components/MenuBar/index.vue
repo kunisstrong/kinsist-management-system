@@ -1,17 +1,17 @@
 <template>
   <el-menu default-active="1" class="el-menu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
-    background-color="$menuBg">
+           background-color="$menuBg">
     <el-menu-item v-for="(item, index) in menuItem" :key="item.id" :index="item.id" @click="toPath(item.path)">
       <el-icon>
         <component :is="item.icon"></component>
       </el-icon>
-      <template #title> {{item.name}}</template>
+      <template #title> {{ item.name }}</template>
     </el-menu-item>
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { useRouter, useRoute } from 'vue-router';
+import {useRouter} from 'vue-router'
 // 接受父组件传来控制面包屑的参数collapse
 defineProps({
   collapsed: {
@@ -33,6 +33,7 @@ interface menuItemType {
   name: string
   path: string
 }
+
 // 生成导航菜单各项对象
 const menuItem: menuItemType[] = [
   {
