@@ -6,7 +6,7 @@
         <MenuBar :collapsed="collapsed"/>
       </el-aside>
       <el-container>
-        <el-header style="background-color: #9ba8b4">
+        <el-header>
           <el-row>
             <el-icon style="font-size: 26px; color: #000">
               <component :is="collapsed ? Expand : Fold" @click="() => {collapsed = !collapsed}">
@@ -15,9 +15,9 @@
           </el-row>
           <HeaderBar/>
         </el-header>
-        <el-main style="background-color: #e9f0f3">
-          <TabBar />
-          <router-view></router-view>
+        <el-main>
+          <TabBar/>
+          <router-view style="background-color: #eeeeee"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -58,7 +58,8 @@ console.log("isMobile()-->", isMobile())
   .el-header {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    box-shadow: 0 0 3px #999;
+    background-color: white;
   }
 
   .el-aside {
@@ -71,7 +72,8 @@ console.log("isMobile()-->", isMobile())
   }
 
   .el-main {
-    background-color: rgb(255, 255, 255);
+    margin-top: 4px;
+    padding: 0;
   }
 }
 </style>

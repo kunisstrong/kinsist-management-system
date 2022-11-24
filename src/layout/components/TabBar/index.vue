@@ -93,10 +93,19 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
+.demo-tabs {
+  :deep(.is-active) {
+    border-bottom: #e5e7ec;
+  }
+
+  .el-tabs__content {
+    padding: 32px;
+    color: #6b778c;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
 }
+
+
 </style>

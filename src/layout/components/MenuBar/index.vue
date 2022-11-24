@@ -45,8 +45,8 @@ const menuItem: menuItemType[] = [
   {
     id: '2',
     icon: 'Edit',
-    name: '权限管理',
-    path: '/Authority'
+    name: '通知',
+    path: '/Notification'
   },
   {
     id: '3',

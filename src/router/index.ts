@@ -1,4 +1,4 @@
-import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router";
+import {createRouter, RouteRecordRaw, createWebHashHistory} from "vue-router";
 
 
 // 设置路由信息
@@ -20,10 +20,10 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/view/Home/index.vue')
             },
             {
-                path: '/Authority',
-                component: () => import('@/view/Authority/index.vue'),
+                path: '/Notification',
+                component: () => import('@/view/Notification/index.vue'),
                 meta: {
-                    title: '权限管理'
+                    title: '通知'
                 },
             },
             {
