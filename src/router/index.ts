@@ -32,6 +32,13 @@ const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: '员工管理'
                 },
+            },
+            {
+                path: '/Center',
+                component: () => import('@/view/Center/index.vue'),
+                meta: {
+                    title: '个人中心'
+                },
             }
         ]
     },

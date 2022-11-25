@@ -50,10 +50,17 @@ const menuItem: menuItemType[] = [
   },
   {
     id: '3',
+    icon: 'OfficeBuilding',
+    name: '个人中心',
+    path: '/Center'
+  },
+  {
+    id: '4',
     icon: 'Avatar',
     name: '员工管理',
     path: '/Employee'
-  }
+  },
+
 ]
 
 </script>
