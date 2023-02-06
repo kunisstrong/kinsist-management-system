@@ -36,6 +36,7 @@ onMounted(() => {
       title: {
         text: '公司人数分布情况（人）',
         left: 'center'
+        
       },
       tooltip: {
         trigger: 'item'
