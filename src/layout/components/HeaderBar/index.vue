@@ -13,7 +13,7 @@
         <location/>
       </el-icon>
       <div class="user header-right-item">
-        <img src="@/assets/icons/svg/vue.svg" alt="">
+        <img src="@/assets/icons/vue/vue.svg" alt="">
       </div>
     </div>
   </div>

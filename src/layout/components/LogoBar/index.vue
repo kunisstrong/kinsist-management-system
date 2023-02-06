@@ -1,6 +1,6 @@
 <template>
   <div class="logo-container">
-    <img src="@/assets/icons/svg/vue.svg" alt="">
+    <img src="@/assets/icons/vue/vue.svg" alt="">
     <text v-show="!collapsed">后台管理</text>
   </div>
 </template>

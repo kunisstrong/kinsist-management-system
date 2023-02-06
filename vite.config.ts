@@ -1,19 +1,41 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
+import checker from "vite-plugin-checker"
 import path from 'path'
-import {resolve} from 'path'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons'
+
 
 export default defineConfig({
     plugins: [
-        createSvgIconsPlugin({
-            iconDirs: [resolve(process.cwd(), 'src/assets/icon/svg')],
-            symbolId: 'icon-[name]'
+        checker({
+            typescript: true
         }),
-        vue()
+        // 图标相关
+        createSvgIconsPlugin({
+            iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
+            symbolId: 'icon-[dir]-[name]',
+            svgoOptions: true
+        }),
+
+        // 自动按需导入使用的组件
+        AutoImport({
+            imports: ['vue'],
+            resolvers: [
+                ElementPlusResolver(),
+            ],
+        }),
+        Components({
+            resolvers: [
+                ElementPlusResolver(),
+            ]
+        }),
+        vue(),
     ],
     server: {
-        port: 3001
+        port: 3006
     },
     resolve: {
         // 设置别名
@@ -31,6 +53,6 @@ export default defineConfig({
                 additionalData: `@import "./src/styles/varibales.scss";`
             }
         }
-    },
-
+    }
 })
+

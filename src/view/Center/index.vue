@@ -2,7 +2,7 @@
   <div class="center-container">
     <div class="center-container-top">
       <div class="account">
-        <img src="@/assets/icons/svg/vue.svg" alt="头像" class="account-img">
+        <!-- <img src="@/assets/icons/svg/vue.svg" alt="头像" class="account-img"> -->
         <div class="account-info">
           <span style="font-size: 30px; font-weight: 900">admin</span>
           <span>密码：admin123</span>
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import {onMounted, onUpdated} from "vue";
+import {onMounted} from "vue";
 
 onMounted(() => {
   // 饼状图

@@ -30,7 +30,6 @@ import LogoBar from "@/layout/components/LogoBar/index.vue"
 import MenuBar from "@/layout/components/MenuBar/index.vue"
 import HeaderBar from "@/layout/components/HeaderBar/index.vue"
 import TabBar from "@/layout/components/TabBar/index.vue"
-import {Expand, Fold} from "@element-plus/icons-vue"
 import {computed, ref} from "vue"
 import {isMobile} from "@/utils/isMobile"
 
@@ -46,7 +45,6 @@ const autoWidth = computed(() => {
     return "200px"
   }
 })
-console.log("isMobile()-->", isMobile())
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,5 @@
-import {createRouter, RouteRecordRaw, createWebHashHistory} from "vue-router";
+import type {App} from "vue"
+import {createRouter, RouteRecordRaw, createWebHashHistory} from "vue-router"
 
 
 // 设置路由信息
@@ -20,11 +21,35 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/view/Home/index.vue')
             },
             {
+                path: '/Test',
+                component: () => import('@/view/Test/test.vue'),
+                meta: {
+                    title: '测试'
+                },
+            },
+            {
                 path: '/Notification',
-                component: () => import('@/view/Notification/index.vue'),
+                // component: () => import('@/layout/index.vue'),
+                redirect: '/Notification/Notification1',
                 meta: {
                     title: '通知'
                 },
+                children: [
+                    {
+                        path: 'Notification1',
+                        component: () => import('@/view/Notification/Notification1.vue'),
+                        meta: {
+                            title: '通知1'
+                        },
+                    },
+                    {
+                        path: 'Notification2',
+                        component: () => import('@/view/Notification/Notification2.vue'),
+                        meta: {
+                            title: '通知2'
+                        },
+                    }
+                ]
             },
             {
                 path: '/Employee',
@@ -52,4 +77,6 @@ const router = createRouter(({
     routes: routes
 }))
 
-export default router
+export const setupRouter = (app: App) => {
+    app.use(router)
+}

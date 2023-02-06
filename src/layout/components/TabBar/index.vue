@@ -25,6 +25,7 @@ import {Itab} from "@/store/type"
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
+
 // 动态获取state中的tabList
 const tabList = computed(() => {
   return store.getters.getAddTab

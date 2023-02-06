@@ -2,49 +2,54 @@
   <div class="employee-container">
     <div class="employee-container-top">
       <el-button size="large" type="primary">新增</el-button>
-      <el-input class="input" v-model="input" placeholder="请输入账号查询" clearable/>
+      <el-input class="input" v-model="input" placeholder="请输入账号查询" clearable />
       <el-button size="large" type="primary" style="margin-left: 10px">查询</el-button>
     </div>
 
     <div class="employee-container-content">
-      <el-table :data="tableData" height="600" style="width: 100%">
-        <el-table-column prop="id" label="id号" width="400"/>
-        <el-table-column prop="photo" label="头像" width="400"/>
-        <el-table-column prop="account" label="账号" width="400"/>
-        <el-table-column prop="password" label="密码" width="300"/>
+      <el-table :data="tableData" max-height="600" style="width: 100%">
+        <el-table-column prop="id" label="id号" />
+        <el-table-column prop="photo" label="头像" />
+        <el-table-column prop="account" label="账号" />
+        <el-table-column prop="password" label="密码" />
         <el-table-column align="right">
           <template #default="scope">
             <el-button size="small" @click="handleEdit()">
               编辑
-            </el-button
-            >
-            <el-button
-                size="small"
-                type="danger"
-                @click="handleDelete()"
-            >
+            </el-button>
+            <el-button size="small" type="danger" @click="handleDelete()">
               删除
             </el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
+
+
+    <div class="pagination">
+      <el-pagination background layout="prev, pager, next" :total="100" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
+import type { tableItem } from './type';
 
 // 上方搜索框
 const input = ref('')
 
 const handleEdit = () => {
+
 }
 const handleDelete = () => {
+  
 }
 
+
+type table = tableItem[]
 // table表单信息
-const tableData = [
+const tableData: table = [
   {
     id: '1001',
     photo: '头像一',
@@ -108,6 +113,14 @@ const tableData = [
     width: 100%;
     margin-top: 10px;
 
+  }
+
+  .pagination {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

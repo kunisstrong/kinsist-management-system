@@ -2,7 +2,7 @@
   <div class="home-container">
     <div class="home-left">
       <div class="home-left-date">
-        <span style="font-size: 90px;letter-spacing: 15px; font-weight: 900;">08:39:42</span>
+        <span style="font-size: 60px;letter-spacing: 15px; font-weight: 900;">08:39:42</span>
         <span style="font-size: 30px;letter-spacing: 10px">2022年7月6日 星期三</span>
       </div>
       <div class="home-left-info">
@@ -14,11 +14,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -27,11 +27,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -40,11 +40,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -53,11 +53,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -66,11 +66,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -79,11 +79,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -92,11 +92,11 @@
           <div class="content-item">
             <div class="content-left">
               <el-icon>
-                <Location/>
+                <Location />
               </el-icon>
               <span>
-              关于开展核实部门虚假消费报销工作
-            </span>
+                关于开展核实部门虚假消费报销工作
+              </span>
             </div>
             <div class="content-right">
               2022-6-12
@@ -157,127 +157,11 @@
           各部门六月份费用明细
         </div>
         <div class="cost-breakdown-content">
-          <div class="content-title" style="font-weight: 700">
-            <div class="item-title">
-              部门
-            </div>
-            <div class="item-title">
-              经理
-            </div>
-            <div class="item-title">
-              总费用
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
-          <div class="content-detail">
-            <div class="detail-item">
-              行政部
-            </div>
-            <div class="detail-item">
-              程浩
-            </div>
-            <div class="detail-item">
-              125000
-            </div>
-          </div>
+          <el-table :data="tableData" stripe style="width: 100%">
+            <el-table-column prop="Department" label="部门" width="300" />
+            <el-table-column prop="Manager" label="经理" width="300" />
+            <el-table-column prop="Cost" label="总费用" />
+          </el-table>
         </div>
       </div>
     </div>
@@ -285,7 +169,33 @@
 </template>
 
 <script setup lang="ts">
-
+const tableData = [
+  {
+    Department: '行政部',
+    Manager: '程浩',
+    Cost: '125000',
+  },
+  {
+    Department: '财务部',
+    Manager: '徐琦',
+    Cost: '115000',
+  },
+  {
+    Department: '人事部',
+    Manager: '徐明哲',
+    Cost: '155000',
+  },
+  {
+    Department: '研发部',
+    Manager: '王艺博',
+    Cost: '185000',
+  },
+  {
+    Department: '技术部',
+    Manager: '孙子文',
+    Cost: '205000',
+  },
+]
 </script>
 
 <style lang="scss" scoped>
@@ -297,7 +207,7 @@
   height: calc(100vh - 120px);
 
   .home-left {
-    flex: 0.7;
+    width: 40%;
 
     .home-left-date {
       display: flex;
@@ -344,7 +254,7 @@
   }
 
   .home-right {
-    flex: 1;
+    width: 60%;
     margin-left: 10px;
 
     .sales-summary {
@@ -400,33 +310,6 @@
       .cost-breakdown-content {
         padding: 10px 0;
 
-        .content-title {
-          display: flex;
-          justify-content: space-around;
-          height: 40px;
-          line-height: 40px;
-          border-bottom: 1px solid #bec2c2;
-
-          .item-title {
-            text-align: start;
-            width: 100px;
-            height: 40px;
-          }
-        }
-
-        .content-detail {
-          display: flex;
-          justify-content: space-around;
-          height: 40px;
-          line-height: 40px;
-          border-bottom: 1px solid #cfd4d4;
-
-          .detail-item {
-            text-align: start;
-            width: 100px;
-            height: 40px;
-          }
-        }
       }
     }
   }
