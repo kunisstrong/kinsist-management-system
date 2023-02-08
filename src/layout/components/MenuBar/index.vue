@@ -2,22 +2,22 @@
   <ElMenu default-active='1' class="ElMenu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
           background-color="$menuBg">
 
-    <template v-for="(item) in menuItem" :key=item.id>
+    <template v-for="(item) in MenuList" :key=item.id>
 
       <ElSubMenu v-if="item.children">
         <template #title>
-          <Icon icon="ep:aim" size="30" color="red"/>
-          <span>{{ item.name }}</span>
+          <Icon :icon="item.meta.icon" size="30"/>
+          <span>{{ item.meta.title }}</span>
         </template>
-        <ElMenuItem v-for="subItem in item.children" :key="subItem.id" @click=toPath(subItem.path) :index=subItem.id>
-          <Icon icon="ep:aim" size="30" color="red"/>
-          <template #title> {{ subItem.name }}</template>
+        <ElMenuItem v-for="subItem in item.children" :key="subItem.meta.id" :index="subItem.meta.id"
+                    @click=toPath(item.path,subItem.path)>
+          <template #title> {{ subItem.meta.title }}</template>
         </ElMenuItem>
       </ElSubMenu>
 
-      <ElMenuItem v-else @click=toPath(item.path) :index="item.id">
-        <Icon icon="ep:aim" size="30" color="red"/>
-        <template #title> {{ item.name }}</template>
+      <ElMenuItem v-else @click=toPath(item.path) :index="item.meta.id">
+        <Icon :icon="item.meta.icon" size="30"/>
+        <template #title> {{ item.meta.title }}</template>
       </ElMenuItem>
 
     </template>
@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import {useRouter} from 'vue-router'
-import {menuItemType} from './type'
+import {MenuList} from "@/router"
 
 // 接受父组件传来控制面包屑的参数collapse
 defineProps({
@@ -38,58 +38,13 @@ defineProps({
 
 // 点击跳转路由
 const router = useRouter()
-const toPath = (path: string) => {
-  router.push(path)
+const toPath = (path: string, subPath?: string) => {
+  if (subPath) {
+    router.push(`/index/${path}/${subPath}`)
+  } else {
+    router.push(`/index/${path}`)
+  }
 }
-
-
-// 生成导航菜单各项对象
-const menuItem: menuItemType[] = [
-  {
-    id: '1',
-    icon: 'HomeFilled',
-    name: '首页',
-    path: '/Home'
-  },
-  {
-    id: '2',
-    icon: 'Edit',
-    name: '通知',
-    path: '/Notification',
-    children: [
-      {
-        id: '2-1',
-        icon: 'Edit1',
-        name: '通知1',
-        path: '/Notification/Notification1'
-      },
-      {
-        id: '2-2',
-        icon: 'Edit2',
-        name: '通知2',
-        path: '/Notification/Notification2'
-      }
-    ]
-  },
-  {
-    id: '3',
-    icon: 'OfficeBuilding',
-    name: '个人中心',
-    path: '/Center'
-  },
-  {
-    id: '4',
-    icon: 'Avatar',
-    name: '员工管理',
-    path: '/Employee'
-  },
-  {
-    id: '5',
-    icon: 'Avatar',
-    name: '测试',
-    path: '/Test'
-  },
-]
 </script>
 
 <style lang="scss" scoped>

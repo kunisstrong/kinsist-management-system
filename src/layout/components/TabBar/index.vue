@@ -1,26 +1,14 @@
 <template>
-  <el-tabs
-      v-model="activeKey"
-      type="card"
-      class="demo-tabs"
-      closable
-      @tab-click="changeRouter"
-      @tab-remove="closeTab"
-  >
-    <el-tab-pane
-        v-for="item in tabList"
-        :key="item.path"
-        :label="item.title"
-        :name="item.path"
-    >
+  <el-tabs v-model="activeKey" type="card" class="demo-tabs" closable @tab-click="changeRouter" @tab-remove="closeTab">
+    <el-tab-pane v-for="item in tabList" :key="item.path" :label="item.title" :name="item.path">
     </el-tab-pane>
   </el-tabs>
 </template>
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from "vue"
-import {useStore} from "vuex"
-import {useRoute, useRouter} from "vue-router"
-import {Itab} from "@/store/type"
+import { computed, onMounted, ref, watch } from "vue"
+import { useStore } from "vuex"
+import { useRoute, useRouter } from "vue-router"
+import { Itab } from "@/store/type"
 
 const store = useStore()
 const route = useRoute()
@@ -33,7 +21,7 @@ const tabList = computed(() => {
 
 // 往vuex中添加tab
 const addTab = () => {
-  const {meta, path} = route
+  const { meta, path } = route
   const tabItem: Itab = {
     path: path,
     title: meta.title as string,
@@ -43,11 +31,11 @@ const addTab = () => {
 // 检测路由变化，变化则更新key
 const activeKey = ref("")
 watch(
-    () => route.path,
-    () => {
-      activeKey.value = route.path
-      addTab()
-    }
+  () => route.path,
+  () => {
+    activeKey.value = route.path
+    addTab()
+  }
 )
 
 // 点击tab切换路由
@@ -107,6 +95,4 @@ onMounted(() => {
   }
 
 }
-
-
 </style>

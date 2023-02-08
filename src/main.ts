@@ -1,7 +1,6 @@
 import './style.css'
 import 'element-plus/dist/index.css'
 import '@/plugins/svgIcon'
-import "@/api"
 
 import setupAll from './utils/setupAll'
 

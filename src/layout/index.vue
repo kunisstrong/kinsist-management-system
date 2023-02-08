@@ -2,21 +2,19 @@
   <div class="layout-container">
     <el-container>
       <el-aside :style="'width: ' + autoWidth">
-        <LogoBar :collapsed="collapsed"/>
-        <MenuBar :collapsed="collapsed"/>
+        <LogoBar :collapsed="collapsed" />
+        <MenuBar :collapsed="collapsed" />
       </el-aside>
       <el-container>
         <el-header>
           <el-row>
-            <el-icon style="font-size: 26px; color: #000">
-              <component :is="collapsed ? Expand : Fold" @click="() => {collapsed = !collapsed}">
-              </component>
-            </el-icon>
+            <Icon :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'" @click="() => { collapsed = !collapsed }"
+              :size=25 />
           </el-row>
-          <HeaderBar/>
+          <HeaderBar />
         </el-header>
         <el-main>
-          <TabBar/>
+          <TabBar />
           <router-view style="background-color: #eeeeee"></router-view>
         </el-main>
       </el-container>
@@ -30,8 +28,9 @@ import LogoBar from "@/layout/components/LogoBar/index.vue"
 import MenuBar from "@/layout/components/MenuBar/index.vue"
 import HeaderBar from "@/layout/components/HeaderBar/index.vue"
 import TabBar from "@/layout/components/TabBar/index.vue"
-import {computed, ref} from "vue"
-import {isMobile} from "@/utils/isMobile"
+import { computed, ref } from "vue"
+import { isMobile } from "@/utils/isMobile"
+import { Icon } from "@/components/Icon"
 
 // 面包屑
 let collapsed = ref<boolean>(false)

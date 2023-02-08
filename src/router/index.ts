@@ -1,73 +1,71 @@
-import type {App} from "vue"
-import {createRouter, RouteRecordRaw, createWebHashHistory} from "vue-router"
+import type { App } from "vue"
+import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router"
 
-
-// 设置路由信息
-const routes: Array<RouteRecordRaw> = [
+export const MenuList = [
     {
-        path: '/login',
-        component: () => import('@/view/Login/index.vue'),
+        path: "home",
+        component: () => import("@/view/Home/home.vue"),
+        meta: {
+            title: "首页",
+            icon: "mdi:user",
+            id: '1',
+        }
     },
     {
-        path: '/',
-        redirect: '/Home',
-        component: () => import('@/layout/index.vue'),
+        path: "moduleManage",
         meta: {
-            title: '首页'
+            title: "模块管理",
+            icon: "mdi:user",
+            id: '2',
         },
         children: [
             {
-                path: '/Home',
-                component: () => import('@/view/Home/index.vue')
+                path: "checkProject",
+                component: () => import("@/view/ModuleManage/checkProject.vue"),
+                meta: {
+                    title: "检查项目",
+                    id: '2-1',
+                }
             },
             {
-                path: '/Test',
-                component: () => import('@/view/Test/test.vue'),
+                path: "checkTemplate",
+                component: () => import("@/view/ModuleManage/checkTemplate.vue"),
                 meta: {
-                    title: '测试'
-                },
-            },
-            {
-                path: '/Notification',
-                // component: () => import('@/layout/index.vue'),
-                redirect: '/Notification/Notification1',
-                meta: {
-                    title: '通知'
-                },
-                children: [
-                    {
-                        path: 'Notification1',
-                        component: () => import('@/view/Notification/Notification1.vue'),
-                        meta: {
-                            title: '通知1'
-                        },
-                    },
-                    {
-                        path: 'Notification2',
-                        component: () => import('@/view/Notification/Notification2.vue'),
-                        meta: {
-                            title: '通知2'
-                        },
-                    }
-                ]
-            },
-            {
-                path: '/Employee',
-                component: () => import('@/view/Employee/index.vue'),
-                meta: {
-                    title: '员工管理'
-                },
-            },
-            {
-                path: '/Center',
-                component: () => import('@/view/Center/index.vue'),
-                meta: {
-                    title: '个人中心'
-                },
+                    title: "检查单模块",
+                    id: '2-2'
+                }
             }
+
         ]
     },
+    {
+        path: "test",
+        component: () => import("@/view/Test/test.vue"),
+        meta: {
+            title: "测试",
+            icon: "mdi:user",
+            id: "3"
+        }
+    },
 
+]
+
+// 设置路由信息
+export const routes: Array<RouteRecordRaw> = [
+
+    {
+        path: '/',
+        component: () => import('@/view/Login/login.vue'),
+        meta: {
+            title: '登录',
+        },
+    },
+    {
+        path: "/index",
+        component: () => import("@/layout/index.vue"),
+        redirect: "/index/home",
+        children: MenuList
+    }
 
 ]
 
