@@ -1,8 +1,5 @@
 # vue3-typescript-vite--management
 
-vue pinia license GitHub release donate
-基于 Vue3 的通用后台管理系统
-
 ## 技术栈
 
 项目使用 Vue3 最新技术栈
@@ -39,3 +36,4 @@ npm run dev
 ```
 npm run build
 ```
+
