@@ -1,6 +1,6 @@
-import type {App} from 'vue';
-import {createStore} from 'vuex'
-import type {Itab} from './type'
+import type { App } from 'vue';
+import { createStore } from 'vuex'
+import type { Itab } from './type'
 
 interface State {
     tabList: Array<Itab>
@@ -11,7 +11,7 @@ const store = createStore<State>({
         // tab标签
         tabList: []
     },
-    
+
     mutations: {
         addAllTab(state: State, tabList: Array<Itab>) {
             state.tabList = tabList

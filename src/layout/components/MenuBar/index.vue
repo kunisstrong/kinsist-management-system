@@ -2,7 +2,7 @@
   <ElMenu default-active='1' class="ElMenu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
           background-color="$menuBg">
 
-    <template v-for="(item) in MenuList" :key=item.id>
+    <template v-for="(item) in MenuList" :key=item.meta.id>
 
       <ElSubMenu v-if="item.children">
         <template #title>
@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts" setup>
-import {useRouter} from 'vue-router'
-import {MenuList} from "@/router"
+import { useRouter } from 'vue-router'
+import { MenuList } from "@/router"
 
 // 接受父组件传来控制面包屑的参数collapse
 defineProps({
