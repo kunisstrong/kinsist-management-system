@@ -10,6 +10,7 @@ const store = createStore<State>({
     state: {
         // tab标签
         tabList: []
+        
     },
 
     mutations: {
