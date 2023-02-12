@@ -2,20 +2,6 @@
 <template>
   <div class="header-container">
     <BreadCrumb/>
-    <div class="header-right">
-      <el-icon class="header-right-item" :size="20">
-        <Search/>
-      </el-icon>
-      <el-icon class="header-right-item" :size="20">
-        <FullScreen/>
-      </el-icon>
-      <el-icon class="header-right-item" :size="20">
-        <location/>
-      </el-icon>
-      <div class="user header-right-item">
-        <img src="@/assets/icons/vue/vue.svg" alt="">
-      </div>
-    </div>
   </div>
 </template>
 
