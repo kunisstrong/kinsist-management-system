@@ -6,17 +6,20 @@
 </template>
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from "vue"
-import { useStore } from "vuex"
 import { useRoute, useRouter } from "vue-router"
 import { Itab } from "@/store/type"
+import { useTabStore } from "@/store/tabBar"
+import { storeToRefs } from "pinia"
 
-const store = useStore()
 const route = useRoute()
 const router = useRouter()
 
+const tabStore = useTabStore()
+const { getAddTab } = storeToRefs(tabStore)
+
 // 动态获取state中的tabList
 const tabList = computed(() => {
-  return store.getters.getAddTab
+  return getAddTab.value
 })
 
 // 往vuex中添加tab
@@ -26,16 +29,17 @@ const addTab = () => {
     path: path,
     title: meta.title as string,
   }
-  store.commit("addTab", tabItem)
+  tabStore.addTab(tabItem)
 }
+
 // 检测路由变化，变化则更新key
 const activeKey = ref("")
 watch(
-  () => route.path,
-  () => {
-    activeKey.value = route.path
-    addTab()
-  }
+    () => route.path,
+    () => {
+      activeKey.value = route.path
+      addTab()
+    }
 )
 
 // 点击tab切换路由
@@ -56,8 +60,9 @@ const closeTab = (targetName: string) => {
       router.push(activeKey.value)
     }
   })
+
   // 更改store中的tabList
-  store.commit("delTab", targetName)
+  tabStore.delTab(targetName)
 }
 
 // 在本地储存tabList
@@ -68,12 +73,12 @@ const refresh = () => {
 
   const session = sessionStorage.getItem("TABS_ROUTES")
   if (session) {
-    console.log(JSON.parse(session))
-    store.commit("addAllTab", JSON.parse(session))
+    tabStore.addAllTab(JSON.parse((session)))
   }
 }
 
 onMounted(() => {
+  console.log('tabList', tabList.value)
   // 页面打开添加一次tab
   addTab()
   // 挂载本地存储

@@ -1,15 +1,15 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import { setupRouter } from '@/router'
-import { setupStore } from '@/store'
 import { setupGlobCom } from "@/components"
+import { setupPinia } from "@/store"
 
 const setupAll = () => {
     const app = createApp(App)
 
     setupRouter(app)
-    setupStore(app)
     setupGlobCom(app)
+    setupPinia(app)
 
     app.mount('#app')
 }

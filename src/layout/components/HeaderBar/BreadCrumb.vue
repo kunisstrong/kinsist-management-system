@@ -10,13 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import {ref, watch} from 'vue'
-import {useRoute, useRouter} from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
-let breadcrumb: any = ref([{meta: {title: '首页'}}])
+let breadcrumb: any = ref([])
 // 更新面包屑中内容
 const updateBreadcrumb = (): void => {
+  console.log("route.match", route.matched)
   breadcrumb.value = route.matched
 }
 
@@ -30,7 +31,7 @@ watch(() => route.path, () => {
 const router = useRouter()
 const changePath = (path: string): void => {
   router.push(path)
-  console.log('router', router)
+  // console.log('router', router)
 }
 </script>
 
