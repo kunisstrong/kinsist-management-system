@@ -2,13 +2,14 @@
   <div class="layout-container">
     <el-container>
       <el-aside :style="'width: ' + autoWidth">
-        <LogoBar :collapsed="collapsed"/>
         <MenuBar :collapsed="collapsed"/>
       </el-aside>
       <el-container>
         <el-header>
           <el-row>
-            <Icon :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'" @click="() => { collapsed = !collapsed }"
+            <Icon style="cursor: pointer"
+                  :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
+                  @click="() => { collapsed = !collapsed }"
                   :size="25"/>
           </el-row>
           <HeaderBar/>
@@ -23,8 +24,7 @@
 </template>
 
 <script setup lang="ts">
-// 13.16
-import LogoBar from "@/layout/components/LogoBar/index.vue"
+
 import MenuBar from "@/layout/components/MenuBar/index.vue"
 import HeaderBar from "@/layout/components/HeaderBar/index.vue"
 import TabBar from "@/layout/components/TabBar/index.vue"
