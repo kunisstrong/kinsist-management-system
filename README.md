@@ -11,7 +11,7 @@ master：不断拓展的版本，用于自己练习开发技巧、巩固学习�
 ## 安装步骤
 把模板下载到本地
 ```
-git clone git@gitee.com:a-little-angry-green/vue3-management-system.git
+git clone git@github.com:kunisstrong/personage-website.git
 ```
 
 进入模板目录
