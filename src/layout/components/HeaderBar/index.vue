@@ -4,7 +4,7 @@
     <BreadCrumb/>
     <div class="header-right">
       <Icon icon="svg-icon:search" :size="30"/>
-      <Icon icon="svg-icon:fullScreen" :size="30"/>
+      <Icon @click="fullScreenBtn" :icon="fullIcon" :size="30"/>
       <el-dropdown trigger="click">
         <Icon icon="svg-icon:fontSize" :size="30"/>
         <template #dropdown>
@@ -37,14 +37,29 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-
-
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import BreadCrumb from '@/layout/components/HeaderBar/BreadCrumb.vue'
+import screenFull from 'screenfull'
+import { ref } from "vue";
+
+// 全屏图标
+const fullIcon = ref('svg-icon:fullScreen')
+// 全屏
+const fullScreenBtn = () => {
+  if (screenFull.isFullscreen) {
+    screenFull.toggle()
+    fullIcon.value = 'svg-icon:fullScreen'
+  } else {
+    screenFull.toggle()
+    fullIcon.value = 'svg-icon:reduceScreen'
+  }
+
+}
+
 </script>
 
 <style lang="scss" scoped>
