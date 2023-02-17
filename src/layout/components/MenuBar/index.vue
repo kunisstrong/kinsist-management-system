@@ -2,11 +2,10 @@
   <ElMenu default-active='1' class="ElMenu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
           background-color="$menuBg">
 
-    <template v-for="(item) in MenuList" :key=item.meta.id>
-
-      <ElSubMenu v-if="item.children">
+    <template v-for="(item) in MenuList"  :key=item.meta.id>
+      <ElSubMenu v-if="item.children" :index="item.meta.id">
         <template #title>
-          <Icon :icon="item.meta.icon" size="30"/>
+          <Icon :icon="item.meta.icon" :size="30"/>
           <span>{{ item.meta.title }}</span>
         </template>
         <ElMenuItem v-for="subItem in item.children" :key="subItem.meta.id" :index="subItem.meta.id"
@@ -16,7 +15,7 @@
       </ElSubMenu>
 
       <ElMenuItem v-else @click=toPath(item.path) :index="item.meta.id">
-        <Icon :icon="item.meta.icon" size="30"/>
+        <Icon :icon="item.meta.icon" :size="30"/>
         <template #title> {{ item.meta.title }}</template>
       </ElMenuItem>
 

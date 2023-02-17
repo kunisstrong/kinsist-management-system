@@ -35,7 +35,6 @@ export const MenuList = [
                     id: '2-2'
                 }
             }
-
         ]
     },
     {

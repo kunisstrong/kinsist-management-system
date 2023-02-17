@@ -2,20 +2,20 @@
   <div class="layout-container">
     <el-container>
       <el-aside :style="'width: ' + autoWidth">
-        <LogoBar :collapsed="collapsed" />
-        <MenuBar :collapsed="collapsed" />
+        <LogoBar :collapsed="collapsed"/>
+        <MenuBar :collapsed="collapsed"/>
       </el-aside>
       <el-container>
         <el-header>
           <el-row>
             <Icon :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'" @click="() => { collapsed = !collapsed }"
-              :size=25 />
+                  :size="25"/>
           </el-row>
-          <HeaderBar />
+          <HeaderBar/>
         </el-header>
         <el-main>
-          <TabBar />
-          <router-view style="background-color: #eeeeee"></router-view>
+          <TabBar/>
+          <router-view style="background-color: #eeeeee"/>
         </el-main>
       </el-container>
     </el-container>
