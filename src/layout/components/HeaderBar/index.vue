@@ -44,7 +44,8 @@
 import BreadCrumb from '@/layout/components/HeaderBar/BreadCrumb.vue'
 import screenFull from 'screenfull'
 import { ref } from "vue"
-import { useRouter } from "vue-router";
+import { useRouter } from "vue-router"
+
 // 退出登录
 const router = useRouter()
 const logOut = () => {
