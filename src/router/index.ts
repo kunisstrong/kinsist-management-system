@@ -55,6 +55,7 @@ export const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         component: () => import('@/view/Login/login.vue'),
+        name: "login",
         meta: {
             title: '登录',
         },
