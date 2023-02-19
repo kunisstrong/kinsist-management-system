@@ -17,7 +17,6 @@ const route = useRoute()
 let breadcrumb: any = ref([])
 // 更新面包屑中内容
 const updateBreadcrumb = (): void => {
-  console.log("route.match", route.matched)
   breadcrumb.value = route.matched
 }
 
