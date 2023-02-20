@@ -38,16 +38,6 @@ export const MenuList = [
         ]
     },
     {
-        path: "personalCenter",
-        name: "personalCenter",
-        component: () => import("@/view/PersonalCenter/personalCenter.vue"),
-        meta: {
-            title: "个人中心",
-            icon: "mdi:user",
-            id: "4"
-        }
-    },
-    {
         path: "test",
         component: () => import("@/view/Test/test.vue"),
         meta: {
@@ -72,8 +62,19 @@ export const routes: Array<RouteRecordRaw> = [
         path: "/index",
         component: () => import("@/layout/index.vue"),
         redirect: "/index/home",
-        children: MenuList
-    }
+        children: [
+            ...MenuList,
+            {
+                path: "personalCenter",
+                name: "personalCenter",
+                component: () => import("@/view/PersonalCenter/personalCenter.vue"),
+                meta: {
+                    title: "个人中心",
+                }
+            },
+        ]
+    },
+
 ]
 // 路由配置项
 const router = createRouter(({
