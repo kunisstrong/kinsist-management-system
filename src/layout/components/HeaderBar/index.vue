@@ -29,7 +29,9 @@
         <img class="item" src="src/assets/img/headPhoto.jpeg" alt="头像" style="width: 40px; border-radius: 6px">
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item @click="toPersonalCenter">
+              个人中心
+            </el-dropdown-item>
             <el-dropdown-item>Docs</el-dropdown-item>
             <el-dropdown-item @click="logOut" divided>退出登录</el-dropdown-item>
           </el-dropdown-menu>
@@ -68,6 +70,10 @@ const fullScreenBtn = () => {
   }
 }
 
+// 跳转到个人中心
+const toPersonalCenter = () => {
+  router.push({ name: 'personalCenter' })
+}
 </script>
 
 <style lang="scss" scoped>

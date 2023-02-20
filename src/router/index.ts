@@ -8,7 +8,7 @@ export const MenuList = [
         meta: {
             title: "首页",
             icon: "mdi:user",
-            id: '1',
+            id: "1",
         }
     },
     {
@@ -38,6 +38,16 @@ export const MenuList = [
         ]
     },
     {
+        path: "personalCenter",
+        name: "personalCenter",
+        component: () => import("@/view/PersonalCenter/personalCenter.vue"),
+        meta: {
+            title: "个人中心",
+            icon: "mdi:user",
+            id: "4"
+        }
+    },
+    {
         path: "test",
         component: () => import("@/view/Test/test.vue"),
         meta: {
@@ -46,12 +56,10 @@ export const MenuList = [
             id: "3"
         }
     },
-
 ]
 
 // 设置路由信息
 export const routes: Array<RouteRecordRaw> = [
-
     {
         path: '/',
         component: () => import('@/view/Login/login.vue'),
@@ -66,9 +74,7 @@ export const routes: Array<RouteRecordRaw> = [
         redirect: "/index/home",
         children: MenuList
     }
-
 ]
-
 // 路由配置项
 const router = createRouter(({
     history: createWebHashHistory(),
