@@ -10,9 +10,7 @@
         <p>密码</p>
         <el-input type="password" placeholder="请输入密码" v-model="params.password"/>
       </div>
-      <ElButton @click="toLogin">
-        登录
-      </ElButton>
+      <ElButton @click="toLogin">登录</ElButton>
     </div>
   </div>
 </template>
