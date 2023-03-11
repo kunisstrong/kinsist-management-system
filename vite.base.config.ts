@@ -7,7 +7,6 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from "vite-plugin-mock"
-console.log("我是基础配置")
 
 export default defineConfig({
     plugins: [

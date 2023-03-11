@@ -7,8 +7,17 @@ export const MenuList = [
         component: () => import("@/view/Home/home.vue"),
         meta: {
             title: "首页",
-            icon: "mdi:user",
+            icon: "svg-icon:home",
             id: "1",
+        }
+    },
+    {
+        path: "staffManagement",
+        component: () => import("@/view/StaffManagement/StaffManagement.vue"),
+        meta: {
+            title: "员工管理",
+            icon: "svg-icon:staffManagement",
+            id: "4"
         }
     },
     {
@@ -55,7 +64,7 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('@/view/Login/login.vue'),
         name: "login",
         meta: {
-            title: '登录',
+            title: '登录'
         },
     },
     {
@@ -69,12 +78,11 @@ export const routes: Array<RouteRecordRaw> = [
                 name: "personalCenter",
                 component: () => import("@/view/PersonalCenter/personalCenter.vue"),
                 meta: {
-                    title: "个人中心",
+                    title: "个人中心"
                 }
             },
         ]
     },
-
 ]
 // 路由配置项
 const router = createRouter(({

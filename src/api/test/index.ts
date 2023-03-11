@@ -1,4 +1,4 @@
-import service from "../request";
+import service from "../request"
 
 export const testRequest = () => service({
     url: `/test`,
