@@ -3,10 +3,10 @@
   <div class="header-container">
     <BreadCrumb/>
     <div class="header-right">
-      <Icon class="item" icon="svg-icon:search" :size="30"/>
+      <!-- <Icon class="item" icon="svg-icon:search" :size="30"/> -->
       <Icon class="item" @click="goGitHub" icon="svg-icon:GitHub" :size="30"/>
       <Icon class="item" @click="fullScreenBtn" :icon="fullIcon" :size="30"/>
-      <el-dropdown trigger="click">
+      <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:fontSize" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -15,8 +15,8 @@
             <el-dropdown-item>Small</el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
-      <el-dropdown trigger="click">
+      </el-dropdown> -->
+      <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:switchLanguage" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -24,7 +24,7 @@
             <el-dropdown-item>English</el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
+      </el-dropdown> -->
       <el-dropdown trigger="click">
         <img class="item" src="src/assets/img/headPhoto.jpeg" alt="头像" style="width: 40px; border-radius: 6px">
         <template #dropdown>
