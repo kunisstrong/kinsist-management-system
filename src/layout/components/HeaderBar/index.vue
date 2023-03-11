@@ -32,7 +32,7 @@
             <el-dropdown-item @click="toPersonalCenter">
               个人中心
             </el-dropdown-item>
-            <el-dropdown-item>Docs</el-dropdown-item>
+            <el-dropdown-item @click="docsClick">Docs</el-dropdown-item>
             <el-dropdown-item @click="logOut" divided>退出登录</el-dropdown-item>
           </el-dropdown-menu>
 
@@ -44,6 +44,7 @@
 
 <script setup lang="ts">
 import BreadCrumb from '@/layout/components/HeaderBar/BreadCrumb.vue'
+import { Action, ElMessage, ElMessageBox } from 'element-plus';
 import screenFull from 'screenfull'
 import { ref } from "vue"
 import { useRouter } from "vue-router"
@@ -69,7 +70,13 @@ const fullScreenBtn = () => {
     fullIcon.value = 'svg-icon:reduceScreen'
   }
 }
-
+/* 点击跳转文档 */
+const docsClick = () => {
+  ElMessageBox.alert('功能尚未完成', '提示', {
+    confirmButtonText: 'OK',
+    type: 'warning',
+  })
+}
 // 跳转到个人中心
 const toPersonalCenter = () => {
   router.push({ name: 'personalCenter' })

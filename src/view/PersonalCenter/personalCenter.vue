@@ -8,7 +8,7 @@
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:visitUser" :size="20" />
+            <Icon icon="svg-icon:username" :size="20" />
             <span>用户名称</span>
           </div>
           <p>{{ userInfo.username }}</p>
@@ -22,14 +22,14 @@
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:visitUser" :size="20" />
+            <Icon icon="svg-icon:email" :size="20" />
             <span>用户邮箱</span>
           </div>
           <p>{{ userInfo.email }}</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:visitUser" :size="20" />
+            <Icon icon="svg-icon:department" :size="20" />
             <span>所属部门</span>
           </div>
           <p>董事长</p>
@@ -43,7 +43,7 @@
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:visitUser" :size="20" />
+            <Icon icon="svg-icon:date" :size="20" />
             <span>创建日期</span>
           </div>
           <p>2023-02-03 11:11:26</p>

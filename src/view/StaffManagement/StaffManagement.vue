@@ -98,7 +98,7 @@
             </template>
         </el-dialog>
         <div class="table">
-            <el-table ref="multipleTableRef" :data="tableData" max-height="520" border style="width: 100%" @select="select"
+            <el-table ref="multipleTableRef" :data="tableData" max-height="76vh" border style="width: 100%" @select="select"
                 @select-all="selectAll">
                 <el-table-column type="selection" width="55" align="center" />
                 <el-table-column type="index" label="序号" width="55" align="center" />

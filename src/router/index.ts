@@ -20,32 +20,32 @@ export const MenuList = [
             id: "4"
         }
     },
-    {
-        path: "moduleManage",
-        meta: {
-            title: "模块管理",
-            icon: "mdi:user",
-            id: '2',
-        },
-        children: [
-            {
-                path: "checkProject",
-                component: () => import("@/view/ModuleManage/checkProject.vue"),
-                meta: {
-                    title: "检查项目",
-                    id: '2-1',
-                }
-            },
-            {
-                path: "checkTemplate",
-                component: () => import("@/view/ModuleManage/checkTemplate.vue"),
-                meta: {
-                    title: "检查单模块",
-                    id: '2-2'
-                }
-            }
-        ]
-    },
+    // {
+    //     path: "moduleManage",
+    //     meta: {
+    //         title: "模块管理",
+    //         icon: "mdi:user",
+    //         id: '2',
+    //     },
+    //     children: [
+    //         {
+    //             path: "checkProject",
+    //             component: () => import("@/view/ModuleManage/checkProject.vue"),
+    //             meta: {
+    //                 title: "检查项目",
+    //                 id: '2-1',
+    //             }
+    //         },
+    //         {
+    //             path: "checkTemplate",
+    //             component: () => import("@/view/ModuleManage/checkTemplate.vue"),
+    //             meta: {
+    //                 title: "检查单模块",
+    //                 id: '2-2'
+    //             }
+    //         }
+    //     ]
+    // },
     {
         path: "test",
         component: () => import("@/view/Test/test.vue"),
