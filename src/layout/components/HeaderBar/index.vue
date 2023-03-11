@@ -1,12 +1,12 @@
 <!-- 头部跟组件 -->
 <template>
   <div class="header-container">
-    <BreadCrumb/>
+    <BreadCrumb />
     <div class="header-right">
       <!-- <Icon class="item" icon="svg-icon:search" :size="30"/> -->
-      <Icon class="item" @click="goGitHub" icon="svg-icon:GitHub" :size="30"/>
-      <Icon class="item" @click="fullScreenBtn" :icon="fullIcon" :size="30"/>
-      <!-- <el-dropdown trigger="click">
+      <Icon class="item" @click="goGitHub" icon="svg-icon:GitHub" :size="30" />
+      <Icon class="item" @click="fullScreenBtn" :icon="fullIcon" :size="30" />
+    <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:fontSize" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -15,8 +15,8 @@
             <el-dropdown-item>Small</el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown> -->
-      <!-- <el-dropdown trigger="click">
+        </el-dropdown> -->
+    <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:switchLanguage" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -24,9 +24,9 @@
             <el-dropdown-item>English</el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown> -->
+        </el-dropdown> -->
       <el-dropdown trigger="click">
-        <img class="item" src="src/assets/img/headPhoto.jpeg" alt="头像" style="width: 40px; border-radius: 6px">
+        <img class="item" src="@/assets/img/headPhoto.jpeg" alt="头像" style="width: 40px; border-radius: 6px">
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="toPersonalCenter">
@@ -35,7 +35,6 @@
             <el-dropdown-item @click="docsClick">Docs</el-dropdown-item>
             <el-dropdown-item @click="logOut" divided>退出登录</el-dropdown-item>
           </el-dropdown-menu>
-
         </template>
       </el-dropdown>
     </div>
@@ -44,7 +43,7 @@
 
 <script setup lang="ts">
 import BreadCrumb from '@/layout/components/HeaderBar/BreadCrumb.vue'
-import { Action, ElMessage, ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus'
 import screenFull from 'screenfull'
 import { ref } from "vue"
 import { useRouter } from "vue-router"

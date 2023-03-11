@@ -4,7 +4,7 @@
       <div class="title">个人信息</div>
       <div class="personal-msg-box">
         <div class="img-box">
-          <img src="src/assets/img/headPhoto.jpeg" alt="头像">
+          <img src="@/assets/img/headPhoto.jpeg" alt="头像">
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
