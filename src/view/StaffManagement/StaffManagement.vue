@@ -125,16 +125,42 @@ onMounted(() => {
     getCheckProjectList()
 })
 /* 导出 */
-let exportData: object[] = reactive([])
+let exportData: staffManagementTable[] = reactive([])
 const exportExcel = () => {
+    // 将表头key转换成中文
+    const list = [];//定义list数组
+    const obj: any = {};
+    for (var i = 0; i < exportData.length; i++) {
+        obj.value = {};
+        // 将对应的英文key转化为自己想要的中文key
+        for (var key in exportData[i]) {
+            if (key == 'id') {
+                obj.value['序号'] = i + 1;
+            } else if (key == 'name') {
+                obj.value['姓名'] = exportData[i][key];
+            } else if (key == 'age') {
+                obj.value['年龄'] = exportData[i][key];
+            } else if (key == 'entryData') {
+                obj.value['入职时间'] = exportData[i][key];
+            } else if (key == 'postion') {
+                obj.value['职位'] = exportData[i][key];
+            } else if (key == 'salary') {
+                obj.value['薪水'] = exportData[i][key];
+            } else if (key == 'sex') {
+                obj.value['性别'] = exportData[i][key];
+            }
+        }
+        list.push(obj.value);
+    }
+
     // 创建工作表
-    const data = XLSX.utils.json_to_sheet(exportData)
+    const data = XLSX.utils.json_to_sheet(list)
     // 创建工作簿
     const wb = XLSX.utils.book_new()
     // 将工作表放入工作簿中
     XLSX.utils.book_append_sheet(wb, data, 'data')
     // 生成文件并下载
-    XLSX.writeFile(wb, '检查项目.xlsx')
+    XLSX.writeFile(wb, '员工信息.xlsx')
 
     // 各种按钮的状态
     idList.length = 0
