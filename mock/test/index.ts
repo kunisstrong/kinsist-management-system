@@ -7,7 +7,7 @@ const userList = mockJS.mock({
         "entryData": Random.date('yyyy-MM-dd'),
         "postion|1": ["研发部经理", "前端开发工程师", "后端开发工程师", "测试工程师", "产品经理", "UI设计师", "架构师", "运维工程师"],
         "age|18-60": 18,  // 年龄
-        "salary|1000-2000": 1000,  // 薪资
+        "salary|10-50": 21,  // 薪资
     }]
 })
 

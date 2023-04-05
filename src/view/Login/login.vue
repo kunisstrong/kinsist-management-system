@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <p>井下作业数字监控系统</p>
+      <p>kun式管理系统</p>
       <div class="box">
         <p>用户名</p>
         <el-input type="text" placeholder="请输入用户名" v-model="params.username"/>

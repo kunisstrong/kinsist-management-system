@@ -54,7 +54,6 @@ import * as echarts from 'echarts'
 import { onMounted } from "vue"
 
 type EChartsOption = echarts.EChartsOption
-
 // 初始化折线图  期望值、实际值
 const initBrokenLine = () => {
   let chartDom = document.getElementById('initBrokenLine')!
@@ -252,6 +251,7 @@ onMounted(() => {
       .title-item {
         width: 20%;
         padding: 10px 20px;
+        border-radius: 15px;
         background-color: white;
         display: flex;
         align-items: center;
@@ -285,6 +285,8 @@ onMounted(() => {
         //}
 
         .item-box {
+
+          // border-radius: 10px;
           .subTitle {
             font-size: 25px;
             margin: 10px 0;

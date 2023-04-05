@@ -8,16 +8,24 @@ export const MenuList = [
         meta: {
             title: "首页",
             icon: "svg-icon:home",
-            id: "1",
+            id: "1"
         }
     },
     {
         path: "staffManagement",
-        component: () => import("@/view/StaffManagement/StaffManagement.vue"),
+        component: () => import("@/view/StaffManagement/staffManagement.vue"),
         meta: {
             title: "员工管理",
             icon: "svg-icon:staffManagement",
             id: "4"
+        }
+    },{
+        path: "departmentManagement",
+        component: () => import("@/view/DeptManagement/deptmanagement.vue"),
+        meta: {
+            title: "部门管理",
+            icon: "svg-icon:staffManagement",
+            id: "5"
         }
     },
     // {

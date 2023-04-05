@@ -9,7 +9,7 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use((config) => {
-    // config：配置对象 对象里面有一个属性很重要，headers请求头
+
     return config
 })
 
