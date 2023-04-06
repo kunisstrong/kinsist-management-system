@@ -13,7 +13,7 @@ export const MenuList = [
     },
     {
         path: "staffManagement",
-        component: () => import("@/view/StaffManagement/staffManagement.vue"),
+        component: () => import("@/view/EmpManagement/index.vue"),
         meta: {
             title: "员工管理",
             icon: "svg-icon:staffManagement",

@@ -15,11 +15,10 @@ export type TableParams = {
     pageSize: number,
     currentPage: number,
 }
-
-export type AddFormParams = {
-    deptId: string,
+export type AddAndUpdateFormParams = {
+    deptId?: number | '',
     deptName: string,
     manager: string,
-    allNum: number,
+    allNum: number | '',
     remark: string
 }
