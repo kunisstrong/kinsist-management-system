@@ -1,11 +1,11 @@
 <template>
   <div class="dept-container">
     <el-row class="dept-search" :gutter="20">
-      <el-col :span="10">
+      <el-col :span="5">
         <span>员工姓名</span>
         <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名"/>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="5">
         <span>所属部门</span>
         <el-select v-model="searchParams.deptId" class="m-2" placeholder="请选择所属部门" size="default" clearable>
           <el-option
@@ -16,7 +16,7 @@
           />
         </el-select>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="5">
         <span>职位</span>
         <el-input v-model="searchParams.position" clearable placeholder="请输入职位"/>
       </el-col>
@@ -174,10 +174,9 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive, computed } from 'vue'
 import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams } from './type'
-import { searchAPI } from '@/api/deptManagement'
 import { ElMessage, ElMessageBox, FormRules } from "element-plus"
 import * as XLSX from 'xlsx'
-import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, updateEmpAPI } from "@/api/empManagement"
+import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement"
 
 /* 导出 */
 let exportData: TableData[] = reactive([])
@@ -346,7 +345,7 @@ const searchParams = ref<SearchParams>({
 })
 /* 搜索功能 */
 const search = async () => {
-  const result = await searchAPI(searchParams.value)
+  const result = await searchEmpAPI(searchParams.value)
   if (result.flag) {
     tableData.value = result.data.records
     tableTotal.value = result.data.total

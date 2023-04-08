@@ -1,11 +1,11 @@
 <template>
   <div class="dept-container">
     <el-row class="dept-search" :gutter="20">
-      <el-col :span="10">
+      <el-col :span="5">
         <span>部门名称</span>
         <el-input v-model="searchParams.name" clearable/>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="5">
         <span>负责人</span>
         <el-input v-model="searchParams.manager" clearable/>
       </el-col>
@@ -67,10 +67,10 @@
           <el-input v-model="updateParams.deptName" autocomplete="true" clearable placeholder="请输入部门名称"/>
         </el-form-item>
         <el-form-item label="负责人" :label-width="formLabelWidth" prop="manager">
-          <el-input v-model="updateParams.manager" autocomplete="off"  placeholder="请输入负责人"/>
+          <el-input v-model="updateParams.manager" autocomplete="off" placeholder="请输入负责人"/>
         </el-form-item>
         <el-form-item label="部门人数" :label-width="formLabelWidth" prop="allNum">
-          <el-input v-model="updateParams.allNum" autocomplete="off"  placeholder="请输入部门人数"/>
+          <el-input v-model="updateParams.allNum" autocomplete="off" placeholder="请输入部门人数"/>
         </el-form-item>
         <el-form-item label="备注" :label-width="formLabelWidth">
           <el-input v-model="updateParams.remark" autocomplete="off" placeholder="请输入备注信息"/>
@@ -85,8 +85,7 @@
     </el-dialog>
   </div>
 </template>
-
-    <script setup lang="ts">
+<script setup lang="ts">
 import { onMounted, ref, reactive, computed } from 'vue';
 import { AddAndUpdateFormParams, SearchParams, TableData, TableParams } from './type'
 import { addDeptAPI, allDeptAPI, removeDeptAPI, searchAPI, updateDeptAPI } from '@/api/deptManagement'
@@ -97,7 +96,7 @@ import * as XLSX from 'xlsx'
 let exportData: TableData[] = reactive([])
 const exportExcel = () => {
   // 将表头key转换成中文
-  const list = [];//定义list数组
+  const list = []; // 定义list数组
   const obj: any = {};
   for (let i = 0; i < exportData.length; i++) {
     obj.value = {};
@@ -147,7 +146,7 @@ const openDelDeptMsgBox = () => {
   }).catch(() => {
     ElMessage({
       type: 'info',
-      message: '取消删除',
+      message: '取消删除'
     })
     delIds.value.length = 0
   })

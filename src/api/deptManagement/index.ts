@@ -8,7 +8,7 @@ export const allDeptAPI = (data: TableParams) => service({
 })
 /* 搜索 */
 export const searchAPI = (data: SearchParams) => service({
-    url: `/dept/${data.currentPage}/${data.pageSize}/${data.name}/${data.manager}`,
+    url: `/dept/search?currentPage=${data.currentPage}&pageSize=${data.pageSize}&name=${data.name}&manager=${data.manager}`,
     method: 'get'
 })
 /* 新增 */

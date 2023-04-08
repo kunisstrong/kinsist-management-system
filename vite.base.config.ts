@@ -21,7 +21,7 @@ export default defineConfig({
             svgoOptions: true
         }),
 
-        // 自动按需导入使用的组件
+       /* 自动按需导入使用的组件 */
         AutoImport({
             imports: ['vue'],
             resolvers: [

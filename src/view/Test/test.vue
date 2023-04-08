@@ -8,15 +8,12 @@
 <script lang="ts" setup>
 import { useIcon } from "@/hooks/useIcon"
 import { onMounted } from "vue"
-import { staffManagementListAPI } from "@/api/empManagement";
 
 
 const icon = useIcon({ icon: 'svg-icon:earth' })
 
 // 测试request请求
 const testApi = async () => {
-  const res = await staffManagementListAPI()
-  console.log(res)
 }
 
 onMounted(() => {
