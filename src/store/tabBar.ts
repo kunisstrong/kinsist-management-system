@@ -5,7 +5,7 @@ export const useTabStore = defineStore("tab", {
     state() {
         return {
             // tab标签
-            tabList: [ { path: "", title: "" } ]
+            tabList: [ { path: "", title: "" } ],
         }
     },
     actions: {

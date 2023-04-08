@@ -10,6 +10,7 @@ import { useRoute, useRouter } from "vue-router"
 import { Itab } from "@/store/type"
 import { useTabStore } from "@/store/tabBar"
 import { storeToRefs } from "pinia"
+import { useMenuStore } from "@/store/menu";
 
 const route = useRoute()
 const router = useRouter()
@@ -22,21 +23,19 @@ const tabList = computed(() => {
   return getAddTab.value
 })
 
-// 往vuex中添加tab
+/* 路由发生变化，往vuex中添加tab */
 const addTab = () => {
   const { meta, path } = route
   const tabItem: Itab = {
     path: path,
-    title: meta.title as string,
+    title: meta.title as string
   }
   tabStore.addTab(tabItem)
 }
 
 // 检测路由变化，变化则更新key
 const activeKey = ref("")
-watch(
-    () => route.path,
-    () => {
+watch(() => route.path, () => {
       activeKey.value = route.path
       addTab()
     }

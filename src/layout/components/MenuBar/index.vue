@@ -1,31 +1,34 @@
 <template>
-  <ElMenu default-active='1' class="ElMenu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
+  <ElMenu :default-active='activeKey' class="ElMenu" :collapse="collapsed" active-text-color="#409eff" text-color="#fff"
           background-color="$menuBg">
 
-    <template v-for="(item) in MenuList"  :key=item.meta.id>
-      <ElSubMenu v-if="item.children" :index="item.meta.id">
+    <template v-for="(item) in MenuList" :key=item.meta.id>
+      <el-sub-menu v-if="item.children" :index="item.meta.id">
         <template #title>
           <Icon :icon="item.meta.icon" :size="30"/>
           <span>{{ item.meta.title }}</span>
         </template>
-        <ElMenuItem v-for="subItem in item.children" :key="subItem.meta.id" :index="subItem.meta.id"
-                    @click=toPath(item.path,subItem.path)>
+        <el-menu-item
+            v-for="subItem in item.children"
+            :key="subItem.meta.id"
+            :index="subItem.meta.id"
+            @click=toPath(item.path,subItem.path)>
           <template #title> {{ subItem.meta.title }}</template>
-        </ElMenuItem>
-      </ElSubMenu>
+        </el-menu-item>
+      </el-sub-menu>
 
       <ElMenuItem v-else @click=toPath(item.path) :index="item.meta.id">
         <Icon :icon="item.meta.icon" :size="30"/>
         <template #title> {{ item.meta.title }}</template>
       </ElMenuItem>
-
     </template>
   </ElMenu>
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { MenuList } from "@/router"
+import { ref, watch } from "vue"
 
 /* 接受父组件传来控制面包屑的参数collapse */
 defineProps({
@@ -35,7 +38,7 @@ defineProps({
   }
 })
 
-// 点击跳转路由
+/* 点击跳转路由 */
 const router = useRouter()
 const toPath = (path: string, subPath?: string) => {
   if (subPath) {
@@ -44,6 +47,14 @@ const toPath = (path: string, subPath?: string) => {
     router.push(`/index/${path}`)
   }
 }
+
+/* 检测路由变化，改变activeKey值 */
+const activeKey = ref("1")
+const route = useRoute()
+watch(() => route.path, () => {
+  activeKey.value = route.meta.id as string
+})
+
 </script>
 
 <style lang="scss" scoped>

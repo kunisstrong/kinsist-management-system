@@ -3,11 +3,11 @@
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
         <span>部门名称</span>
-        <el-input v-model="searchParams.name" clearable/>
+        <el-input v-model="searchParams.name" clearable placeholder="请输入部门名称"/>
       </el-col>
       <el-col :span="5">
         <span>负责人</span>
-        <el-input v-model="searchParams.manager" clearable/>
+        <el-input v-model="searchParams.manager" clearable placeholder="请输入负责人"/>
       </el-col>
       <el-col :span="4">
         <el-button type="primary" @click="search">搜索</el-button>

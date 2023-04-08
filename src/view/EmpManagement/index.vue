@@ -294,7 +294,6 @@ const addFormParams = ref<AddAndUpdateFormParams>({
 })
 /* 调用新增API */
 const addDept = async () => {
-  console.log("addFormParams.value", addFormParams.value)
   const result = await saveEmpAPI(addFormParams.value)
   if (result.flag) {
     ElMessage({
@@ -432,7 +431,6 @@ const getTableData = async () => {
   if (result.flag) {
     tableData.value = result.data.records
     tableTotal.value = result.data.total
-    console.log("tableData.value", tableData.value)
   }
 }
 /* table数据 */
