@@ -7,8 +7,25 @@ export const MenuList = [
         component: () => import("@/view/Home/home.vue"),
         meta: {
             title: "首页",
-            icon: "mdi:user",
-            id: '1',
+            icon: "svg-icon:home",
+            id: "1"
+        }
+    },
+    {
+        path: "staffManagement",
+        component: () => import("@/view/EmpManagement/index.vue"),
+        meta: {
+            title: "员工管理",
+            icon: "svg-icon:staffManagement",
+            id: "4"
+        }
+    },{
+        path: "departmentManagement",
+        component: () => import("@/view/DeptManagement/deptmanagement.vue"),
+        meta: {
+            title: "部门管理",
+            icon: "svg-icon:staffManagement",
+            id: "5"
         }
     },
     {
@@ -46,29 +63,35 @@ export const MenuList = [
             id: "3"
         }
     },
-
 ]
 
 // 设置路由信息
 export const routes: Array<RouteRecordRaw> = [
-
     {
         path: '/',
         component: () => import('@/view/Login/login.vue'),
         name: "login",
         meta: {
-            title: '登录',
+            title: '登录'
         },
     },
     {
         path: "/index",
         component: () => import("@/layout/index.vue"),
         redirect: "/index/home",
-        children: MenuList
-    }
-
+        children: [
+            ...MenuList,
+            {
+                path: "personalCenter",
+                name: "personalCenter",
+                component: () => import("@/view/PersonalCenter/personalCenter.vue"),
+                meta: {
+                    title: "个人中心"
+                }
+            },
+        ]
+    },
 ]
-
 // 路由配置项
 const router = createRouter(({
     history: createWebHashHistory(),

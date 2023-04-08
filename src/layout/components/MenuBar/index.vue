@@ -27,7 +27,7 @@
 import { useRouter } from 'vue-router'
 import { MenuList } from "@/router"
 
-// 接受父组件传来控制面包屑的参数collapse
+/* 接受父组件传来控制面包屑的参数collapse */
 defineProps({
   collapsed: {
     type: Boolean,

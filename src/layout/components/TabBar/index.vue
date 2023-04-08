@@ -78,7 +78,6 @@ const refresh = () => {
 }
 
 onMounted(() => {
-  console.log('tabList', tabList.value)
   // 页面打开添加一次tab
   addTab()
   // 挂载本地存储

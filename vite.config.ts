@@ -15,5 +15,4 @@ export default defineConfig(({ command, mode }) => {
     console.log("env ===", env.VITE_SOME_KEY)
     // 根据开发环境决定用哪个配置文件
     return envResolver[command]()
-}
-)
+})
