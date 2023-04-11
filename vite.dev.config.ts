@@ -6,7 +6,7 @@ export default defineConfig({
         host: '0.0.0.0',
         proxy: {
             '/api': {
-                target: 'http://127.0.0.1:80/',
+                target: 'http://127.0.0.1:9100/',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite
             }

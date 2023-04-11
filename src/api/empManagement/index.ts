@@ -1,9 +1,9 @@
 import service from "@/api/request";
-import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/EmpManagement/type";
+import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/empManagement/type";
 
 /* 获取所有员工 */
 export const allEmpAPI = (data: TableParams) => service({
-    url: `/emp/list/${data.currentPage}/${data.pageSize}`,
+    url: `/emp/list/${data.pageNum}/${data.pageSize}`,
     method: 'get'
 })
 
@@ -34,8 +34,8 @@ export const updateEmpAPI = (data: AddAndUpdateFormParams) => service({
     data: data
 })
 
-/* 搜索currentPage, int pageSize, String empName, String position, String deptId */
+/* 搜索pageNum, int pageSize, String empName, String position, String deptId */
 export const searchEmpAPI = (data: SearchParams) => service({
-    url: `/emp/search?currentPage=${data.currentPage}&pageSize=${data.pageSize}&empName=${data.empName}&position=${data.position}&deptId=${data.deptId}`,
+    url: `/emp/search?pageNum=${data.pageNum}&pageSize=${data.pageSize}&empName=${data.empName}&position=${data.position}&deptId=${data.deptId}`,
     method: 'get'
 })

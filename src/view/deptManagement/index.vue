@@ -3,7 +3,7 @@
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
         <span>部门名称</span>
-        <el-input v-model="searchParams.name" clearable placeholder="请输入部门名称"/>
+        <el-input v-model="searchParams.deptName" clearable placeholder="请输入部门名称"/>
       </el-col>
       <el-col :span="5">
         <span>负责人</span>
@@ -37,7 +37,17 @@
       </el-table>
     </div>
     <div class="page-box">
-      <el-pagination background layout="prev,pager,next" :total="tableTotal"/>
+      <el-pagination
+          background
+          v-model:page-size="tableParams.pageSize"
+          v-model:current-page="tableParams.pageNum"
+          :page-sizes="[5, 10, 20, 50]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableTotal"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+      />
+
     </div>
     <el-dialog v-model="addDialogFormVisible" title="新增部门信息">
       <el-form :model="addFormParams" label-position="top" :rules="addRules">
@@ -154,7 +164,7 @@ const openDelDeptMsgBox = () => {
 /* 调用删除deptAPI */
 const delDept = async () => {
   const res = await removeDeptAPI(delIds.value)
-  if (res.flag) {
+  if (res.code === 200) {
     ElMessage({
       type: 'success',
       message: '删除成功'
@@ -196,9 +206,9 @@ const addFormParams = ref<AddAndUpdateFormParams>({
 })
 /* 调用新增API */
 const addDept = async () => {
-  const result = await addDeptAPI(addFormParams.value)
-  console.log(result);
-  if (result.flag) {
+  const res = await addDeptAPI(addFormParams.value)
+  console.log(res);
+  if (res.code === 200) {
     ElMessage({
       message: '新增成功',
       type: 'success',
@@ -234,26 +244,26 @@ const clearAddParams = () => {
 
 /* 搜索参数 */
 const searchParams = ref<SearchParams>({
-  currentPage: 1,
+  pageNum: 1,
   pageSize: 10,
-  name: '',
+  deptName: '',
   manager: ''
 })
 /* 搜索功能 */
 const search = async () => {
   console.log("searchParams.value", searchParams.value)
-  const result = await searchAPI(searchParams.value)
-  if (result.flag) {
-    tableData.value = result.data.records
-    tableTotal.value = result.data.total
+  const res = await searchAPI(searchParams.value)
+  if (res.code === 200) {
+    tableData.value = res.data.content
+    tableTotal.value = res.data.totalSize
   }
 }
 /* 清空搜索参数 */
 const clearSearchParams = () => {
   searchParams.value = {
-    currentPage: 1,
+    pageNum: 1,
     pageSize: 10,
-    name: '',
+    deptName: '',
     manager: ''
   }
 }
@@ -288,7 +298,7 @@ const openUpdateDialog = (row: TableData) => {
 /* 调用修改API*/
 const updateDept = async () => {
   const res = await updateDeptAPI(updateParams.value)
-  if (res.flag) {
+  if (res.code === 200) {
     ElMessage({
       message: '修改成功',
       type: 'success',
@@ -312,15 +322,24 @@ const updateDialogBtnDisabled = computed(() => {
 /* table参数 */
 const tableParams = ref<TableParams>({
   pageSize: 10,
-  currentPage: 1
+  pageNum: 1
 })
 /* 获取table列表 */
 const getTableData = async () => {
-  const result = await allDeptAPI(tableParams.value)
-  if (result.flag) {
-    tableData.value = result.data.records
-    tableTotal.value = result.data.total
+  const res = await allDeptAPI(tableParams.value)
+  if (res.code === 200) {
+    tableData.value = res.data.content
+    tableTotal.value = res.data.totalSize
   }
+}
+
+/* 改变pageSize */
+const handleSizeChange = () => {
+  getTableData()
+}
+/* 改变currentPage */
+const handleCurrentChange = () => {
+  getTableData()
 }
 /* table数据 */
 const tableData = ref<TableData[]>()

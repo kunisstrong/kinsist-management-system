@@ -1,26 +1,28 @@
-import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/DeptManagement/type";
+import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/deptManagement/type";
 import service from "../request";
 
 /* 查询所有部门 */
 export const allDeptAPI = (data: TableParams) => service({
-    url: `/dept/${data.currentPage}/${data.pageSize}`,
-    method: 'get'
+    url: `/dept/list`,
+    method: 'post',
+    data: data
 })
 /* 搜索 */
 export const searchAPI = (data: SearchParams) => service({
-    url: `/dept/search?currentPage=${data.currentPage}&pageSize=${data.pageSize}&name=${data.name}&manager=${data.manager}`,
-    method: 'get'
+    url: `/dept/search`,
+    method: 'post',
+    data: data
 })
 /* 新增 */
 export const addDeptAPI = (data: AddAndUpdateFormParams) => service({
-    url: `/dept`,
+    url: `/dept/save`,
     method: 'post',
     data: data
 })
 /* 删除 */
 export const removeDeptAPI = (data: number[]) => service({
     url: `/dept/del`,
-    method: 'post',
+    method: 'put',
     data: data
 })
 /* 修改 */

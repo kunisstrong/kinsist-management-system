@@ -4,7 +4,7 @@ import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router"
 export const MenuList = [
     {
         path: "home",
-        component: () => import("@/view/Home/home.vue"),
+        component: () => import("@/view/home/index.vue"),
         meta: {
             title: "首页",
             icon: "svg-icon:home",
@@ -13,7 +13,7 @@ export const MenuList = [
     },
     {
         path: "staffManagement",
-        component: () => import("@/view/EmpManagement/index.vue"),
+        component: () => import("@/view/empManagement/index.vue"),
         meta: {
             title: "员工管理",
             icon: "svg-icon:staffManagement",
@@ -21,7 +21,7 @@ export const MenuList = [
         }
     },{
         path: "departmentManagement",
-        component: () => import("@/view/DeptManagement/deptmanagement.vue"),
+        component: () => import("@/view/deptManagement/index.vue"),
         meta: {
             title: "部门管理",
             icon: "svg-icon:staffManagement",
@@ -38,7 +38,7 @@ export const MenuList = [
         children: [
             {
                 path: "checkProject",
-                component: () => import("@/view/ModuleManage/checkProject.vue"),
+                component: () => import("@/view/moduleManage/checkProject.vue"),
                 meta: {
                     title: "检查项目",
                     id: '2-1',
@@ -46,7 +46,7 @@ export const MenuList = [
             },
             {
                 path: "checkTemplate",
-                component: () => import("@/view/ModuleManage/checkTemplate.vue"),
+                component: () => import("@/view/moduleManage/checkTemplate.vue"),
                 meta: {
                     title: "检查单模块",
                     id: '2-2'
@@ -56,7 +56,7 @@ export const MenuList = [
     },
     {
         path: "test",
-        component: () => import("@/view/Test/test.vue"),
+        component: () => import("@/view/test/test.vue"),
         meta: {
             title: "测试",
             icon: "mdi:user",
@@ -69,7 +69,7 @@ export const MenuList = [
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        component: () => import('@/view/Login/login.vue'),
+        component: () => import('@/view/login/index.vue'),
         name: "login",
         meta: {
             title: '登录'
@@ -84,7 +84,7 @@ export const routes: Array<RouteRecordRaw> = [
             {
                 path: "personalCenter",
                 name: "personalCenter",
-                component: () => import("@/view/PersonalCenter/personalCenter.vue"),
+                component: () => import("@/view/personalCenter/personalCenter.vue"),
                 meta: {
                     title: "个人中心"
                 }

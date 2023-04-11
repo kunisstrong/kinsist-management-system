@@ -66,13 +66,21 @@ const closeTab = (targetName: string) => {
 
 // 在本地储存tabList
 const refresh = () => {
+  /* 当前路由信息 */
+  console.log("rout_path", route.path)
   window.addEventListener("beforeunload", () => {
     sessionStorage.setItem("TABS_ROUTES", JSON.stringify(tabList.value))
+    sessionStorage.setItem("CURRENT_PATH", JSON.stringify(route.path))
   })
 
-  const session = sessionStorage.getItem("TABS_ROUTES")
-  if (session) {
-    tabStore.addAllTab(JSON.parse((session)))
+  const tabsRoutes = sessionStorage.getItem("TABS_ROUTES")
+  const currentPath = sessionStorage.getItem("CURRENT_PATH")
+  if (tabsRoutes) {
+    tabStore.addAllTab(JSON.parse((tabsRoutes)))
+  }
+  if (currentPath) {
+    router.push(JSON.parse((currentPath)))
+    activeKey.value = route.path
   }
 }
 

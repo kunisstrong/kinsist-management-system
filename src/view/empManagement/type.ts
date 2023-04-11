@@ -1,6 +1,6 @@
 export type SearchParams = {
     pageSize: number,
-    currentPage: number,
+    pageNum: number,
     empName: string,
     deptId: number | '',
     position: string,
@@ -22,7 +22,7 @@ export type TableData = {
 }
 export type TableParams = {
     pageSize: number,
-    currentPage: number,
+    pageNum: number,
 }
 export type AddAndUpdateFormParams = {
     age: number,

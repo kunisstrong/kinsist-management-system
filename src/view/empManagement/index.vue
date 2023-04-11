@@ -54,7 +54,7 @@
       <el-pagination
           background
           v-model:page-size="tableParams.pageSize"
-          v-model:current-page="tableParams.currentPage"
+          v-model:current-page="tableParams.pageNum"
           :page-sizes="[5, 10, 20, 50]"
           layout="total, sizes, prev, pager, next, jumper"
           :total="tableTotal"
@@ -336,7 +336,7 @@ const clearAddParams = () => {
 
 /* 搜索参数 */
 const searchParams = ref<SearchParams>({
-  currentPage: 1,
+  pageNum: 1,
   pageSize: 10,
   empName: '',
   deptId: '',
@@ -353,7 +353,7 @@ const search = async () => {
 /* 清空搜索参数 */
 const clearSearchParams = () => {
   searchParams.value = {
-    currentPage: 1,
+    pageNum: 1,
     pageSize: 10,
     empName: '',
     deptId: '',
@@ -423,7 +423,7 @@ const updateDialogBtnDisabled = computed(() => {
 /* table参数 */
 const tableParams = ref<TableParams>({
   pageSize: 20,
-  currentPage: 1
+  pageNum: 1
 })
 /* 初始化table列表 */
 const getTableData = async () => {
@@ -440,7 +440,7 @@ const tableTotal = ref(0)
 const handleSizeChange = () => {
   getTableData()
 }
-/* 改变currentPage */
+/* 改变pageNum */
 const handleCurrentChange = () => {
   getTableData()
 }

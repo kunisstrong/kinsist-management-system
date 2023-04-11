@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import { MenuList } from "@/router"
-import { ref, watch } from "vue"
+import { onMounted, ref, watch } from "vue"
 
 /* 接受父组件传来控制面包屑的参数collapse */
 defineProps({
@@ -49,12 +49,15 @@ const toPath = (path: string, subPath?: string) => {
 }
 
 /* 检测路由变化，改变activeKey值 */
-const activeKey = ref("1")
+const activeKey = ref("")
 const route = useRoute()
 watch(() => route.path, () => {
   activeKey.value = route.meta.id as string
 })
 
+onMounted(() => {
+  activeKey.value = route.meta.id as string
+})
 </script>
 
 <style lang="scss" scoped>

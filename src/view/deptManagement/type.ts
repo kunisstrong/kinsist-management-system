@@ -1,7 +1,7 @@
 export type SearchParams = {
     pageSize: number,
-    currentPage: number,
-    name?: null | string,
+    pageNum: number,
+    deptName?: null | string,
     manager?: string | null
 }
 export type TableData = {
@@ -13,7 +13,7 @@ export type TableData = {
 }
 export type TableParams = {
     pageSize: number,
-    currentPage: number,
+    pageNum: number,
 }
 export type AddAndUpdateFormParams = {
     deptId?: number | '',
