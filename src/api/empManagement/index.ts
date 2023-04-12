@@ -1,15 +1,16 @@
 import service from "@/api/request";
-import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/empManagement/type";
+import {AddAndUpdateFormParams, SearchParams, TableParams} from "@/view/empManagement/type";
 
 /* 获取所有员工 */
 export const allEmpAPI = (data: TableParams) => service({
-    url: `/emp/list/${data.pageNum}/${data.pageSize}`,
-    method: 'get'
+    url: `/emp/list`,
+    method: 'post',
+    data: data
 })
 
 /* 获取部门列表 */
 export const getDeptListAPI = () => service({
-    url: `/emp/dept/list`,
+    url: `/dept/listDeptSelect`,
     method: 'get'
 })
 

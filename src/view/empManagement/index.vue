@@ -172,11 +172,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive, computed } from 'vue'
-import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams } from './type'
-import { ElMessage, ElMessageBox, FormRules } from "element-plus"
+import {onMounted, ref, reactive, computed} from 'vue'
+import {AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams} from './type'
+import {ElMessage, ElMessageBox, FormRules} from "element-plus"
 import * as XLSX from 'xlsx'
-import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement"
+import {allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI} from "@/api/empManagement"
 
 /* 导出 */
 let exportData: TableData[] = reactive([])
@@ -247,7 +247,7 @@ const openDelDeptMsgBox = () => {
 /* 调用删除deptAPI */
 const delDept = async () => {
   const res = await delEmpAPI(delIds.value)
-  if (res.flag) {
+  if (res.code === 200) {
     ElMessage({
       type: 'success',
       message: '删除成功'
@@ -294,8 +294,8 @@ const addFormParams = ref<AddAndUpdateFormParams>({
 })
 /* 调用新增API */
 const addDept = async () => {
-  const result = await saveEmpAPI(addFormParams.value)
-  if (result.flag) {
+  const res = await saveEmpAPI(addFormParams.value)
+  if (res.code === 200) {
     ElMessage({
       message: '新增成功',
       type: 'success',
@@ -309,11 +309,11 @@ const addDept = async () => {
 }
 /* 新增form校验 */
 const addRules = reactive<FormRules>({
-  empName: [ { required: true, message: '员工姓名是必填项', trigger: 'blur' } ],
-  entryDate: [ { required: true, message: '入职时间是必填项', trigger: 'blur' } ],
-  position: [ { required: true, message: '职位是必填项', trigger: 'blur' } ],
-  salary: [ { required: true, message: '薪水是必填项', trigger: 'blur' } ],
-  deptId: [ { required: true, message: '所属部门是必填项', trigger: 'blur' } ]
+  empName: [{required: true, message: '员工姓名是必填项', trigger: 'blur'}],
+  entryDate: [{required: true, message: '入职时间是必填项', trigger: 'blur'}],
+  position: [{required: true, message: '职位是必填项', trigger: 'blur'}],
+  salary: [{required: true, message: '薪水是必填项', trigger: 'blur'}],
+  deptId: [{required: true, message: '所属部门是必填项', trigger: 'blur'}]
 })
 /* 新增对话框中确定按钮 */
 const addDialogBtnDisabled = computed(() => {
@@ -344,10 +344,10 @@ const searchParams = ref<SearchParams>({
 })
 /* 搜索功能 */
 const search = async () => {
-  const result = await searchEmpAPI(searchParams.value)
-  if (result.flag) {
-    tableData.value = result.data.records
-    tableTotal.value = result.data.total
+  const res = await searchEmpAPI(searchParams.value)
+  if (res.code === 200) {
+    tableData.value = res.data.records
+    tableTotal.value = res.data.total
   }
 }
 /* 清空搜索参数 */
@@ -397,7 +397,7 @@ const openUpdateDialog = (row: TableData) => {
 /* 调用修改API */
 const updateDept = async () => {
   const res = await updateEmpAPI(updateParams.value)
-  if (res.flag) {
+  if (res.code === 200) {
     ElMessage({
       message: '修改成功',
       type: 'success',
@@ -408,11 +408,11 @@ const updateDept = async () => {
 }
 /* 修改form校验 */
 const updateRules = reactive<FormRules>({
-  empName: [ { required: true, message: '员工姓名是必填项', trigger: 'blur' } ],
-  entryDate: [ { required: true, message: '入职时间是必填项', trigger: 'blur' } ],
-  position: [ { required: true, message: '职位是必填项', trigger: 'blur' } ],
-  salary: [ { required: true, message: '薪水是必填项', trigger: 'blur' } ],
-  deptId: [ { required: true, message: '所属部门是必填项', trigger: 'blur' } ]
+  empName: [{required: true, message: '员工姓名是必填项', trigger: 'blur'}],
+  entryDate: [{required: true, message: '入职时间是必填项', trigger: 'blur'}],
+  position: [{required: true, message: '职位是必填项', trigger: 'blur'}],
+  salary: [{required: true, message: '薪水是必填项', trigger: 'blur'}],
+  deptId: [{required: true, message: '所属部门是必填项', trigger: 'blur'}]
 })
 /* 修改对话框中确定按钮 */
 const updateDialogBtnDisabled = computed(() => {
@@ -427,10 +427,10 @@ const tableParams = ref<TableParams>({
 })
 /* 初始化table列表 */
 const getTableData = async () => {
-  const result = await allEmpAPI(tableParams.value)
-  if (result.flag) {
-    tableData.value = result.data.records
-    tableTotal.value = result.data.total
+  const res = await allEmpAPI(tableParams.value)
+  if (res.code === 200) {
+    tableData.value = res.data.content
+    tableTotal.value = res.data.totalSize
   }
 }
 /* table数据 */
@@ -450,7 +450,7 @@ const deptList = ref<DeptItem[]>()
 /* 初始化部门列表 */
 const getDeptList = async () => {
   const res = await getDeptListAPI()
-  if (res.flag) {
+  if (res.code === 200) {
     deptList.value = res.data
   }
 }
