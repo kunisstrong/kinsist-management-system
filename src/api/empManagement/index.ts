@@ -24,7 +24,7 @@ export const saveEmpAPI = (data: AddAndUpdateFormParams) => service({
 /* 删除 */
 export const delEmpAPI = (data: number[]) => service({
     url: '/emp/del',
-    method: 'post',
+    method: 'put',
     data: data
 })
 
@@ -35,8 +35,9 @@ export const updateEmpAPI = (data: AddAndUpdateFormParams) => service({
     data: data
 })
 
-/* 搜索pageNum, int pageSize, String empName, String position, String deptId */
+/* 搜索 */
 export const searchEmpAPI = (data: SearchParams) => service({
-    url: `/emp/search?pageNum=${data.pageNum}&pageSize=${data.pageSize}&empName=${data.empName}&position=${data.position}&deptId=${data.deptId}`,
-    method: 'get'
+    url: `/emp/search`,
+    method: 'post',
+    data: data
 })

@@ -39,7 +39,7 @@
         <el-table-column prop="age" label="年龄" align="center"/>
         <el-table-column prop="salary" label="薪水(元)" align="center"/>
         <el-table-column prop="position" label="职位" align="center"/>
-        <el-table-column prop="dept.deptName" label="所在部门" align="center"/>
+        <el-table-column prop="deptName" label="所在部门" align="center"/>
         <el-table-column prop="sex" label="员工性别" align="center"/>
         <el-table-column prop="entryDate" label="入职时间" align="center" dataformatas="yyyy-MM-dd" width="300"/>
         <el-table-column label="操作" align="center">
@@ -172,11 +172,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive, computed } from 'vue'
-import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams } from './type'
-import { ElMessage, ElMessageBox, FormRules } from "element-plus"
+import {onMounted, ref, reactive, computed} from 'vue'
+import {AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams} from './type'
+import {ElMessage, ElMessageBox, FormRules} from "element-plus"
 import * as XLSX from 'xlsx'
-import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement"
+import {allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI} from "@/api/empManagement"
 
 /* 导出 */
 let exportData: TableData[] = reactive([])
@@ -217,7 +217,6 @@ const exportExcel = () => {
   // 生成文件并下载
   XLSX.writeFile(wb, '部门信息.xlsx')
 }
-
 /* table中的删除 */
 const singleDel = (row: TableData) => {
   delIds.value.push(row.empId)
@@ -309,11 +308,11 @@ const addDept = async () => {
 }
 /* 新增form校验 */
 const addRules = reactive<FormRules>({
-  empName: [ { required: true, message: '员工姓名是必填项', trigger: 'blur' } ],
-  entryDate: [ { required: true, message: '入职时间是必填项', trigger: 'blur' } ],
-  position: [ { required: true, message: '职位是必填项', trigger: 'blur' } ],
-  salary: [ { required: true, message: '薪水是必填项', trigger: 'blur' } ],
-  deptId: [ { required: true, message: '所属部门是必填项', trigger: 'blur' } ]
+  empName: [{required: true, message: '员工姓名是必填项', trigger: 'blur'}],
+  entryDate: [{required: true, message: '入职时间是必填项', trigger: 'blur'}],
+  position: [{required: true, message: '职位是必填项', trigger: 'blur'}],
+  salary: [{required: true, message: '薪水是必填项', trigger: 'blur'}],
+  deptId: [{required: true, message: '所属部门是必填项', trigger: 'blur'}]
 })
 /* 新增对话框中确定按钮 */
 const addDialogBtnDisabled = computed(() => {
@@ -346,8 +345,8 @@ const searchParams = ref<SearchParams>({
 const search = async () => {
   const res = await searchEmpAPI(searchParams.value)
   if (res.code === 200) {
-    tableData.value = res.data.records
-    tableTotal.value = res.data.total
+    tableData.value = res.data.content
+    tableTotal.value = res.data.totalSize
   }
 }
 /* 清空搜索参数 */
@@ -408,11 +407,11 @@ const updateDept = async () => {
 }
 /* 修改form校验 */
 const updateRules = reactive<FormRules>({
-  empName: [ { required: true, message: '员工姓名是必填项', trigger: 'blur' } ],
-  entryDate: [ { required: true, message: '入职时间是必填项', trigger: 'blur' } ],
-  position: [ { required: true, message: '职位是必填项', trigger: 'blur' } ],
-  salary: [ { required: true, message: '薪水是必填项', trigger: 'blur' } ],
-  deptId: [ { required: true, message: '所属部门是必填项', trigger: 'blur' } ]
+  empName: [{required: true, message: '员工姓名是必填项', trigger: 'blur'}],
+  entryDate: [{required: true, message: '入职时间是必填项', trigger: 'blur'}],
+  position: [{required: true, message: '职位是必填项', trigger: 'blur'}],
+  salary: [{required: true, message: '薪水是必填项', trigger: 'blur'}],
+  deptId: [{required: true, message: '所属部门是必填项', trigger: 'blur'}]
 })
 /* 修改对话框中确定按钮 */
 const updateDialogBtnDisabled = computed(() => {
