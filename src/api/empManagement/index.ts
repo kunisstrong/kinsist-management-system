@@ -1,8 +1,8 @@
 import service from "@/api/request";
-import {AddAndUpdateFormParams, SearchParams, TableParams} from "@/view/empManagement/type";
+import {AddAndUpdateFormParams, SearchParams} from "@/view/empManagement/type";
 
 /* 获取所有员工 */
-export const allEmpAPI = (data: TableParams) => service({
+export const allEmpAPI = (data: SearchParams) => service({
     url: `/emp/list`,
     method: 'post',
     data: data

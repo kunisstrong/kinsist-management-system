@@ -53,8 +53,8 @@
     <div class="page-box">
       <el-pagination
           background
-          v-model:page-size="tableParams.pageSize"
-          v-model:current-page="tableParams.pageNum"
+          v-model:page-size="searchParams.pageSize"
+          v-model:current-page="searchParams.pageNum"
           :page-sizes="[5, 10, 20, 50]"
           layout="total, sizes, prev, pager, next, jumper"
           :total="tableTotal"
@@ -173,7 +173,7 @@
 
 <script setup lang="ts">
 import {onMounted, ref, reactive, computed} from 'vue'
-import {AddAndUpdateFormParams, DeptItem, SearchParams, TableData, TableParams} from './type'
+import {AddAndUpdateFormParams, DeptItem, SearchParams, TableData} from './type'
 import {ElMessage, ElMessageBox, FormRules} from "element-plus"
 import * as XLSX from 'xlsx'
 import {allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI} from "@/api/empManagement"
@@ -336,7 +336,7 @@ const clearAddParams = () => {
 /* 搜索参数 */
 const searchParams = ref<SearchParams>({
   pageNum: 1,
-  pageSize: 10,
+  pageSize: 20,
   empName: '',
   deptId: '',
   position: '',
@@ -353,7 +353,7 @@ const search = async () => {
 const clearSearchParams = () => {
   searchParams.value = {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 20,
     empName: '',
     deptId: '',
     position: '',
@@ -362,10 +362,10 @@ const clearSearchParams = () => {
 
 /* 重置 */
 const reset = () => {
+  /* 清空搜索参数 */
+  clearSearchParams()
   /* 初始table */
   getTableData()
-  /* 清空参数 */
-  clearSearchParams()
 }
 
 /* 修改参数 */
@@ -419,14 +419,9 @@ const updateDialogBtnDisabled = computed(() => {
   return !res
 })
 
-/* table参数 */
-const tableParams = ref<TableParams>({
-  pageSize: 20,
-  pageNum: 1
-})
 /* 初始化table列表 */
 const getTableData = async () => {
-  const res = await allEmpAPI(tableParams.value)
+  const res = await allEmpAPI(searchParams.value)
   if (res.code === 200) {
     tableData.value = res.data.content
     tableTotal.value = res.data.totalSize

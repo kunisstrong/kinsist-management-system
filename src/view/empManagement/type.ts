@@ -20,10 +20,6 @@ export type TableData = {
     salary: number,
     sex: string
 }
-export type TableParams = {
-    pageSize: number,
-    pageNum: number,
-}
 export type AddAndUpdateFormParams = {
     age: number,
     empId: number | '',

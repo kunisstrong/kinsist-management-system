@@ -1,8 +1,8 @@
-import { AddAndUpdateFormParams, SearchParams, TableParams } from "@/view/deptManagement/type";
+import {AddAndUpdateFormParams, SearchParams} from "@/view/deptManagement/type";
 import service from "../request";
 
 /* 查询所有部门 */
-export const allDeptAPI = (data: TableParams) => service({
+export const allDeptAPI = (data: SearchParams) => service({
     url: `/dept/list`,
     method: 'post',
     data: data

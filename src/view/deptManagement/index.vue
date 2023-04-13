@@ -39,8 +39,8 @@
     <div class="page-box">
       <el-pagination
           background
-          v-model:page-size="tableParams.pageSize"
-          v-model:current-page="tableParams.pageNum"
+          v-model:page-size="searchParams.pageSize"
+          v-model:current-page="searchParams.pageNum"
           :page-sizes="[5, 10, 20, 50]"
           layout="total, sizes, prev, pager, next, jumper"
           :total="tableTotal"
@@ -96,10 +96,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, reactive, computed } from 'vue';
-import { AddAndUpdateFormParams, SearchParams, TableData, TableParams } from './type'
-import { addDeptAPI, allDeptAPI, removeDeptAPI, searchAPI, updateDeptAPI } from '@/api/deptManagement'
-import { ElMessage, ElMessageBox, FormRules } from "element-plus"
+import {onMounted, ref, reactive, computed} from 'vue';
+import {AddAndUpdateFormParams, SearchParams, TableData} from './type'
+import {addDeptAPI, allDeptAPI, removeDeptAPI, searchAPI, updateDeptAPI} from '@/api/deptManagement'
+import {ElMessage, ElMessageBox, FormRules} from "element-plus"
 import * as XLSX from 'xlsx'
 
 /* 导出 */
@@ -222,9 +222,9 @@ const addDept = async () => {
 }
 /* 新增form校验 */
 const addRules = reactive<FormRules>({
-  deptName: [ { required: true, message: '请输入部门名称', trigger: 'blur' } ],
-  manager: [ { required: true, message: '请输入负责人', trigger: 'blur' } ],
-  allNum: [ { required: true, message: '请输入部门人数', trigger: 'blur' } ]
+  deptName: [{required: true, message: '请输入部门名称', trigger: 'blur'}],
+  manager: [{required: true, message: '请输入负责人', trigger: 'blur'}],
+  allNum: [{required: true, message: '请输入部门人数', trigger: 'blur'}]
 })
 /* 新增对话框中确定按钮 */
 const addDialogBtnDisabled = computed(() => {
@@ -270,10 +270,10 @@ const clearSearchParams = () => {
 
 // 重置
 const reset = () => {
-  /* 初始table */
-  getTableData()
   /* 清空参数 */
   clearSearchParams()
+  /* 初始table */
+  getTableData()
 }
 
 /* 修改参数 */
@@ -309,9 +309,9 @@ const updateDept = async () => {
 }
 /* 修改form校验 */
 const updateRules = reactive<FormRules>({
-  deptName: [ { required: true, message: '请输入部门名称', trigger: 'blur' } ],
-  manager: [ { required: true, message: '请输入负责人', trigger: 'blur' } ],
-  allNum: [ { required: true, message: '请输入部门人数', trigger: 'blur' } ]
+  deptName: [{required: true, message: '请输入部门名称', trigger: 'blur'}],
+  manager: [{required: true, message: '请输入负责人', trigger: 'blur'}],
+  allNum: [{required: true, message: '请输入部门人数', trigger: 'blur'}]
 })
 /* 修改对话框中确定按钮 */
 const updateDialogBtnDisabled = computed(() => {
@@ -319,14 +319,9 @@ const updateDialogBtnDisabled = computed(() => {
   return !res
 })
 
-/* table参数 */
-const tableParams = ref<TableParams>({
-  pageSize: 10,
-  pageNum: 1
-})
 /* 获取table列表 */
 const getTableData = async () => {
-  const res = await allDeptAPI(tableParams.value)
+  const res = await allDeptAPI(searchParams.value)
   if (res.code === 200) {
     tableData.value = res.data.content
     tableTotal.value = res.data.totalSize

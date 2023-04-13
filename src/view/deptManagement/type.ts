@@ -11,10 +11,6 @@ export type TableData = {
     allNum: number,
     remark: string
 }
-export type TableParams = {
-    pageSize: number,
-    pageNum: number,
-}
 export type AddAndUpdateFormParams = {
     deptId?: number | '',
     deptName: string,
