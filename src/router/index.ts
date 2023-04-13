@@ -1,5 +1,5 @@
-import type { App } from "vue"
-import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router"
+import type {App} from "vue"
+import {createRouter, RouteRecordRaw, createWebHashHistory} from "vue-router"
 
 export const MenuList = [
     {
@@ -19,7 +19,8 @@ export const MenuList = [
             icon: "svg-icon:staffManagement",
             id: "4"
         }
-    },{
+    },
+    {
         path: "departmentManagement",
         component: () => import("@/view/deptManagement/index.vue"),
         meta: {

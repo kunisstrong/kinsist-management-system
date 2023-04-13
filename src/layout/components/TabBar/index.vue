@@ -5,18 +5,17 @@
   </el-tabs>
 </template>
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from "vue"
-import { useRoute, useRouter } from "vue-router"
-import { Itab } from "@/store/type"
-import { useTabStore } from "@/store/tabBar"
-import { storeToRefs } from "pinia"
-import { useMenuStore } from "@/store/menu";
+import {computed, onMounted, ref, watch} from "vue"
+import {useRoute, useRouter} from "vue-router"
+import {Itab} from "@/store/type"
+import {useTabStore} from "@/store/tabBar"
+import {storeToRefs} from "pinia"
 
 const route = useRoute()
 const router = useRouter()
 
 const tabStore = useTabStore()
-const { getAddTab } = storeToRefs(tabStore)
+const {getAddTab} = storeToRefs(tabStore)
 
 // 动态获取state中的tabList
 const tabList = computed(() => {
@@ -25,16 +24,17 @@ const tabList = computed(() => {
 
 /* 路由发生变化，往vuex中添加tab */
 const addTab = () => {
-  const { meta, path } = route
+  const {meta, path} = route
   const tabItem: Itab = {
     path: path,
     title: meta.title as string
   }
+
   tabStore.addTab(tabItem)
 }
 
 // 检测路由变化，变化则更新key
-const activeKey = ref("")
+const activeKey = ref("/index/home")
 watch(() => route.path, () => {
       activeKey.value = route.path
       addTab()
@@ -67,7 +67,7 @@ const closeTab = (targetName: string) => {
 // 在本地储存tabList
 const refresh = () => {
   /* 当前路由信息 */
-  console.log("rout_path", route.path)
+  // console.log("rout_path", route.path)
   window.addEventListener("beforeunload", () => {
     sessionStorage.setItem("TABS_ROUTES", JSON.stringify(tabList.value))
     sessionStorage.setItem("CURRENT_PATH", JSON.stringify(route.path))
@@ -89,6 +89,8 @@ onMounted(() => {
   addTab()
   // 挂载本地存储
   refresh()
+
+  console.log("tabList", tabList)
 })
 </script>
 

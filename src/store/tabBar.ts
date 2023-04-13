@@ -1,13 +1,14 @@
-import { defineStore } from "pinia"
-import { Itab } from "@/store/type"
+import {defineStore} from "pinia"
+import {Itab} from "@/store/type"
+
+export interface TabStore {
+    tabList: Array<Itab>
+}
 
 export const useTabStore = defineStore("tab", {
-    state() {
-        return {
-            // tab标签
-            tabList: [ { path: "", title: "" } ],
-        }
-    },
+    state: (): TabStore => ({
+        tabList: [],
+    }),
     actions: {
         addAllTab(tabList: Array<Itab>) {
             this.tabList = tabList
@@ -19,7 +20,6 @@ export const useTabStore = defineStore("tab", {
                 this.tabList.push(tab)
             }
         },
-
         delTab(currentTab: string) {
             const index = this.tabList.findIndex((item) => item.path === currentTab)
             this.tabList.splice(index, 1)
