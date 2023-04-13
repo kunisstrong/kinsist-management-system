@@ -17,6 +17,7 @@ export const useTabStore = defineStore("tab", {
         addTab(tab: Itab) {
             const isSome = this.tabList.some(item => item.path === tab.path)
             if (!isSome) {
+                console.log("this.tabList===", this.tabList)
                 this.tabList.push(tab)
             }
         },

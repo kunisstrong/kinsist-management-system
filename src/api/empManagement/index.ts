@@ -1,5 +1,5 @@
 import service from "@/api/request";
-import {AddAndUpdateFormParams, SearchParams} from "@/view/empManagement/type";
+import {AddAndUpdateFormParams, SearchParams} from "@/view/EmpManagement/type";
 
 /* 获取所有员工 */
 export const allEmpAPI = (data: SearchParams) => service({

@@ -8,7 +8,7 @@
 import {computed, onMounted, ref, watch} from "vue"
 import {useRoute, useRouter} from "vue-router"
 import {Itab} from "@/store/type"
-import {useTabStore} from "@/store/tabBar"
+import {useTabStore} from "@/store/modules/tabBar"
 import {storeToRefs} from "pinia"
 
 const route = useRoute()
@@ -34,8 +34,10 @@ const addTab = () => {
 }
 
 // 检测路由变化，变化则更新key
-const activeKey = ref("/index/home")
-watch(() => route.path, () => {
+const activeKey = ref("/index/Home")
+watch(
+    () => route.path,
+    () => {
       activeKey.value = route.path
       addTab()
     }
@@ -89,8 +91,6 @@ onMounted(() => {
   addTab()
   // 挂载本地存储
   refresh()
-
-  console.log("tabList", tabList)
 })
 </script>
 

@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import BreadCrumb from '@/layout/components/HeaderBar/BreadCrumb.vue'
+import BreadCrumb from '@/layout/components/HeaderBar/component/BreadCrumb.vue'
 import { ElMessageBox } from 'element-plus'
 import screenFull from 'screenfull'
 import { ref } from "vue"
@@ -51,7 +51,7 @@ import { useRouter } from "vue-router"
 // 退出登录
 const router = useRouter()
 const logOut = () => {
-  router.push({ name: "login" })
+  router.push({ name: "Login" })
 }
 // 跳转到GitHub
 const goGitHub = () => {
@@ -78,7 +78,7 @@ const docsClick = () => {
 }
 // 跳转到个人中心
 const toPersonalCenter = () => {
-  router.push({ name: 'personalCenter' })
+  router.push({ name: 'PersonalCenter' })
 }
 </script>
 
