@@ -4,7 +4,7 @@
       <div class="title">
         <div class="title-item">
           <div class="icon-box visitUser">
-            <Icon ref="visitUser" icon="svg-icon:visitUser" :size="50" color="#6bc6c5" />
+            <Icon ref="visitUser" icon="svg-icon:visitUser" :size="50" color="#6bc6c5"/>
           </div>
           <div class="item-box">
             <p class="subTitle">新增用户</p>
@@ -13,7 +13,7 @@
         </div>
         <div class="title-item">
           <div class="icon-box message">
-            <Icon icon="svg-icon:message" :size="50" color="#57a1f0" />
+            <Icon icon="svg-icon:message" :size="50" color="#57a1f0"/>
           </div>
           <div class="item-box">
             <p class="subTitle">未读消息</p>
@@ -22,7 +22,7 @@
         </div>
         <div class="title-item">
           <div class="icon-box money">
-            <Icon icon="svg-icon:money" :size="50" color="#e25d6f" />
+            <Icon icon="svg-icon:money" :size="50" color="#e25d6f"/>
           </div>
           <div class="item-box">
             <p class="subTitle">成交金额</p>
@@ -31,7 +31,7 @@
         </div>
         <div class="title-item">
           <div class="icon-box shopping">
-            <Icon class="icon" icon="svg-icon:shopping" :size="50" color="#61bca4" />
+            <Icon class="icon" icon="svg-icon:shopping" :size="50" color="#61bca4"/>
           </div>
           <div class="item-box">
             <p class="subTitle">购物总量</p>
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div id="initBrokenLine" style="width: 100%; height: 500px" />
+      <div id="initBrokenLine" style="width: 100%; height: 500px"/>
     </div>
     <div class="twoRowEcharts">
       <div id="itemOne" class="item" style="width: 30%;height: 420px"></div>
@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import { onMounted } from "vue"
+import {onMounted} from "vue"
 
 type EChartsOption = echarts.EChartsOption
 // 初始化折线图  期望值、实际值
@@ -117,12 +117,12 @@ const initTwoEchartsOne = () => {
     radar: {
       shape: 'circle',
       indicator: [
-        { name: '销售部门', max: 6500 },
-        { name: '管理部门', max: 16000 },
-        { name: '信息技术', max: 30000 },
-        { name: '客户服务', max: 38000 },
-        { name: '研发部门', max: 52000 },
-        { name: '市场营销部门', max: 25000 }
+        {name: '销售部门', max: 6500},
+        {name: '管理部门', max: 16000},
+        {name: '信息技术', max: 30000},
+        {name: '客户服务', max: 38000},
+        {name: '研发部门', max: 52000},
+        {name: '市场营销部门', max: 25000}
       ],
     },
     series: [
@@ -179,11 +179,11 @@ const initTwoEchartsTwo = () => {
           borderRadius: 8
         },
         data: [
-          { value: 45, name: '专题研究' },
-          { value: 35, name: '技术研究' },
-          { value: 28, name: '外汇交易市场' },
-          { value: 18, name: '行业发展' },
-          { value: 10, name: '外来趋势预测' },
+          {value: 45, name: '专题研究'},
+          {value: 35, name: '技术研究'},
+          {value: 28, name: '外汇交易市场'},
+          {value: 18, name: '行业发展'},
+          {value: 10, name: '外来趋势预测'},
         ]
       }
     ]

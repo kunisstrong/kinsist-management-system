@@ -3,7 +3,7 @@
   <div class="breadcrumb-container" style="margin-left: 15px;">
     <el-breadcrumb style="cursor: pointer">
       <template v-for="(item, index) in breadcrumb" :key="index">
-        <el-breadcrumb-item @click="changePath(item.path)" v-if="index !== 0">
+        <el-breadcrumb-item @click="changePath(item.path,index)" v-if="index !== 0">
           {{ item.meta.title }}
         </el-breadcrumb-item>
       </template>
@@ -20,9 +20,8 @@ let breadcrumb: any = ref([])
 // 更新面包屑中内容
 const updateBreadcrumb = (): void => {
   breadcrumb.value = route.matched
-  // console.log("breadcrumb.value=====", breadcrumb.value)
+  // console.log("breadcrumb.value=====", breadcrumb.value
 }
-
 updateBreadcrumb()
 // 检测路由发生变化
 watch(() => route.path, () => {
@@ -31,11 +30,11 @@ watch(() => route.path, () => {
 
 // 点击跳转路由界面
 const router = useRouter()
-const changePath = (path: string): void => {
-  router.push(path)
+const changePath = (path: string, index: number): void => {
+  console.log("route.matched=====", route.matched)
+  /* 只有是menu菜单的最后一个才跳转 */
+  if (route.matched[index].children.length === 0) {
+    router.push(path)
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

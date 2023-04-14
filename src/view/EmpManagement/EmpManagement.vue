@@ -32,7 +32,7 @@
     </el-row>
     <div class="table">
       <el-table :data="tableData" style="width: 100%" border center stripe @selection-change="handleSelection"
-                max-height="510">
+                max-height="610">
         <el-table-column type="selection" width="55"/>
         <el-table-column label="序号" type="index" align="center" width="100"/>
         <el-table-column prop="empName" label="员工姓名" align="center"/>

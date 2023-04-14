@@ -7,10 +7,12 @@
       <el-container>
         <el-header>
           <el-row>
-            <Icon style="cursor: pointer"
-                  :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
-                  @click="() => { collapsed = !collapsed }"
-                  :size="25"/>
+            <Icon
+                style="cursor: pointer"
+                :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
+                @click="() => { collapsed = !collapsed }"
+                :size="25"
+            />
           </el-row>
           <HeaderBar/>
         </el-header>
@@ -28,9 +30,9 @@
 import MenuBar from "@/layout/components/MenuBar/index.vue"
 import HeaderBar from "@/layout/components/HeaderBar/index.vue"
 import TabBar from "@/layout/components/TabBar/index.vue"
-import { computed, ref } from "vue"
-import { isMobile } from "@/utils/isMobile"
-import { Icon } from "@/components/Icon"
+import {computed, ref} from "vue"
+import {isMobile} from "@/utils/isMobile"
+import {Icon} from "@/components/Icon"
 
 // 面包屑
 let collapsed = ref<boolean>(false)

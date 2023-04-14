@@ -21,7 +21,8 @@
       <el-button type="warning" @click="exportExcel" :disabled="exportData.length === 0">导出</el-button>
     </el-row>
     <div class="table">
-      <el-table :data="tableData" style="width: 100%" border center stripe @selection-change="handleSelection">
+      <el-table :data="tableData" style="width: 100%" border center stripe @selection-change="handleSelection"
+                max-height="610">
         <el-table-column type="selection" width="55"/>
         <el-table-column label="序号" type="index" align="center" width="100"/>
         <el-table-column prop="deptName" label="部门名称" align="center"/>
