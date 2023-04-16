@@ -1,5 +1,5 @@
 import service from '@/api/request'
-import { type AddAndUpdateFormParams, type SearchParams } from '@/view/EmpManagement/type'
+import { type AddAndUpdateFormParams, type SearchParams } from '@/view/Table/EmpManagement/type'
 
 /* 获取所有员工 */
 export const allEmpAPI = async (data: SearchParams) => await service({

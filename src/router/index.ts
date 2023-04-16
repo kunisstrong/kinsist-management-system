@@ -14,24 +14,120 @@ export const MenuList = [
     }
   },
   {
-    path: 'staffManagement',
-    name: 'staffManagement',
-    component: async () => await import('@/view/EmpManagement/EmpManagement.vue'),
+    path: 'table',
+    name: 'table',
     meta: {
-      title: '员工管理',
-      icon: 'svg-icon:staffManagement',
+      title: '表单',
+      icon: 'svg-icon:table',
       id: '2'
-    }
+    },
+    children: [
+      {
+        path: 'staffManagement',
+        name: 'staffManagement',
+        component: async () => await import('@/view/Table/EmpManagement/EmpManagement.vue'),
+        meta: {
+          title: '员工管理',
+          icon: 'svg-icon:staffManagement',
+          id: '2-1'
+        }
+      },
+      {
+        path: 'departmentManagement',
+        name: 'departmentManagement',
+        component: async () => await import('@/view/Table/DeptManagement/DeptManagement.vue'),
+        meta: {
+          title: '部门管理',
+          icon: 'svg-icon:department',
+          id: '2-2'
+        }
+      }
+    ]
   },
   {
-    path: 'departmentManagement',
-    name: 'departmentManagement',
-    component: async () => await import('@/view/DeptManagement/DeptManagement.vue'),
+    path: 'nestRoute',
+    name: 'nestRoute',
     meta: {
-      title: '部门管理',
-      icon: 'svg-icon:department',
+      title: '嵌套路由',
+      icon: 'svg-icon:menu',
       id: '3'
-    }
+    },
+    children: [
+      {
+        path: 'menu1',
+        name: 'menu1',
+        meta: {
+          title: '菜单1',
+          id: '3-1'
+        },
+        children: [
+          {
+            path: 'menu1-1',
+            name: 'menu1-1',
+            component: async () => await import('@/view/NestRoute/Menu1/Menu1-1/Menu1-1.vue'),
+            meta: {
+              title: '菜单 1-1',
+              id: '3-1-1'
+            }
+          },
+          {
+            path: 'menu1-2',
+            name: 'menu1-2',
+            meta: {
+              title: '菜单 1-2',
+              id: '3-1-2'
+            },
+            children: [
+              {
+                path: 'menu1-2-1',
+                name: 'menu1-2-1',
+                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-1/Menu1-2-1.vue'),
+                meta: {
+                  title: '菜单 1-2-1',
+                  id: '3-1-2-1'
+                }
+              },
+              {
+                path: 'menu1-2-2',
+                name: 'menu1-2-2',
+                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-2/Menu1-2-2.vue'),
+                meta: {
+                  title: '菜单 1-2-2',
+                  id: '3-1-2-2'
+                }
+              },
+              {
+                path: 'menu1-2-3',
+                name: 'menu1-2-3',
+                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-3/Menu1-2-3.vue'),
+                meta: {
+                  title: '菜单 1-2-3',
+                  id: '3-1-2-3'
+                }
+              }
+            ]
+          },
+          {
+            path: 'menu1-3',
+            name: 'menu1-3',
+            component: async () => await import('@/view/NestRoute/Menu1/Menu1-3/Menu1-3.vue'),
+            meta: {
+              title: '菜单 1-3',
+              id: '3-1-3'
+            }
+          }
+        ]
+      },
+      {
+        path: 'menu2',
+        name: 'menu2',
+        component: async () => await import('@/view/NestRoute/Menu2/Menu2-1.vue'),
+        meta: {
+          title: '菜单2',
+          id: '3-2'
+        }
+      }
+    ]
   },
   {
     path: 'moduleManage',
@@ -60,91 +156,6 @@ export const MenuList = [
           title: '检查单模块',
           icon: 'mdi:user',
           id: '4-2'
-        }
-      }
-    ]
-  },
-  {
-    path: 'nestRoute',
-    name: 'nestRoute',
-    meta: {
-      title: '嵌套路由',
-      icon: 'svg-icon:menu',
-      id: '6'
-    },
-    children: [
-      {
-        path: 'menu1',
-        name: 'menu1',
-        meta: {
-          title: '菜单1',
-          id: '6-1'
-        },
-        children: [
-          {
-            path: 'menu1-1',
-            name: 'menu1-1',
-            component: async () => await import('@/view/NestRoute/Menu1/Menu1-1/Menu1-1.vue'),
-            meta: {
-              title: '菜单 1-1',
-              id: '6-1-1'
-            }
-          },
-          {
-            path: 'menu1-2',
-            name: 'menu1-2',
-            meta: {
-              title: '菜单 1-2',
-              id: '6-1-2'
-            },
-            children: [
-              {
-                path: 'menu1-2-1',
-                name: 'menu1-2-1',
-                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-1/Menu1-2-1.vue'),
-                meta: {
-                  title: '菜单 1-2-1',
-                  id: '6-1-2-1'
-                }
-              },
-              {
-                path: 'menu1-2-2',
-                name: 'menu1-2-2',
-                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-2/Menu1-2-2.vue'),
-                meta: {
-                  title: '菜单 1-2-2',
-                  id: '6-1-2-2'
-                }
-              },
-              {
-                path: 'menu1-2-3',
-                name: 'menu1-2-3',
-                component: async () => await import('@/view/NestRoute/Menu1/Menu1-2/Menu1-2-3/Menu1-2-3.vue'),
-                meta: {
-                  title: '菜单 1-2-3',
-                  id: '6-1-2-3'
-                }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            name: 'menu1-3',
-            component: async () => await import('@/view/NestRoute/Menu1/Menu1-3/Menu1-3.vue'),
-            meta: {
-              title: '菜单 1-3',
-              id: '6-1-3'
-            }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        name: 'menu2',
-        component: async () => await import('@/view/NestRoute/Menu2/Menu2-1.vue'),
-        meta: {
-          title: '菜单2',
-          id: '6-2'
         }
       }
     ]

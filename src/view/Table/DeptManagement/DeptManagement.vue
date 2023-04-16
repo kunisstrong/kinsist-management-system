@@ -284,15 +284,15 @@ const exportExcel = () => {
     obj.value = {}
     // 将对应的英文key转化为自己想要的中文key
     for (const key in exportData[i]) {
-      if (key == 'id') {
+      if (key === 'id') {
         obj.value['序号'] = i + 1
-      } else if (key == 'deptName') {
+      } else if (key === 'deptName') {
         obj.value['部门名称'] = exportData[i][key]
-      } else if (key == 'manager') {
+      } else if (key === 'manager') {
         obj.value['负责人'] = exportData[i][key]
-      } else if (key == 'allNum') {
+      } else if (key === 'allNum') {
         obj.value['部门人数'] = exportData[i][key]
-      } else if (key == 'remark') {
+      } else if (key === 'remark') {
         obj.value['备注'] = exportData[i][key]
       }
     }

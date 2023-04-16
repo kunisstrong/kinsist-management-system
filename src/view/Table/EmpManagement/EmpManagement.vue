@@ -429,21 +429,21 @@ const exportExcel = () => {
     obj.value = {}
     // 将对应的英文key转化为自己想要的中文key
     for (const key in exportData[i]) {
-      if (key == 'empId') {
+      if (key === 'empId') {
         obj.value['序号'] = i + 1
-      } else if (key == 'empName') {
+      } else if (key === 'empName') {
         obj.value['员工姓名'] = exportData[i][key]
-      } else if (key == 'age') {
+      } else if (key === 'age') {
         obj.value['年龄'] = exportData[i][key]
-      } else if (key == 'salary') {
+      } else if (key === 'salary') {
         obj.value['薪水(元)'] = exportData[i][key]
-      } else if (key == 'position') {
+      } else if (key === 'position') {
         obj.value['职位'] = exportData[i][key]
-      } else if (key == 'deptName') {
+      } else if (key === 'deptName') {
         obj.value['所在部门'] = exportData[i][key]
-      } else if (key == 'sex') {
+      } else if (key === 'sex') {
         obj.value['性别'] = exportData[i][key]
-      } else if (key == 'entryDate') {
+      } else if (key === 'entryDate') {
         obj.value['入职时间'] = exportData[i][key]
       }
     }
