@@ -3,7 +3,7 @@ import { createRouter, type RouteRecordRaw, createWebHashHistory } from 'vue-rou
 
 /* 动态路由 */
 // const _import = (path: string) => defineAsyncComponent(async () => await import(`/view/${path}.vue`))
-const Test = () => defineAsyncComponent(async () => await import('@/view/Test/Test.vue'))
+// const Test = () => defineAsyncComponent(async () => await import('@/view/Test/Test.vue'))
 const EmpManagement = () => defineAsyncComponent(async () => await import('@/view/DevelopmentCase/EmpManagement/EmpManagement.vue'))
 const DepartmentManagement = () => defineAsyncComponent(async () => await import('@/view/DevelopmentCase/DeptManagement/DeptManagement.vue'))
 const TreeFilter = () => defineAsyncComponent(async () => await import('@/view/Table/TreeFilter/TreeFilter.vue'))
@@ -159,8 +159,8 @@ export const MenuList = [
   {
     path: 'test',
     name: 'test',
-    // component: modules['@/view/Test/Test.vue'],
-    component: Test,
+    // component: Test,
+    component: async () => await import('@/view/Test/Test.vue'),
     meta: {
       title: '测试',
       icon: 'mdi:user',

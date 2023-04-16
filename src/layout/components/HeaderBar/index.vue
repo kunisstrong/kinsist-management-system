@@ -73,7 +73,7 @@ import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 // 退出登录
 const router = useRouter()
 const logOut = () => {
-  router.push({ name: 'Login' })
+  router.push({ name: 'login' })
 }
 // 跳转到GitHub
 const goGitHub = () => {
