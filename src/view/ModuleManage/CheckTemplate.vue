@@ -1,13 +1,7 @@
 <template>
-  <div>
-    检查单模版
-  </div>
+  <div>检查单模版</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

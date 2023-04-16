@@ -1,11 +1,5 @@
-<template>
-  Menu1-2-2
-</template>
+<template>Menu1-2-2</template>
 
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

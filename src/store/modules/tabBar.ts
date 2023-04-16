@@ -1,34 +1,34 @@
-import { defineStore } from 'pinia'
-import { type Itab } from '@/store/type'
+import { defineStore } from "pinia";
+import { type Itab } from "@/store/type";
 
 export interface TabStore {
-  tabList: Itab[]
+  tabList: Itab[];
 }
 
-export const useTabStore = defineStore('tab', {
+export const useTabStore = defineStore("tab", {
   state: (): TabStore => ({
     tabList: []
   }),
   actions: {
-    addAllTab (tabList: Itab[]) {
-      this.tabList = tabList
+    addAllTab(tabList: Itab[]) {
+      this.tabList = tabList;
     },
     // 点击菜单增加tab标签，重复的不添加
-    addTab (tab: Itab) {
-      const isSome = this.tabList.some(item => item.path === tab.path)
+    addTab(tab: Itab) {
+      const isSome = this.tabList.some(item => item.path === tab.path);
       if (!isSome) {
         // console.log("this.tabList===", this.tabList)
-        this.tabList.push(tab)
+        this.tabList.push(tab);
       }
     },
-    delTab (currentTab: string) {
-      const index = this.tabList.findIndex((item) => item.path === currentTab)
-      this.tabList.splice(index, 1)
+    delTab(currentTab: string) {
+      const index = this.tabList.findIndex(item => item.path === currentTab);
+      this.tabList.splice(index, 1);
     }
   },
   getters: {
-    getAddTab (): Itab[] {
-      return this.tabList
+    getAddTab(): Itab[] {
+      return this.tabList;
     }
   }
-})
+});

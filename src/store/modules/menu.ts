@@ -1,9 +1,9 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useMenuStore = defineStore('menu', {
-  state () {
-    return {}
+export const useMenuStore = defineStore("menu", {
+  state() {
+    return {};
   },
   actions: {},
   getters: {}
-})
+});

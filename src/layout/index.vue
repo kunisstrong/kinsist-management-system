@@ -11,7 +11,11 @@
               style="cursor: pointer"
               :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
               :size="25"
-              @click="() => { collapsed = !collapsed }"
+              @click="
+                () => {
+                  collapsed = !collapsed;
+                }
+              "
             />
           </el-row>
           <HeaderBar />
@@ -26,26 +30,25 @@
 </template>
 
 <script setup lang="ts">
-
-import MenuBar from '@/layout/components/MenuBar/index.vue'
-import HeaderBar from '@/layout/components/HeaderBar/index.vue'
-import TabBar from '@/layout/components/TabBar/index.vue'
-import { computed, ref } from 'vue'
-import { isMobile } from '@/utils/isMobile'
-import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
+import MenuBar from "@/layout/components/MenuBar/index.vue";
+import HeaderBar from "@/layout/components/HeaderBar/index.vue";
+import TabBar from "@/layout/components/TabBar/index.vue";
+import { computed, ref } from "vue";
+import { isMobile } from "@/utils/isMobile";
+import SvgIcon from "@/components/Icon/src/SvgIcon.vue";
 
 // 面包屑
-const collapsed = ref<boolean>(false)
+const collapsed = ref<boolean>(false);
 // 控制菜单宽度
 const autoWidth = computed(() => {
   if (collapsed.value && isMobile()) {
-    return '0px'
+    return "0px";
   } else if (collapsed.value) {
-    return '64px'
+    return "64px";
   } else {
-    return '200px'
+    return "200px";
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

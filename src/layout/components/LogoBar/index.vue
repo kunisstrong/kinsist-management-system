@@ -1,12 +1,7 @@
 <template>
   <div class="logo-container">
-    <img
-      src="@/assets/icons/vue.svg"
-      alt=""
-    >
-    <text v-show="!collapsed">
-      后台管理
-    </text>
+    <img src="@/assets/icons/vue.svg" alt="" />
+    <text v-show="!collapsed"> 后台管理 </text>
   </div>
 </template>
 
@@ -15,7 +10,7 @@ defineProps({
   collapsed: {
     type: Boolean
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

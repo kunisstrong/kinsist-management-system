@@ -1,3 +1,3 @@
-import 'virtual:svg-icons-register'
+import "virtual:svg-icons-register";
 
-import '@purge-icons/generated'
+import "@purge-icons/generated";
