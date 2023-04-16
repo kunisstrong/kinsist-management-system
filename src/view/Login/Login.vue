@@ -4,32 +4,41 @@
       <p>kun式管理系统</p>
       <div class="box">
         <p>用户名</p>
-        <el-input type="text" placeholder="请输入用户名" v-model="params.username"/>
+        <el-input
+          v-model="params.username"
+          type="text"
+          placeholder="请输入用户名"
+        />
       </div>
       <div class="box">
         <p>密码</p>
-        <el-input type="password" placeholder="请输入密码" v-model="params.password"/>
+        <el-input
+          v-model="params.password"
+          password
+          placeholder="请输入密码"
+        />
       </div>
-      <ElButton @click="toLogin">登录</ElButton>
+      <ElButton @click="toLogin">
+        登录
+      </ElButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ElButton } from "element-plus"
-import { reactive } from "vue"
-import { useRouter } from "vue-router"
+import { ElButton } from 'element-plus'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const toLogin = async () => {
-  router.push("/index")
+const toLogin = () => {
+  router.push('/index')
 }
 
 const params = reactive({
   username: 'admin',
   password: '123456'
 })
-
 
 </script>
 

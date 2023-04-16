@@ -1,49 +1,72 @@
 <template>
   <div class="personal-container">
     <div class="personal-msg">
-      <div class="title">个人信息</div>
+      <div class="title">
+        个人信息
+      </div>
       <div class="personal-msg-box">
         <div class="img-box">
-          <img src="@/assets/img/headPhoto.jpeg" alt="头像">
+          <img
+            src="@/assets/img/headPhoto.jpeg"
+            alt="头像"
+          >
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:username" :size="20" />
+            <Icon
+              icon="svg-icon:username"
+              :size="20"
+            />
             <span>用户名称</span>
           </div>
           <p>{{ userInfo.username }}</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:phone" :size="20" />
+            <Icon
+              icon="svg-icon:phone"
+              :size="20"
+            />
             <span>手机号码</span>
           </div>
           <p>{{ userInfo.phone }}</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:email" :size="20" />
+            <Icon
+              icon="svg-icon:email"
+              :size="20"
+            />
             <span>用户邮箱</span>
           </div>
           <p>{{ userInfo.email }}</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:department" :size="20" />
+            <Icon
+              icon="svg-icon:department"
+              :size="20"
+            />
             <span>所属部门</span>
           </div>
           <p>董事长</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:visitUser" :size="20" />
+            <Icon
+              icon="svg-icon:visitUser"
+              :size="20"
+            />
             <span>所属角色</span>
           </div>
           <p>超级管理员</p>
         </div>
         <div class="personal-msg-item">
           <div class="sub-title">
-            <Icon icon="svg-icon:date" :size="20" />
+            <Icon
+              icon="svg-icon:date"
+              :size="20"
+            />
             <span>创建日期</span>
           </div>
           <p>2023-02-03 11:11:26</p>
@@ -51,46 +74,123 @@
       </div>
     </div>
     <div class="base-information">
-      <div class="title">基本信息</div>
+      <div class="title">
+        基本信息
+      </div>
       <div class="base-information-box">
-        <el-tabs v-model="activeName" class="demo-tabs">
-          <el-tab-pane label="基本信息" name="first">
-            <el-form label-width="100px" :model="formLabelAlign" style="max-width: 460px" :rules="rules">
-              <el-form-item label="用户昵称" prop="username">
-                <el-input v-model="formLabelAlign.username" clearable />
+        <el-tabs
+          v-model="activeName"
+          class="demo-tabs"
+        >
+          <el-tab-pane
+            label="基本信息"
+            name="first"
+          >
+            <el-form
+              label-width="100px"
+              :model="formLabelAlign"
+              style="max-width: 460px"
+              :rules="rules"
+            >
+              <el-form-item
+                label="用户昵称"
+                prop="username"
+              >
+                <el-input
+                  v-model="formLabelAlign.username"
+                  clearable
+                />
               </el-form-item>
-              <el-form-item label="手机号码" prop="phone">
-                <el-input v-model="formLabelAlign.phone" clearable />
+              <el-form-item
+                label="手机号码"
+                prop="phone"
+              >
+                <el-input
+                  v-model="formLabelAlign.phone"
+                  clearable
+                />
               </el-form-item>
-              <el-form-item label="邮箱" prop="email">
-                <el-input v-model="formLabelAlign.email" clearable />
+              <el-form-item
+                label="邮箱"
+                prop="email"
+              >
+                <el-input
+                  v-model="formLabelAlign.email"
+                  clearable
+                />
               </el-form-item>
               <el-form-item label="性别">
-                <el-radio-group v-model="formLabelAlign.sex" class="ml-4">
-                  <el-radio label="1">男</el-radio>
-                  <el-radio label="2">女</el-radio>
+                <el-radio-group
+                  v-model="formLabelAlign.sex"
+                  class="ml-4"
+                >
+                  <el-radio label="1">
+                    男
+                  </el-radio>
+                  <el-radio label="2">
+                    女
+                  </el-radio>
                 </el-radio-group>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="saveUserInfo">保存</el-button>
+                <el-button
+                  type="primary"
+                  @click="saveUserInfo"
+                >
+                  保存
+                </el-button>
                 <el-button>取消</el-button>
               </el-form-item>
             </el-form>
           </el-tab-pane>
-          <el-tab-pane label="修改密码" name="second">
-            <el-form label-width="100px" :model="changePswInfo" style="max-width: 460px" :rules="changePswRules">
-              <el-form-item label="旧密码" prop="oldPwd">
-                <el-input v-model="changePswInfo.oldPwd" placeholder="请输入旧密码" clearable />
+          <el-tab-pane
+            label="修改密码"
+            name="second"
+          >
+            <el-form
+              label-width="100px"
+              :model="changePswInfo"
+              style="max-width: 460px"
+              :rules="changePswRules"
+            >
+              <el-form-item
+                label="旧密码"
+                prop="oldPwd"
+              >
+                <el-input
+                  v-model="changePswInfo.oldPwd"
+                  placeholder="请输入旧密码"
+                  clearable
+                />
               </el-form-item>
-              <el-form-item label="新密码" prop="newPwd">
-                <el-input v-model="changePswInfo.newPwd" placeholder="请输入新密码" clearable />
+              <el-form-item
+                label="新密码"
+                prop="newPwd"
+              >
+                <el-input
+                  v-model="changePswInfo.newPwd"
+                  placeholder="请输入新密码"
+                  clearable
+                />
               </el-form-item>
-              <el-form-item label="确认密码" prop="againNewPwd">
-                <el-input v-model="changePswInfo.againNewPwd" placeholder="请再次输入新密码" clearable />
+              <el-form-item
+                label="确认密码"
+                prop="againNewPwd"
+              >
+                <el-input
+                  v-model="changePswInfo.againNewPwd"
+                  placeholder="请再次输入新密码"
+                  clearable
+                />
               </el-form-item>
 
               <el-form-item>
-                <el-button type="primary" @click="saveUserInfo">保存</el-button>
+                <el-button
+                  type="primary"
+                  @click="saveUserInfo"
+                >
+                  保存
+                </el-button>
                 <el-button>取消</el-button>
               </el-form-item>
             </el-form>
@@ -102,8 +202,8 @@
 </template>
 
 <script setup lang="ts">
-import type { FormRules } from "element-plus"
-import { reactive, ref } from "vue"
+import type { FormRules } from 'element-plus'
+import { reactive, ref } from 'vue'
 
 const activeName = ref('first')
 // 用户基础信息
@@ -139,7 +239,7 @@ const rules = reactive<FormRules>({
   ],
   email: [
     { required: true, message: '邮箱是必填项', trigger: 'blur' }
-  ],
+  ]
 })
 
 // 修改密码信息
@@ -154,7 +254,7 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请再次输入密码'))
   } else if (value !== changePswInfo.newPwd) {
-    callback(new Error("两次输入的密码不匹配"))
+    callback(new Error('两次输入的密码不匹配'))
   } else {
     callback()
   }
@@ -166,7 +266,7 @@ const changePswRules = reactive<FormRules>({
   againNewPwd: [{ validator: validatePass2, trigger: 'blur' }],
   newPwd: [
     { required: true, message: '请输入新密码', trigger: 'blur' }
-  ],
+  ]
 })
 
 </script>

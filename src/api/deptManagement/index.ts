@@ -1,33 +1,33 @@
-import {AddAndUpdateFormParams, SearchParams} from "@/view/DeptManagement/type";
-import service from "../request";
+import { type AddAndUpdateFormParams, type SearchParams } from '@/view/DeptManagement/type'
+import service from '../request'
 
 /* 查询所有部门 */
-export const allDeptAPI = (data: SearchParams) => service({
-    url: `/dept/list`,
-    method: 'post',
-    data: data
+export const allDeptAPI = async (data: SearchParams) => await service({
+  url: '/dept/list',
+  method: 'post',
+  data
 })
 /* 搜索 */
-export const searchAPI = (data: SearchParams) => service({
-    url: `/dept/search`,
-    method: 'post',
-    data: data
+export const searchAPI = async (data: SearchParams) => await service({
+  url: '/dept/search',
+  method: 'post',
+  data
 })
 /* 新增 */
-export const addDeptAPI = (data: AddAndUpdateFormParams) => service({
-    url: `/dept/save`,
-    method: 'post',
-    data: data
+export const addDeptAPI = async (data: AddAndUpdateFormParams) => await service({
+  url: '/dept/save',
+  method: 'post',
+  data
 })
 /* 删除 */
-export const removeDeptAPI = (data: number[]) => service({
-    url: `/dept/del`,
-    method: 'put',
-    data: data
+export const removeDeptAPI = async (data: number[]) => await service({
+  url: '/dept/del',
+  method: 'put',
+  data
 })
 /* 修改 */
-export const updateDeptAPI = (data: AddAndUpdateFormParams) => service({
-    url: `/dept/update`,
-    method: 'put',
-    data: data
+export const updateDeptAPI = async (data: AddAndUpdateFormParams) => await service({
+  url: '/dept/update',
+  method: 'put',
+  data
 })

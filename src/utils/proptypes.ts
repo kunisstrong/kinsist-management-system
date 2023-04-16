@@ -1,5 +1,5 @@
-import { createTypes, VueTypesInterface, VueTypeValidableDef } from 'vue-types'
-import { CSSProperties } from 'vue'
+import { createTypes, type VueTypesInterface, type VueTypeValidableDef } from 'vue-types'
+import { type CSSProperties } from 'vue'
 
 // 自定义扩展vue-types
 type PropTypes = VueTypesInterface & {

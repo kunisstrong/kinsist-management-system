@@ -2,23 +2,23 @@
   <div class="layout-container">
     <el-container>
       <el-aside :style="'width: ' + autoWidth">
-        <MenuBar :collapsed="collapsed"/>
+        <MenuBar :collapsed="collapsed" />
       </el-aside>
       <el-container>
         <el-header>
           <el-row>
-            <Icon
-                style="cursor: pointer"
-                :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
-                @click="() => { collapsed = !collapsed }"
-                :size="25"
+            <SvgIcon
+              style="cursor: pointer"
+              :icon="collapsed ? 'svg-icon:expand' : 'svg-icon:fold'"
+              :size="25"
+              @click="() => { collapsed = !collapsed }"
             />
           </el-row>
-          <HeaderBar/>
+          <HeaderBar />
         </el-header>
         <el-main>
-          <TabBar/>
-          <router-view style="background-color: #eeeeee"/>
+          <TabBar />
+          <router-view style="background-color: #eeeeee" />
         </el-main>
       </el-container>
     </el-container>
@@ -27,23 +27,23 @@
 
 <script setup lang="ts">
 
-import MenuBar from "@/layout/components/MenuBar/index.vue"
-import HeaderBar from "@/layout/components/HeaderBar/index.vue"
-import TabBar from "@/layout/components/TabBar/index.vue"
-import {computed, ref} from "vue"
-import {isMobile} from "@/utils/isMobile"
-import {Icon} from "@/components/Icon"
+import MenuBar from '@/layout/components/MenuBar/index.vue'
+import HeaderBar from '@/layout/components/HeaderBar/index.vue'
+import TabBar from '@/layout/components/TabBar/index.vue'
+import { computed, ref } from 'vue'
+import { isMobile } from '@/utils/isMobile'
+import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 
 // 面包屑
-let collapsed = ref<boolean>(false)
+const collapsed = ref<boolean>(false)
 // 控制菜单宽度
 const autoWidth = computed(() => {
   if (collapsed.value && isMobile()) {
-    return "0px"
+    return '0px'
   } else if (collapsed.value) {
-    return "64px"
+    return '64px'
   } else {
-    return "200px"
+    return '200px'
   }
 })
 </script>

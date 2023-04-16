@@ -1,6 +1,6 @@
 import type { App } from 'vue'
-import { Icon } from './Icon'
+import { SvgIcon } from './Icon'
 
 export const setupGlobCom = (app: App<Element>): void => {
-    app.component('Icon', Icon)
+  app.component('SvgCon', SvgIcon)
 }

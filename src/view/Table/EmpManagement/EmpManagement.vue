@@ -5,19 +5,36 @@
       :gutter="20"
     >
       <el-col :span="5">
-        <span>部门名称</span>
+        <span>员工姓名</span>
         <el-input
-          v-model="searchParams.deptName"
+          v-model="searchParams.empName"
           clearable
-          placeholder="请输入部门名称"
+          placeholder="请输入员工姓名"
         />
       </el-col>
       <el-col :span="5">
-        <span>负责人</span>
-        <el-input
-          v-model="searchParams.manager"
+        <span>所属部门</span>
+        <el-select
+          v-model="searchParams.deptId"
+          class="m-2"
+          placeholder="请选择所属部门"
+          size="default"
           clearable
-          placeholder="请输入负责人"
+        >
+          <el-option
+            v-for="item in deptList"
+            :key="item.deptId"
+            :label="item.deptName"
+            :value="item.deptId"
+          />
+        </el-select>
+      </el-col>
+      <el-col :span="5">
+        <span>职位</span>
+        <el-input
+          v-model="searchParams.position"
+          clearable
+          placeholder="请输入职位"
         />
       </el-col>
       <el-col :span="4">
@@ -52,7 +69,6 @@
       >
         删除
       </el-button>
-      <!-- <el-button type="warning">导入</el-button>  -->
       <el-button
         type="warning"
         :disabled="exportData.length === 0"
@@ -82,24 +98,41 @@
           width="100"
         />
         <el-table-column
+          prop="empName"
+          label="员工姓名"
+          align="center"
+        />
+        <el-table-column
+          prop="age"
+          label="年龄"
+          align="center"
+        />
+        <el-table-column
+          prop="salary"
+          label="薪水(元)"
+          align="center"
+        />
+        <el-table-column
+          prop="position"
+          label="职位"
+          align="center"
+        />
+        <el-table-column
           prop="deptName"
-          label="部门名称"
+          label="所在部门"
           align="center"
         />
         <el-table-column
-          prop="manager"
-          label="负责人"
+          prop="sex"
+          label="员工性别"
           align="center"
         />
         <el-table-column
-          prop="allNum"
-          label="部门人数"
+          prop="entryDate"
+          label="入职时间"
           align="center"
-        />
-        <el-table-column
-          prop="remark"
-          label="备注"
-          align="center"
+          dataformatas="yyyy-MM-dd"
+          width="300"
         />
         <el-table-column
           label="操作"
@@ -140,7 +173,7 @@
     </div>
     <el-dialog
       v-model="addDialogFormVisible"
-      title="新增部门信息"
+      title="新增员工信息"
     >
       <el-form
         :model="addFormParams"
@@ -148,45 +181,102 @@
         :rules="addRules"
       >
         <el-form-item
-          label="请输入部门名称"
+          label="员工姓名"
           :label-width="formLabelWidth"
-          prop="deptName"
+          prop="empName"
         >
           <el-input
-            v-model="addFormParams.deptName"
+            v-model="addFormParams.empName"
             autocomplete="true"
             clearable
+            placeholder="请输入员工姓名"
           />
         </el-form-item>
         <el-form-item
-          label="请输入负责人"
+          label="职位"
           :label-width="formLabelWidth"
-          prop="manager"
+          prop="position"
         >
           <el-input
-            v-model="addFormParams.manager"
+            v-model="addFormParams.position"
             autocomplete="off"
+            placeholder="请输入职位"
           />
         </el-form-item>
         <el-form-item
-          label="请输入部门人数"
+          label="薪水"
           :label-width="formLabelWidth"
-          prop="allNum"
+          prop="salary"
         >
           <el-input
-            v-model="addFormParams.allNum"
+            v-model="addFormParams.salary"
             autocomplete="off"
+            placeholder="请输入薪水"
           />
         </el-form-item>
         <el-form-item
-          label="备注"
+          label="所属部门"
           :label-width="formLabelWidth"
-          prop="remark"
+          prop="deptId"
+        >
+          <el-select
+            v-model="addFormParams.deptId"
+            class="m-2"
+            placeholder="请选择所属部门"
+            size="default"
+            clearable
+          >
+            <el-option
+              v-for="item in deptList"
+              :key="item.deptId"
+              :label="item.deptName"
+              :value="item.deptId"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          label="年龄"
+          :label-width="formLabelWidth"
         >
           <el-input
-            v-model="addFormParams.remark"
+            v-model="addFormParams.age"
             autocomplete="off"
+            placeholder="请输入年龄"
           />
+        </el-form-item>
+        <el-form-item
+          label="入职时间"
+          :label-width="formLabelWidth"
+          prop="entryDate"
+        >
+          <el-date-picker
+            v-model="addFormParams.entryDate"
+            type="date"
+            placeholder="请选择入职时间"
+          />
+        </el-form-item>
+        <el-form-item
+          label="性别"
+          :label-width="formLabelWidth"
+        >
+          <el-select
+            v-model="addFormParams.sex"
+            class="m-2"
+            placeholder="请选择性别"
+            size="default"
+            clearable
+          >
+            <el-option
+              key="1"
+              label="男性"
+              value="男"
+            />
+            <el-option
+              key="2"
+              label="女性"
+              value="女"
+            />
+          </el-select>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -210,48 +300,102 @@
         :rules="updateRules"
       >
         <el-form-item
-          label="部门名称"
+          label="员工姓名"
           :label-width="formLabelWidth"
-          prop="deptName"
+          prop="empName"
         >
           <el-input
-            v-model="updateParams.deptName"
+            v-model="updateParams.empName"
             autocomplete="true"
             clearable
-            placeholder="请输入部门名称"
+            placeholder="请输入员工姓名"
           />
         </el-form-item>
         <el-form-item
-          label="负责人"
+          label="职位"
           :label-width="formLabelWidth"
-          prop="manager"
+          prop="position"
         >
           <el-input
-            v-model="updateParams.manager"
+            v-model="updateParams.position"
             autocomplete="off"
-            placeholder="请输入负责人"
+            placeholder="请输入职位"
           />
         </el-form-item>
         <el-form-item
-          label="部门人数"
+          label="薪水"
           :label-width="formLabelWidth"
-          prop="allNum"
+          prop="salary"
         >
           <el-input
-            v-model="updateParams.allNum"
+            v-model="updateParams.salary"
             autocomplete="off"
-            placeholder="请输入部门人数"
+            placeholder="请输入薪水"
           />
         </el-form-item>
         <el-form-item
-          label="备注"
+          label="所属部门"
+          :label-width="formLabelWidth"
+          prop="deptId"
+        >
+          <el-select
+            v-model="updateParams.deptId"
+            class="m-2"
+            placeholder="请选择所属部门"
+            size="default"
+            clearable
+          >
+            <el-option
+              v-for="item in deptList"
+              :key="item.deptId"
+              :label="item.deptName"
+              :value="item.deptId"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          label="年龄"
           :label-width="formLabelWidth"
         >
           <el-input
-            v-model="updateParams.remark"
+            v-model="updateParams.age"
             autocomplete="off"
-            placeholder="请输入备注信息"
+            placeholder="请输入年龄"
           />
+        </el-form-item>
+        <el-form-item
+          label="入职时间"
+          :label-width="formLabelWidth"
+          prop="entryDate"
+        >
+          <el-date-picker
+            v-model="updateParams.entryDate"
+            type="date"
+            placeholder="请选择入职时间"
+          />
+        </el-form-item>
+        <el-form-item
+          label="性别"
+          :label-width="formLabelWidth"
+        >
+          <el-select
+            v-model="updateParams.sex"
+            class="m-2"
+            placeholder="请选择性别"
+            size="default"
+            clearable
+          >
+            <el-option
+              key="1"
+              label="男性"
+              value="男"
+            />
+            <el-option
+              key="2"
+              label="女性"
+              value="女"
+            />
+          </el-select>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -267,33 +411,40 @@
     </el-dialog>
   </div>
 </template>
+
 <script setup lang="ts">
 import { onMounted, ref, reactive, computed } from 'vue'
-import { AddAndUpdateFormParams, SearchParams, TableData } from './type'
-import { addDeptAPI, allDeptAPI, removeDeptAPI, searchAPI, updateDeptAPI } from '@/api/deptManagement'
+import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData } from './type'
 import { ElMessage, ElMessageBox, FormRules } from 'element-plus'
 import * as XLSX from 'xlsx'
+import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from '@/api/empManagement'
 
 /* 导出 */
 let exportData: TableData[] = reactive([])
 const exportExcel = () => {
   // 将表头key转换成中文
-  const list = [] // 定义list数组
+  const list = []// 定义list数组
   const obj: any = {}
   for (let i = 0; i < exportData.length; i++) {
     obj.value = {}
     // 将对应的英文key转化为自己想要的中文key
     for (const key in exportData[i]) {
-      if (key === 'id') {
+      if (key == 'empId') {
         obj.value['序号'] = i + 1
-      } else if (key === 'deptName') {
-        obj.value['部门名称'] = exportData[i][key]
-      } else if (key === 'manager') {
-        obj.value['负责人'] = exportData[i][key]
-      } else if (key === 'allNum') {
-        obj.value['部门人数'] = exportData[i][key]
-      } else if (key === 'remark') {
-        obj.value['备注'] = exportData[i][key]
+      } else if (key == 'empName') {
+        obj.value['员工姓名'] = exportData[i][key]
+      } else if (key == 'age') {
+        obj.value['年龄'] = exportData[i][key]
+      } else if (key == 'salary') {
+        obj.value['薪水(元)'] = exportData[i][key]
+      } else if (key == 'position') {
+        obj.value['职位'] = exportData[i][key]
+      } else if (key == 'deptName') {
+        obj.value['所在部门'] = exportData[i][key]
+      } else if (key == 'sex') {
+        obj.value['性别'] = exportData[i][key]
+      } else if (key == 'entryDate') {
+        obj.value['入职时间'] = exportData[i][key]
       }
     }
     list.push(obj.value)
@@ -309,7 +460,7 @@ const exportExcel = () => {
 }
 /* table中的删除 */
 const singleDel = (row: TableData) => {
-  delIds.value.push(row.deptId)
+  delIds.value.push(row.empId)
   openDelDeptMsgBox()
 }
 /* 删除dept消息盒子 */
@@ -335,7 +486,7 @@ const openDelDeptMsgBox = () => {
 }
 /* 调用删除deptAPI */
 const delDept = async () => {
-  const res = await removeDeptAPI(delIds.value)
+  const res = await delEmpAPI(delIds.value)
   if (res.code === 200) {
     ElMessage({
       type: 'success',
@@ -354,13 +505,14 @@ const handleSelection = (val: TableData[]) => {
   /* 添加删除id */
   const tempIds: number[] = []
   val.forEach((item: TableData) => {
-    tempIds.push(item.deptId)
+    tempIds.push(item.empId)
   })
   delIds.value = tempIds
 
   /* 导出 */
   exportData = val
 }
+
 /* 打开新增对话框 */
 const openAddDialog = () => {
   addDialogFormVisible.value = true
@@ -371,15 +523,18 @@ const formLabelWidth = '140px'
 const addDialogFormVisible = ref(false)
 /* 新增参数 */
 const addFormParams = ref<AddAndUpdateFormParams>({
-  deptName: '',
-  manager: '',
-  allNum: '',
-  remark: ''
+  age: 18,
+  empId: '',
+  empName: '',
+  sex: '',
+  entryDate: '',
+  position: '',
+  salary: '',
+  deptId: ''
 })
 /* 调用新增API */
 const addDept = async () => {
-  const res = await addDeptAPI(addFormParams.value)
-  console.log(res)
+  const res = await saveEmpAPI(addFormParams.value)
   if (res.code === 200) {
     ElMessage({
       message: '新增成功',
@@ -394,37 +549,42 @@ const addDept = async () => {
 }
 /* 新增form校验 */
 const addRules = reactive<FormRules>({
-  deptName: [{ required: true, message: '请输入部门名称', trigger: 'blur' }],
-  manager: [{ required: true, message: '请输入负责人', trigger: 'blur' }],
-  allNum: [{ required: true, message: '请输入部门人数', trigger: 'blur' }]
+  empName: [{ required: true, message: '员工姓名是必填项', trigger: 'blur' }],
+  entryDate: [{ required: true, message: '入职时间是必填项', trigger: 'blur' }],
+  position: [{ required: true, message: '职位是必填项', trigger: 'blur' }],
+  salary: [{ required: true, message: '薪水是必填项', trigger: 'blur' }],
+  deptId: [{ required: true, message: '所属部门是必填项', trigger: 'blur' }]
 })
 /* 新增对话框中确定按钮 */
 const addDialogBtnDisabled = computed(() => {
-  const res: boolean = addFormParams.value.deptName !== '' && addFormParams.value.manager !== '' && addFormParams.value.allNum !== ''
+  const res: boolean = addFormParams.value.empName !== '' && addFormParams.value.entryDate !== '' && addFormParams.value.position !== '' && addFormParams.value.salary !== '' && addFormParams.value.deptId !== ''
   return !res
 })
 /* 清空新增参数 */
 const clearAddParams = () => {
   addFormParams.value = {
-    deptId: '',
-    deptName: '',
-    manager: '',
-    allNum: 1,
-    remark: ''
+    age: 18,
+    empId: '',
+    empName: '',
+    sex: '',
+    entryDate: '',
+    position: '',
+    salary: 20000,
+    deptId: ''
   }
 }
 
 /* 搜索参数 */
 const searchParams = ref<SearchParams>({
   pageNum: 1,
-  pageSize: 10,
-  deptName: '',
-  manager: ''
+  pageSize: 20,
+  empName: '',
+  deptId: '',
+  position: ''
 })
 /* 搜索功能 */
 const search = async () => {
-  console.log('searchParams.value', searchParams.value)
-  const res = await searchAPI(searchParams.value)
+  const res = await searchEmpAPI(searchParams.value)
   if (res.code === 200) {
     tableData.value = res.data.content
     tableTotal.value = res.data.totalSize
@@ -434,15 +594,16 @@ const search = async () => {
 const clearSearchParams = () => {
   searchParams.value = {
     pageNum: 1,
-    pageSize: 10,
-    deptName: '',
-    manager: ''
+    pageSize: 20,
+    empName: '',
+    deptId: '',
+    position: ''
   }
 }
 
-// 重置
+/* 重置 */
 const reset = () => {
-  /* 清空参数 */
+  /* 清空搜索参数 */
   clearSearchParams()
   /* 初始table */
   getTableData()
@@ -450,26 +611,32 @@ const reset = () => {
 
 /* 修改参数 */
 const updateParams = ref<AddAndUpdateFormParams>({
-  deptId: '',
-  deptName: '',
-  manager: '',
-  allNum: 1,
-  remark: ''
+  age: 18,
+  empId: '',
+  empName: '',
+  sex: '',
+  entryDate: '',
+  position: '',
+  salary: '',
+  deptId: ''
 })
 const updateDialogFormVisible = ref(false)
 /* 打开修改对话框 */
 const openUpdateDialog = (row: TableData) => {
+  updateParams.value.empId = row.empId
+  updateParams.value.empName = row.empName
+  updateParams.value.age = row.age
+  updateParams.value.sex = row.sex
+  updateParams.value.entryDate = row.entryDate
+  updateParams.value.position = row.position
+  updateParams.value.salary = row.salary
   updateParams.value.deptId = row.deptId
-  updateParams.value.deptName = row.deptName
-  updateParams.value.manager = row.manager
-  updateParams.value.allNum = row.allNum
-  updateParams.value.remark = row.remark
   /* 打开修改对话框 */
   updateDialogFormVisible.value = true
 }
 /* 调用修改API */
 const updateDept = async () => {
-  const res = await updateDeptAPI(updateParams.value)
+  const res = await updateEmpAPI(updateParams.value)
   if (res.code === 200) {
     ElMessage({
       message: '修改成功',
@@ -481,39 +648,53 @@ const updateDept = async () => {
 }
 /* 修改form校验 */
 const updateRules = reactive<FormRules>({
-  deptName: [{ required: true, message: '请输入部门名称', trigger: 'blur' }],
-  manager: [{ required: true, message: '请输入负责人', trigger: 'blur' }],
-  allNum: [{ required: true, message: '请输入部门人数', trigger: 'blur' }]
+  empName: [{ required: true, message: '员工姓名是必填项', trigger: 'blur' }],
+  entryDate: [{ required: true, message: '入职时间是必填项', trigger: 'blur' }],
+  position: [{ required: true, message: '职位是必填项', trigger: 'blur' }],
+  salary: [{ required: true, message: '薪水是必填项', trigger: 'blur' }],
+  deptId: [{ required: true, message: '所属部门是必填项', trigger: 'blur' }]
 })
 /* 修改对话框中确定按钮 */
 const updateDialogBtnDisabled = computed(() => {
-  const res: boolean = updateParams.value.deptName !== '' && updateParams.value.manager !== '' && updateParams.value.allNum !== ''
+  const res: boolean = updateParams.value.empId !== '' && updateParams.value.empName !== '' && updateParams.value.entryDate !== '' && updateParams.value.position !== '' && updateParams.value.salary !== '' && updateParams.value.deptId !== ''
   return !res
 })
 
-/* 获取table列表 */
+/* 初始化table列表 */
 const getTableData = async () => {
-  const res = await allDeptAPI(searchParams.value)
+  const res = await allEmpAPI(searchParams.value)
   if (res.code === 200) {
     tableData.value = res.data.content
     tableTotal.value = res.data.totalSize
   }
 }
-
+/* table数据 */
+const tableData = ref<TableData[]>()
+const tableTotal = ref(0)
 /* 改变pageSize */
 const handleSizeChange = () => {
   getTableData()
 }
-/* 改变currentPage */
+/* 改变pageNum */
 const handleCurrentChange = () => {
   getTableData()
 }
-/* table数据 */
-const tableData = ref<TableData[]>()
-const tableTotal = ref(0)
+
+/* 部门列表 */
+const deptList = ref<DeptItem[]>()
+/* 初始化部门列表 */
+const getDeptList = async () => {
+  const res = await getDeptListAPI()
+  if (res.code === 200) {
+    deptList.value = res.data
+  }
+}
+
 onMounted(() => {
-  /* 获取tableData */
+  /* 初始化tableData */
   getTableData()
+  /* 初始化部门列表 */
+  getDeptList()
 })
 </script>
 
@@ -552,7 +733,7 @@ onMounted(() => {
   .page-box {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    padding: 20px 0;
   }
 }
 </style>

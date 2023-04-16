@@ -1,12 +1,21 @@
-<!-- 头部跟组件 -->
 <template>
   <div class="header-container">
     <BreadCrumb />
     <div class="header-right">
       <!-- <Icon class="item" icon="svg-icon:search" :size="30"/> -->
-      <Icon class="item" @click="goGitHub" icon="svg-icon:GitHub" :size="30" />
-      <Icon class="item" @click="fullScreenBtn" :icon="fullIcon" :size="30" />
-    <!-- <el-dropdown trigger="click">
+      <SvgIcon
+        class="item"
+        icon="svg-icon:GitHub"
+        :size="30"
+        @click="goGitHub"
+      />
+      <SvgIcon
+        class="item"
+        :icon="fullIcon"
+        :size="30"
+        @click="fullScreenBtn"
+      />
+      <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:fontSize" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -16,7 +25,7 @@
           </el-dropdown-menu>
         </template>
         </el-dropdown> -->
-    <!-- <el-dropdown trigger="click">
+      <!-- <el-dropdown trigger="click">
         <Icon class="item" icon="svg-icon:switchLanguage" :size="30"/>
         <template #dropdown>
           <el-dropdown-menu>
@@ -26,14 +35,26 @@
         </template>
         </el-dropdown> -->
       <el-dropdown trigger="click">
-        <img class="item" src="@/assets/img/headPhoto.jpeg" alt="头像" style="width: 40px; border-radius: 6px">
+        <img
+          class="item"
+          src="@/assets/img/headPhoto.jpeg"
+          alt="头像"
+          style="width: 40px; border-radius: 6px"
+        >
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="toPersonalCenter">
               个人中心
             </el-dropdown-item>
-            <el-dropdown-item @click="docsClick">Docs</el-dropdown-item>
-            <el-dropdown-item @click="logOut" divided>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="docsClick">
+              Docs
+            </el-dropdown-item>
+            <el-dropdown-item
+              divided
+              @click="logOut"
+            >
+              退出登录
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -45,17 +66,18 @@
 import BreadCrumb from '@/layout/components/HeaderBar/component/BreadCrumb.vue'
 import { ElMessageBox } from 'element-plus'
 import screenFull from 'screenfull'
-import { ref } from "vue"
-import { useRouter } from "vue-router"
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 
 // 退出登录
 const router = useRouter()
 const logOut = () => {
-  router.push({ name: "Login" })
+  router.push({ name: 'Login' })
 }
 // 跳转到GitHub
 const goGitHub = () => {
-  window.open("https://github.com/kunisstrong/vue3-management-system", "_bank")
+  window.open('https://github.com/kunisstrong/vue3-management-system', '_bank')
 }
 // 全屏图标
 const fullIcon = ref('svg-icon:fullScreen')
@@ -73,7 +95,7 @@ const fullScreenBtn = () => {
 const docsClick = () => {
   ElMessageBox.alert('功能尚未完成', '提示', {
     confirmButtonText: 'OK',
-    type: 'warning',
+    type: 'warning'
   })
 }
 // 跳转到个人中心

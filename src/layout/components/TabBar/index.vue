@@ -1,21 +1,32 @@
 <template>
-  <el-tabs v-model="activeKey" type="card" class="demo-tabs" closable @tab-click="changeRouter" @tab-remove="closeTab">
-    <el-tab-pane v-for="item in tabList" :key="item.path" :label="item.title" :name="item.path">
-    </el-tab-pane>
+  <el-tabs
+    v-model="activeKey"
+    type="card"
+    class="demo-tabs"
+    closable
+    @tab-click="changeRouter"
+    @tab-remove="closeTab"
+  >
+    <el-tab-pane
+      v-for="item in tabList"
+      :key="item.path"
+      :label="item.title"
+      :name="item.path"
+    />
   </el-tabs>
 </template>
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from "vue"
-import {useRoute, useRouter} from "vue-router"
-import {Itab} from "@/store/type"
-import {useTabStore} from "@/store/modules/tabBar"
-import {storeToRefs} from "pinia"
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { Itab } from '@/store/type'
+import { useTabStore } from '@/store/modules/tabBar'
+import { storeToRefs } from 'pinia'
 
 const route = useRoute()
 const router = useRouter()
 
 const tabStore = useTabStore()
-const {getAddTab} = storeToRefs(tabStore)
+const { getAddTab } = storeToRefs(tabStore)
 
 // 动态获取state中的tabList
 const tabList = computed(() => {
@@ -24,9 +35,9 @@ const tabList = computed(() => {
 
 /* 路由发生变化，往vuex中添加tab */
 const addTab = () => {
-  const {meta, path} = route
+  const { meta, path } = route
   const tabItem: Itab = {
-    path: path,
+    path,
     title: meta.title as string
   }
 
@@ -34,13 +45,13 @@ const addTab = () => {
 }
 
 // 检测路由变化，变化则更新key
-const activeKey = ref("/index/Home")
+const activeKey = ref('/index/Home')
 watch(
-    () => route.path,
-    () => {
-      activeKey.value = route.path
-      addTab()
-    }
+  () => route.path,
+  () => {
+    activeKey.value = route.path
+    addTab()
+  }
 )
 
 // 点击tab切换路由
@@ -52,7 +63,7 @@ const changeRouter = (event: any) => {
 const closeTab = (targetName: string) => {
   // 至少留一个tab
   if (tabList.value.length === 1) {
-    return alert("这是最后一个")
+    return alert('这是最后一个')
   }
   tabList.value.forEach((item: Itab, index: number) => {
     if (targetName === activeKey.value) {
@@ -70,13 +81,13 @@ const closeTab = (targetName: string) => {
 const refresh = () => {
   /* 当前路由信息 */
   // console.log("rout_path", route.path)
-  window.addEventListener("beforeunload", () => {
-    sessionStorage.setItem("TABS_ROUTES", JSON.stringify(tabList.value))
-    sessionStorage.setItem("CURRENT_PATH", JSON.stringify(route.path))
+  window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem('TABS_ROUTES', JSON.stringify(tabList.value))
+    sessionStorage.setItem('CURRENT_PATH', JSON.stringify(route.path))
   })
 
-  const tabsRoutes = sessionStorage.getItem("TABS_ROUTES")
-  const currentPath = sessionStorage.getItem("CURRENT_PATH")
+  const tabsRoutes = sessionStorage.getItem('TABS_ROUTES')
+  const currentPath = sessionStorage.getItem('CURRENT_PATH')
   if (tabsRoutes) {
     tabStore.addAllTab(JSON.parse((tabsRoutes)))
   }

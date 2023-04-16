@@ -40,5 +40,6 @@ declare module '@vue/runtime-core' {
     Pagination: typeof import('./src/components/Pagination/src/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./src/components/Icon/src/SvgIcon.vue')['default']
   }
 }
