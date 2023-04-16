@@ -1,7 +1,7 @@
 <template>
-    <div>
-        检查项目
-    </div>
+  <div>
+    检查项目
+  </div>
 </template>
 
 <script lang="ts" setup>

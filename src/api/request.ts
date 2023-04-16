@@ -3,21 +3,21 @@ import axios from 'axios'
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    timeout: 5000
+  baseURL: import.meta.env.VITE_BASE_URL,
+  timeout: 5000
 })
 
 // 请求拦截器
 service.interceptors.request.use((config) => {
-
-    return config
+  return config
 })
 
 // 响应拦截器
 service.interceptors.response.use((res) => {
-    return res.data
-}, (error) => {
-    return Promise.reject(new Error('fail'))
+  return res.data
+// eslint-disable-next-line n/handle-callback-err
+}, async (error) => {
+  return await Promise.reject(new Error('fail'))
 })
 
 export default service

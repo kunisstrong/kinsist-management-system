@@ -8,6 +8,7 @@ export interface SearchParams {
 export interface TableData {
   age: number
   allNum: number
+  dept: Object
   deptId: number
   deptName: string
   empId: number

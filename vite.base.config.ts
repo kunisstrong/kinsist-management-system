@@ -7,6 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from "vite-plugin-mock"
+import eslint from 'vite-plugin-eslint' // 新增
 
 export default defineConfig({
     plugins: [
@@ -20,8 +21,7 @@ export default defineConfig({
             symbolId: 'icon-[dir]-[name]',
             svgoOptions: true
         }),
-
-       /* 自动按需导入使用的组件 */
+        /* 自动按需导入使用的组件 */
         AutoImport({
             imports: ['vue'],
             resolvers: [
@@ -34,6 +34,7 @@ export default defineConfig({
             ]
         }),
         vue(),
+        eslint()
     ],
     server: {
         port: 3006
