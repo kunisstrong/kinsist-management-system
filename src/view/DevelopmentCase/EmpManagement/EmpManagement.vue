@@ -1,157 +1,157 @@
 <template>
   <div class="dept-container">
     <el-row
-      class="dept-search"
-      :gutter="20"
+        class="dept-search"
+        :gutter="20"
     >
       <el-col :span="5">
         <span>员工姓名</span>
         <el-input
-          v-model="searchParams.empName"
-          clearable
-          placeholder="请输入员工姓名"
+            v-model="searchParams.empName"
+            clearable
+            placeholder="请输入员工姓名"
         />
       </el-col>
       <el-col :span="5">
         <span>所属部门</span>
         <el-select
-          v-model="searchParams.deptId"
-          class="m-2"
-          placeholder="请选择所属部门"
-          size="default"
-          clearable
+            v-model="searchParams.deptId"
+            class="m-2"
+            placeholder="请选择所属部门"
+            size="default"
+            clearable
         >
           <el-option
-            v-for="item in deptList"
-            :key="item.deptId"
-            :label="item.deptName"
-            :value="item.deptId"
+              v-for="item in deptList"
+              :key="item.deptId"
+              :label="item.deptName"
+              :value="item.deptId"
           />
         </el-select>
       </el-col>
       <el-col :span="5">
         <span>职位</span>
         <el-input
-          v-model="searchParams.position"
-          clearable
-          placeholder="请输入职位"
+            v-model="searchParams.position"
+            clearable
+            placeholder="请输入职位"
         />
       </el-col>
       <el-col :span="4">
         <el-button
-          type="primary"
-          @click="search"
+            type="primary"
+            @click="search"
         >
           搜索
         </el-button>
         <el-button
-          type="warning"
-          @click="reset"
+            type="warning"
+            @click="reset"
         >
           重置
         </el-button>
       </el-col>
     </el-row>
     <el-row
-      class="dept-operation"
-      justify="start"
+        class="dept-operation"
+        justify="start"
     >
       <el-button
-        type="primary"
-        @click="openAddDialog"
+          type="primary"
+          @click="openAddDialog"
       >
         新增
       </el-button>
       <el-button
-        type="danger"
-        :disabled="delIds.length === 0"
-        @click="openDelDeptMsgBox"
+          type="danger"
+          :disabled="delIds.length === 0"
+          @click="openDelDeptMsgBox"
       >
         删除
       </el-button>
       <el-button
-        type="warning"
-        :disabled="exportData.length === 0"
-        @click="exportExcel"
+          type="warning"
+          :disabled="exportData.length === 0"
+          @click="exportExcel"
       >
         导出
       </el-button>
     </el-row>
     <div class="table">
       <el-table
-        :data="tableData"
-        style="width: 100%"
-        border
-        center
-        stripe
-        max-height="610"
-        @selection-change="handleSelection"
+          :data="tableData"
+          style="width: 100%"
+          border
+          center
+          stripe
+          max-height="610"
+          @selection-change="handleSelection"
       >
         <el-table-column
-          type="selection"
-          width="55"
+            type="selection"
+            width="55"
         />
         <el-table-column
-          label="序号"
-          type="index"
-          align="center"
-          width="100"
+            label="序号"
+            type="index"
+            align="center"
+            width="100"
         />
         <el-table-column
-          prop="empName"
-          label="员工姓名"
-          align="center"
+            prop="empName"
+            label="员工姓名"
+            align="center"
         />
         <el-table-column
-          prop="age"
-          label="年龄"
-          align="center"
+            prop="age"
+            label="年龄"
+            align="center"
         />
         <el-table-column
-          prop="salary"
-          label="薪水(元)"
-          align="center"
+            prop="salary"
+            label="薪水(元)"
+            align="center"
         />
         <el-table-column
-          prop="position"
-          label="职位"
-          align="center"
+            prop="position"
+            label="职位"
+            align="center"
         />
         <el-table-column
-          prop="deptName"
-          label="所在部门"
-          align="center"
+            prop="deptName"
+            label="所在部门"
+            align="center"
         />
         <el-table-column
-          prop="sex"
-          label="员工性别"
-          align="center"
+            prop="sex"
+            label="员工性别"
+            align="center"
         />
         <el-table-column
-          prop="entryDate"
-          label="入职时间"
-          align="center"
-          dataformatas="yyyy-MM-dd"
-          width="300"
+            prop="entryDate"
+            label="入职时间"
+            align="center"
+            dataformatas="yyyy-MM-dd"
+            width="300"
         />
         <el-table-column
-          label="操作"
-          align="center"
+            label="操作"
+            align="center"
         >
           <template #default="scope">
             <el-button
-              link
-              type="primary"
-              size="small"
-              @click="openUpdateDialog(scope.row)"
+                link
+                type="primary"
+                size="small"
+                @click="openUpdateDialog(scope.row)"
             >
               修改
             </el-button>
             <el-button
-              link
-              type="primary"
-              size="small"
-              @click="singleDel(scope.row)"
+                link
+                type="primary"
+                size="small"
+                @click="singleDel(scope.row)"
             >
               删除
             </el-button>
@@ -161,120 +161,120 @@
     </div>
     <div class="page-box">
       <el-pagination
-        v-model:page-size="searchParams.pageSize"
-        v-model:current-page="searchParams.pageNum"
-        background
-        :page-sizes="[5, 10, 20, 50]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="tableTotal"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
+          v-model:page-size="searchParams.pageSize"
+          v-model:current-page="searchParams.pageNum"
+          background
+          :page-sizes="[5, 10, 20, 50]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableTotal"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
       />
     </div>
     <el-dialog
-      v-model="addDialogFormVisible"
-      title="新增员工信息"
+        v-model="addDialogFormVisible"
+        title="新增员工信息"
     >
       <el-form
-        :model="addFormParams"
-        label-position="top"
-        :rules="addRules"
+          :model="addFormParams"
+          label-position="top"
+          :rules="addRules"
       >
         <el-form-item
-          label="员工姓名"
-          :label-width="formLabelWidth"
-          prop="empName"
+            label="员工姓名"
+            :label-width="formLabelWidth"
+            prop="empName"
         >
           <el-input
-            v-model="addFormParams.empName"
-            autocomplete="true"
-            clearable
-            placeholder="请输入员工姓名"
+              v-model="addFormParams.empName"
+              autocomplete="true"
+              clearable
+              placeholder="请输入员工姓名"
           />
         </el-form-item>
         <el-form-item
-          label="职位"
-          :label-width="formLabelWidth"
-          prop="position"
+            label="职位"
+            :label-width="formLabelWidth"
+            prop="position"
         >
           <el-input
-            v-model="addFormParams.position"
-            autocomplete="off"
-            placeholder="请输入职位"
+              v-model="addFormParams.position"
+              autocomplete="off"
+              placeholder="请输入职位"
           />
         </el-form-item>
         <el-form-item
-          label="薪水"
-          :label-width="formLabelWidth"
-          prop="salary"
+            label="薪水"
+            :label-width="formLabelWidth"
+            prop="salary"
         >
           <el-input
-            v-model="addFormParams.salary"
-            autocomplete="off"
-            placeholder="请输入薪水"
+              v-model="addFormParams.salary"
+              autocomplete="off"
+              placeholder="请输入薪水"
           />
         </el-form-item>
         <el-form-item
-          label="所属部门"
-          :label-width="formLabelWidth"
-          prop="deptId"
+            label="所属部门"
+            :label-width="formLabelWidth"
+            prop="deptId"
         >
           <el-select
-            v-model="addFormParams.deptId"
-            class="m-2"
-            placeholder="请选择所属部门"
-            size="default"
-            clearable
+              v-model="addFormParams.deptId"
+              class="m-2"
+              placeholder="请选择所属部门"
+              size="default"
+              clearable
           >
             <el-option
-              v-for="item in deptList"
-              :key="item.deptId"
-              :label="item.deptName"
-              :value="item.deptId"
+                v-for="item in deptList"
+                :key="item.deptId"
+                :label="item.deptName"
+                :value="item.deptId"
             />
           </el-select>
         </el-form-item>
         <el-form-item
-          label="年龄"
-          :label-width="formLabelWidth"
+            label="年龄"
+            :label-width="formLabelWidth"
         >
           <el-input
-            v-model="addFormParams.age"
-            autocomplete="off"
-            placeholder="请输入年龄"
+              v-model="addFormParams.age"
+              autocomplete="off"
+              placeholder="请输入年龄"
           />
         </el-form-item>
         <el-form-item
-          label="入职时间"
-          :label-width="formLabelWidth"
-          prop="entryDate"
+            label="入职时间"
+            :label-width="formLabelWidth"
+            prop="entryDate"
         >
           <el-date-picker
-            v-model="addFormParams.entryDate"
-            type="date"
-            placeholder="请选择入职时间"
+              v-model="addFormParams.entryDate"
+              type="date"
+              placeholder="请选择入职时间"
           />
         </el-form-item>
         <el-form-item
-          label="性别"
-          :label-width="formLabelWidth"
+            label="性别"
+            :label-width="formLabelWidth"
         >
           <el-select
-            v-model="addFormParams.sex"
-            class="m-2"
-            placeholder="请选择性别"
-            size="default"
-            clearable
+              v-model="addFormParams.sex"
+              class="m-2"
+              placeholder="请选择性别"
+              size="default"
+              clearable
           >
             <el-option
-              key="1"
-              label="男性"
-              value="男"
+                key="1"
+                label="男性"
+                value="男"
             />
             <el-option
-              key="2"
-              label="女性"
-              value="女"
+                key="2"
+                label="女性"
+                value="女"
             />
           </el-select>
         </el-form-item>
@@ -283,117 +283,117 @@
         <span class="dialog-footer">
           <el-button @click="addDialogFormVisible = false">取消</el-button>
           <el-button
-            type="primary"
-            :disabled="addDialogBtnDisabled"
-            @click="addDept"
+              type="primary"
+              :disabled="addDialogBtnDisabled"
+              @click="addDept"
           >确定</el-button>
         </span>
       </template>
     </el-dialog>
     <el-dialog
-      v-model="updateDialogFormVisible"
-      title="修改部门信息"
+        v-model="updateDialogFormVisible"
+        title="修改部门信息"
     >
       <el-form
-        :model="updateParams"
-        label-position="top"
-        :rules="updateRules"
+          :model="updateParams"
+          label-position="top"
+          :rules="updateRules"
       >
         <el-form-item
-          label="员工姓名"
-          :label-width="formLabelWidth"
-          prop="empName"
+            label="员工姓名"
+            :label-width="formLabelWidth"
+            prop="empName"
         >
           <el-input
-            v-model="updateParams.empName"
-            autocomplete="true"
-            clearable
-            placeholder="请输入员工姓名"
+              v-model="updateParams.empName"
+              autocomplete="true"
+              clearable
+              placeholder="请输入员工姓名"
           />
         </el-form-item>
         <el-form-item
-          label="职位"
-          :label-width="formLabelWidth"
-          prop="position"
+            label="职位"
+            :label-width="formLabelWidth"
+            prop="position"
         >
           <el-input
-            v-model="updateParams.position"
-            autocomplete="off"
-            placeholder="请输入职位"
+              v-model="updateParams.position"
+              autocomplete="off"
+              placeholder="请输入职位"
           />
         </el-form-item>
         <el-form-item
-          label="薪水"
-          :label-width="formLabelWidth"
-          prop="salary"
+            label="薪水"
+            :label-width="formLabelWidth"
+            prop="salary"
         >
           <el-input
-            v-model="updateParams.salary"
-            autocomplete="off"
-            placeholder="请输入薪水"
+              v-model="updateParams.salary"
+              autocomplete="off"
+              placeholder="请输入薪水"
           />
         </el-form-item>
         <el-form-item
-          label="所属部门"
-          :label-width="formLabelWidth"
-          prop="deptId"
+            label="所属部门"
+            :label-width="formLabelWidth"
+            prop="deptId"
         >
           <el-select
-            v-model="updateParams.deptId"
-            class="m-2"
-            placeholder="请选择所属部门"
-            size="default"
-            clearable
+              v-model="updateParams.deptId"
+              class="m-2"
+              placeholder="请选择所属部门"
+              size="default"
+              clearable
           >
             <el-option
-              v-for="item in deptList"
-              :key="item.deptId"
-              :label="item.deptName"
-              :value="item.deptId"
+                v-for="item in deptList"
+                :key="item.deptId"
+                :label="item.deptName"
+                :value="item.deptId"
             />
           </el-select>
         </el-form-item>
         <el-form-item
-          label="年龄"
-          :label-width="formLabelWidth"
+            label="年龄"
+            :label-width="formLabelWidth"
         >
           <el-input
-            v-model="updateParams.age"
-            autocomplete="off"
-            placeholder="请输入年龄"
+              v-model="updateParams.age"
+              autocomplete="off"
+              placeholder="请输入年龄"
           />
         </el-form-item>
         <el-form-item
-          label="入职时间"
-          :label-width="formLabelWidth"
-          prop="entryDate"
+            label="入职时间"
+            :label-width="formLabelWidth"
+            prop="entryDate"
         >
           <el-date-picker
-            v-model="updateParams.entryDate"
-            type="date"
-            placeholder="请选择入职时间"
+              v-model="updateParams.entryDate"
+              type="date"
+              placeholder="请选择入职时间"
           />
         </el-form-item>
         <el-form-item
-          label="性别"
-          :label-width="formLabelWidth"
+            label="性别"
+            :label-width="formLabelWidth"
         >
           <el-select
-            v-model="updateParams.sex"
-            class="m-2"
-            placeholder="请选择性别"
-            size="default"
-            clearable
+              v-model="updateParams.sex"
+              class="m-2"
+              placeholder="请选择性别"
+              size="default"
+              clearable
           >
             <el-option
-              key="1"
-              label="男性"
-              value="男"
+                key="1"
+                label="男性"
+                value="男"
             />
             <el-option
-              key="2"
-              label="女性"
-              value="女"
+                key="2"
+                label="女性"
+                value="女"
             />
           </el-select>
         </el-form-item>
@@ -402,9 +402,9 @@
         <span class="dialog-footer">
           <el-button @click="updateDialogFormVisible = false">取消</el-button>
           <el-button
-            type="primary"
-            :disabled="updateDialogBtnDisabled"
-            @click="updateDept"
+              type="primary"
+              :disabled="updateDialogBtnDisabled"
+              @click="updateDept"
           >确定</el-button>
         </span>
       </template>

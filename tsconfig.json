@@ -34,7 +34,6 @@
     "types/global.d.ts",
     "types/global.d.ts",
     ".eslintrc.cjs",
-//    "mock/*"
   ],
   "references": [
     {

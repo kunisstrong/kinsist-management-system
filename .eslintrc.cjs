@@ -7,7 +7,7 @@ module.exports = {
     extends: [
         'plugin:vue/vue3-essential',
         'standard-with-typescript'
-        // 'plugin:vue/vue3-recommended',
+        // "plugin:vue/vue3-strongly-recommended"
     ],
     overrides: [],
     parserOptions: {

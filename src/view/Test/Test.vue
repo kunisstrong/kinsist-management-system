@@ -1,6 +1,6 @@
 <template>
-  <Icon icon="ep:aim" />
-  <Icon
+  <SvgIcon icon="ep:aim" />
+  <SvgIcon
     icon="svg-icon:earth"
     :size="30"
     color="red"
@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import { useIcon } from '@/hooks/useIcon'
 import { onMounted } from 'vue'
+import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 
 const icon = useIcon({ icon: 'svg-icon:earth' })
 

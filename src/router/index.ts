@@ -1,6 +1,13 @@
-import type { App } from 'vue'
+import { type App, defineAsyncComponent } from 'vue'
 import { createRouter, type RouteRecordRaw, createWebHashHistory } from 'vue-router'
-// import CheckProject from
+
+/* 动态路由 */
+// const _import = (path: string) => defineAsyncComponent(async () => await import(`/view/${path}.vue`))
+const Test = () => defineAsyncComponent(async () => await import('@/view/Test/Test.vue'))
+const EmpManagement = () => defineAsyncComponent(async () => await import('@/view/DevelopmentCase/EmpManagement/EmpManagement.vue'))
+const DepartmentManagement = () => defineAsyncComponent(async () => await import('@/view/DevelopmentCase/DeptManagement/DeptManagement.vue'))
+const TreeFilter = () => defineAsyncComponent(async () => await import('@/view/Table/TreeFilter/TreeFilter.vue'))
+// const modules = import.meta.glob(['@/view/*/*.vue', '@/view/*/*/*.vue'])
 
 export const MenuList = [
   {
@@ -14,31 +21,31 @@ export const MenuList = [
     }
   },
   {
-    path: 'table',
-    name: 'table',
+    path: 'developmentCase',
+    name: 'developmentCase',
     meta: {
-      title: '表单',
-      icon: 'svg-icon:table',
+      title: '开发实例',
+      icon: 'svg-icon:developCase',
       id: '2'
     },
     children: [
       {
-        path: 'staffManagement',
-        name: 'staffManagement',
-        component: async () => await import('@/view/Table/EmpManagement/EmpManagement.vue'),
+        path: 'empManagement',
+        name: 'empManagement',
+        component: EmpManagement,
         meta: {
           title: '员工管理',
-          icon: 'svg-icon:staffManagement',
+          // icon: 'svg-icon:staffManagement',
           id: '2-1'
         }
       },
       {
         path: 'departmentManagement',
         name: 'departmentManagement',
-        component: async () => await import('@/view/Table/DeptManagement/DeptManagement.vue'),
+        component: DepartmentManagement,
         meta: {
           title: '部门管理',
-          icon: 'svg-icon:department',
+          // icon: 'svg-icon:department',
           id: '2-2'
         }
       }
@@ -130,32 +137,21 @@ export const MenuList = [
     ]
   },
   {
-    path: 'moduleManage',
-    name: 'moduleManage',
+    path: 'table',
+    name: 'table',
     meta: {
-      title: '模块管理',
-      icon: 'mdi:user',
-      id: '4'
+      title: '表格',
+      icon: 'svg-icon:table',
+      id: '5'
     },
     children: [
       {
-        path: 'checkProject',
-        name: 'checkProject',
-        component: async () => await import('@/view/ModuleManage/CheckProject.vue'),
+        path: 'treeFilter',
+        name: 'treeFilter',
+        component: TreeFilter,
         meta: {
-          title: '检查项目',
-          icon: 'mdi:user',
-          id: '4-1'
-        }
-      },
-      {
-        path: 'checkTemplate',
-        name: 'moduleManage.checkTemplate',
-        component: async () => await import('@/view/ModuleManage/CheckTemplate.vue'),
-        meta: {
-          title: '检查单模块',
-          icon: 'mdi:user',
-          id: '4-2'
+          title: 'TreeFilter',
+          id: '5-1'
         }
       }
     ]
@@ -163,11 +159,12 @@ export const MenuList = [
   {
     path: 'test',
     name: 'test',
-    component: async () => await import('@/view/Test/Test.vue'),
+    // component: modules['@/view/Test/Test.vue'],
+    component: Test,
     meta: {
       title: '测试',
       icon: 'mdi:user',
-      id: '5'
+      id: '4'
     }
   }
 ]
