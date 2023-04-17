@@ -44,7 +44,7 @@ import { ElMessageBox } from "element-plus";
 import screenFull from "screenfull";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import SvgIcon from "@/components/Icon/src/SvgIcon.vue";
+import SvgIcon from "@/components/Icon/SvgIcon.vue";
 
 // 退出登录
 const router = useRouter();

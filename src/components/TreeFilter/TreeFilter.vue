@@ -1,6 +1,6 @@
 <template>
   <div class="filter">
-    <div class="title">部门列表(单选)</div>
+    <div class="title">{{ title }}</div>
     <el-input v-model="filterText" type="text" clearable placeholder="请输入关键字进行过滤" />
     <el-tree
       ref="treeRef"
@@ -17,12 +17,22 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 import { ElTree } from "element-plus";
+import { TreeFilterType } from "@/types/treeFilter";
 
-interface Tree {
-  id: number;
-  label: string;
-  children?: Tree[];
-}
+const props = defineProps({
+  treeData: {
+    required: true,
+    type: Array<TreeFilterType>
+  },
+  title: {
+    required: true,
+    type: String
+  },
+  handleNodeClick: {
+    required: true,
+    type: Function
+  }
+});
 
 const filterText = ref("");
 const treeRef = ref<InstanceType<typeof ElTree>>();
@@ -31,91 +41,14 @@ const defaultProps = {
   children: "children",
   label: "label"
 };
-
 watch(filterText, val => {
   treeRef.value!.filter(val);
 });
-/* 点击节点 */
-const handleNodeClick = (data: Tree) => {
-  console.log("data", data);
-};
-const filterNode = (value: string, data: Tree) => {
+const filterNode = (value: string, data: TreeFilterType) => {
   if (!value) return true;
   return data.label.includes(value);
 };
-
-const data: Tree[] = [
-  {
-    id: 1,
-    label: "全部"
-  },
-  {
-    id: 2,
-    label: "华东分区",
-    children: [
-      {
-        id: 5,
-        label: "研发部"
-      },
-      {
-        id: 6,
-        label: "市场部"
-      },
-      {
-        id: 7,
-        label: "商务部"
-      },
-      {
-        id: 8,
-        label: "财务部"
-      }
-    ]
-  },
-  {
-    id: 3,
-    label: "华南分区",
-    children: [
-      {
-        id: 9,
-        label: "研发部"
-      },
-      {
-        id: 10,
-        label: "市场部"
-      },
-      {
-        id: 11,
-        label: "商务部"
-      },
-      {
-        id: 12,
-        label: "财务部"
-      }
-    ]
-  },
-  {
-    id: 4,
-    label: "西北分区",
-    children: [
-      {
-        id: 13,
-        label: "研发部"
-      },
-      {
-        id: 14,
-        label: "市场部"
-      },
-      {
-        id: 15,
-        label: "商务部"
-      },
-      {
-        id: 16,
-        label: "财务部"
-      }
-    ]
-  }
-];
+const data = ref(props.treeData);
 </script>
 
 <style lang="scss" scoped>

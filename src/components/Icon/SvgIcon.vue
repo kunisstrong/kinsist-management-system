@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, unref, ref, watch, nextTick } from "vue";
 import { ElIcon } from "element-plus";
-import { propTypes } from "@/utils/propTypes";
+import { propTypes } from "@/utils/proptypes";
 import Iconify from "@purge-icons/generated";
 
 type Nullable<T> = T | null;

@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
 import { onMounted } from "vue";
-import SvgIcon from "@/components/Icon/src/SvgIcon.vue";
+import SvgIcon from "@/components/Icon/SvgIcon.vue";
 
 type EChartsOption = echarts.EChartsOption;
 // 初始化折线图  期望值、实际值

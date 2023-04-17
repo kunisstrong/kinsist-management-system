@@ -1,25 +1,23 @@
 <template>
   <div class="pro-table">
-    <el-row class="dept-search" :gutter="20">
-      <el-col :span="5">
-        <span>员工姓名</span>
+    <!--    <TableSearch :tableData="tableData" :deptList="deptList" :tableTotal=" " />-->
+    <el-form :inline="true" :model="searchParams" class="demo-form-inline dept-search">
+      <el-form-item label="员工姓名">
         <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" />
-      </el-col>
-      <el-col :span="5">
-        <span>所属部门</span>
+      </el-form-item>
+      <el-form-item label="所属部门">
         <el-select v-model="searchParams.deptId" class="m-2" placeholder="请选择所属部门" size="default" clearable>
           <el-option v-for="item in deptList" :key="item.deptId" :label="item.deptName" :value="item.deptId" />
         </el-select>
-      </el-col>
-      <el-col :span="5">
-        <span>职位</span>
+      </el-form-item>
+      <el-form-item label="职位">
         <el-input v-model="searchParams.position" clearable placeholder="请输入职位" />
-      </el-col>
-      <el-col :span="4">
+      </el-form-item>
+      <el-form-item>
         <el-button type="primary" @click="search"> 搜索 </el-button>
         <el-button type="warning" @click="reset"> 重置 </el-button>
-      </el-col>
-    </el-row>
+      </el-form-item>
+    </el-form>
     <el-row class="dept-operation" justify="start">
       <el-button type="primary" @click="openAddDialog"> 新增 </el-button>
       <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除 </el-button>
@@ -137,7 +135,6 @@ import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData } from "./typ
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
 import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement";
-
 /* 导出 */
 let exportData: TableData[] = reactive([]);
 const exportExcel = () => {
@@ -427,6 +424,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+:deep(.el-form) {
+  .el-form-item {
+    margin-bottom: 0 !important;
+  }
+  .el-input {
+    max-width: 253px;
+    width: 253px;
+  }
+}
 .pro-table {
   box-sizing: border-box;
   height: calc(100% - 10px);
@@ -439,14 +445,9 @@ onMounted(() => {
     margin: 0 !important;
     background-color: #ffffff;
     border-radius: 10px;
-    .el-col {
-      display: flex;
-      align-items: center;
-      span {
-        margin-right: 10px;
-        white-space: nowrap;
-      }
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
   .dept-operation {
     padding: 10px 0;
