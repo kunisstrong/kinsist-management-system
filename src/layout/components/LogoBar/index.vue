@@ -19,12 +19,10 @@ defineProps({
   align-items: center;
   justify-content: space-evenly;
   padding: 25px 0;
-
   img {
     width: 40px;
     height: 40px;
   }
-
   text {
     font-size: 20px;
   }

@@ -346,36 +346,30 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .dept-container {
-  padding: 10px;
   height: calc(100% - 55px);
+  padding: 10px;
   background-color: #eeeeee;
-
   .dept-search {
-    margin: 0 !important;
     padding: 10px;
-    background-color: #fff;
+    margin: 0 !important;
+    background-color: #ffffff;
     border-radius: 10px;
-
     .el-col {
       display: flex;
       align-items: center;
-
       span {
-        white-space: nowrap;
         margin-right: 10px;
+        white-space: nowrap;
       }
     }
   }
-
   .dept-operation {
     padding: 10px 0;
   }
-
   .table {
-    border-radius: 10px;
     overflow: hidden;
+    border-radius: 10px;
   }
-
   .page-box {
     display: flex;
     justify-content: center;

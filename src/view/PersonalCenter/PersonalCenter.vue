@@ -165,73 +165,62 @@ const changePswRules = reactive<FormRules>({
   .el-form-item {
     margin: 30px 0;
   }
-
   .el-form-item__label {
     font-size: 14px;
-    color: #000;
+    color: #000000;
   }
 }
-
 .demo-tabs > .el-tabs__content {
   padding: 32px;
-  color: #6b778c;
   font-size: 32px;
   font-weight: 600;
+  color: #6b778c;
 }
-
 .demo-tabs {
   .item {
-    width: 100%;
     display: flex;
-    justify-content: start;
     align-items: center;
+    justify-content: start;
+    width: 100%;
   }
 }
-
 .personal-container {
+  display: flex;
   height: calc(100vh - 120px);
   padding: 20px;
-  display: flex;
-
   .personal-msg {
-    background-color: white;
     width: 25%;
     height: 700px;
+    background-color: white;
     border-radius: 10px;
-
     .title {
-      font-size: 18px;
       padding: 10px;
-      border-bottom: 1px solid #e2e8f3;
+      font-size: 18px;
       text-align: start;
+      border-bottom: 1px solid #e2e8f3;
     }
-
     .personal-msg-box {
       padding: 20px;
-
       .img-box {
         box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-bottom: 1px solid #e2e8f3;
         padding-bottom: 20px;
-
+        border-bottom: 1px solid #e2e8f3;
         img {
-          border-radius: 60px;
           width: 120px;
           height: 120px;
+          border-radius: 60px;
         }
       }
-
       .personal-msg-item {
-        border-bottom: 1px solid #e2e8f3;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
         box-sizing: border-box;
-
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid #e2e8f3;
         .sub-title {
           display: flex;
           align-items: center;
@@ -239,21 +228,18 @@ const changePswRules = reactive<FormRules>({
       }
     }
   }
-
   .base-information {
+    width: 75%;
+    height: 600px;
+    margin-left: 10px;
     background-color: white;
     border-radius: 10px;
-    width: 75%;
-    margin-left: 10px;
-    height: 600px;
-
     .title {
-      font-size: 18px;
       padding: 10px;
-      border-bottom: 1px solid #e2e8f3;
+      font-size: 18px;
       text-align: start;
+      border-bottom: 1px solid #e2e8f3;
     }
-
     .base-information-box {
       padding: 20px;
     }

@@ -35,7 +35,6 @@ import HeaderBar from "@/layout/components/HeaderBar/index.vue";
 import TabBar from "@/layout/components/TabBar/index.vue";
 import { computed, ref } from "vue";
 import { isMobile } from "@/utils/isMobile";
-import SvgIcon from "@/components/Icon/src/SvgIcon.vue";
 
 // 面包屑
 const collapsed = ref<boolean>(false);
@@ -56,26 +55,23 @@ const autoWidth = computed(() => {
   display: flex;
   width: 100vw;
   height: 100vh;
-
   .el-header {
     display: flex;
     align-items: center;
-    box-shadow: 0 0 3px #999;
     background-color: white;
+    box-shadow: 0 0 3px #999999;
   }
-
   .el-aside {
-    background-color: $menuBg;
-    color: #fff;
     overflow: hidden;
+    color: #ffffff;
     word-break: keep-all;
     white-space: nowrap;
+    background-color: $menu-bg;
     transition: all 0.5s;
   }
-
   .el-main {
-    margin-top: 4px;
     padding: 0;
+    margin-top: 4px;
   }
 }
 </style>

@@ -5,7 +5,8 @@
     :collapse="collapsed"
     active-text-color="#409eff"
     text-color="#fff"
-    background-color="$menuBg"
+    background-color="$menu-bg"
+    unique-opened
   >
     <SubMenu v-for="item in MenuList" :key="item.meta.id" :item="item" />
   </el-menu>
@@ -42,9 +43,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .ElMenu {
-  min-height: 400px;
   height: 100vh;
-  background-color: $menuBg;
+  min-height: 400px;
   border: none;
 }
 </style>

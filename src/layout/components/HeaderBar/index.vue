@@ -82,20 +82,18 @@ const toPersonalCenter = () => {
 
 <style lang="scss" scoped>
 .header-container {
-  width: 100%;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
+  justify-content: space-between;
+  width: 100%;
   .header-right {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-
+    justify-content: space-around;
     .item {
-      cursor: pointer;
       margin-right: 10px;
+      cursor: pointer;
     }
   }
 }

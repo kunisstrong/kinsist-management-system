@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElButton } from "element-plus";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 
@@ -33,56 +32,49 @@ const params = reactive({
 
 <style lang="scss" scoped>
 :deep(.el-input__wrapper) {
-  background-color: #07172e;
   color: white;
-
+  background-color: #07172e;
   .el-input__inner {
     color: white;
   }
 }
-
 :deep(.el-button) {
-  background-color: #07172e;
   color: white;
-
+  background-color: #07172e;
   a {
     color: white;
   }
 }
-
 .login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
   background-image: url("@/assets/img/logoBg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   .login-box {
-    width: 400px;
-    height: 300px;
-    background-color: #07172e;
-    opacity: 0.7;
-    border: 1px solid #999999;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    color: white;
+    justify-content: space-around;
+    width: 400px;
+    height: 300px;
     padding: 0 30px;
-
+    color: white;
+    background-color: #07172e;
+    border: 1px solid #999999;
+    opacity: 0.7;
     .box {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       width: 100%;
-
       p {
-        white-space: nowrap;
         width: 80px;
+        white-space: nowrap;
       }
     }
   }

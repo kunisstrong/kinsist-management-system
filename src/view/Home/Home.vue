@@ -8,7 +8,7 @@
           </div>
           <div class="item-box">
             <p class="subTitle">新增用户</p>
-            <span style="color: #000; font-size: 20px; font-weight: bold">102,400</span>
+            <span style="font-size: 20px; font-weight: bold; color: #000000">102,400</span>
           </div>
         </div>
         <div class="title-item">
@@ -17,7 +17,7 @@
           </div>
           <div class="item-box">
             <p class="subTitle">未读消息</p>
-            <span style="color: #000; font-size: 20px; font-weight: bold">81,212</span>
+            <span style="font-size: 20px; font-weight: bold; color: #000000">81,212</span>
           </div>
         </div>
         <div class="title-item">
@@ -26,7 +26,7 @@
           </div>
           <div class="item-box">
             <p class="subTitle">成交金额</p>
-            <span style="color: #000; font-size: 20px; font-weight: bold">9,280</span>
+            <span style="font-size: 20px; font-weight: bold; color: #000000">9,280</span>
           </div>
         </div>
         <div class="title-item">
@@ -35,11 +35,11 @@
           </div>
           <div class="item-box">
             <p class="subTitle">购物总量</p>
-            <span style="color: #000; font-size: 20px; font-weight: bold">13,600</span>
+            <span style="font-size: 20px; font-weight: bold; color: #000000">13,600</span>
           </div>
         </div>
       </div>
-      <div id="initBrokenLine" style="width: 100%; height: 500px" />
+      <div id="init-broken-line" style="width: 100%; height: 500px" />
     </div>
     <div class="twoRowEcharts">
       <div id="itemOne" class="item" style="width: 30%; height: 420px" />
@@ -57,7 +57,7 @@ import SvgIcon from "@/components/Icon/src/SvgIcon.vue";
 type EChartsOption = echarts.EChartsOption;
 // 初始化折线图  期望值、实际值
 const initBrokenLine = () => {
-  const chartDom = document.getElementById("initBrokenLine")!;
+  const chartDom = document.getElementById("init-broken-line")!;
   const myChart = echarts.init(chartDom);
   const option: EChartsOption = {
     title: {
@@ -218,7 +218,7 @@ const initTwoEchartsThree = () => {
 };
 
 onMounted(() => {
-  // 初始化initBrokenLine
+  // 初始化init-broken-line
   initBrokenLine();
   // 初始化第二行第一个Echarts
   initTwoEchartsOne();
@@ -232,80 +232,55 @@ onMounted(() => {
 <style lang="scss" scoped>
 .home-container {
   padding: 20px;
-
   .broken-line {
     .title {
-      width: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-
+      justify-content: space-between;
+      width: 100%;
       .title-item {
-        width: 20%;
-        padding: 10px 20px;
-        border-radius: 15px;
-        background-color: white;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
+        width: 20%;
+        padding: 10px 20px;
+        background-color: white;
+        border-radius: 15px;
         .icon-box {
           box-sizing: border-box;
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
           padding: 20px;
           cursor: pointer;
-          transition: all 0.5s;
           border-radius: 10px;
+          transition: all 0.5s;
         }
-
-        //.visitUser:hover {
-        //  background-color: #6bc6c5;
-        //}
-        //
-        //.message:hover {
-        //  background-color: #57a1f0;
-        //}
-        //
-        //.money:hover {
-        //  background-color: #e25d6f;
-        //}
-        //
-        //.shopping:hover {
-        //  background-color: #61bca4;
-        //}
-
         .item-box {
-          // border-radius: 10px;
           .subTitle {
-            font-size: 25px;
             margin: 10px 0;
+            font-size: 25px;
             line-height: 25px;
             color: #8c8c8c;
           }
-
           span {
             margin: 10px 0;
           }
         }
       }
     }
-
-    #initBrokenLine {
-      background-color: white;
-      margin-top: 20px;
+    #init-broken-line {
       padding: 20px;
+      margin-top: 20px;
+      background-color: white;
     }
   }
-
   .twoRowEcharts {
-    width: 100%;
-    height: 500px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    width: 100%;
+    height: 500px;
     .item {
       background-color: white;
     }
