@@ -34,8 +34,11 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTree: typeof import('element-plus/es')['ElTree']
+    ProTable: typeof import('./src/components/ProTable/src/ProTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/Icon/src/SvgIcon.vue')['default']
+    TreeFilter: typeof import('./src/components/TreeFilter/src/TreeFilter.vue')['default']
   }
 }

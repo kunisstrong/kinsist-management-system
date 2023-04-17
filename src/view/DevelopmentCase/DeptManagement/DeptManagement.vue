@@ -1,5 +1,5 @@
 <template>
-  <div class="dept-container">
+  <div class="single-table">
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
         <span>部门名称</span>
@@ -345,35 +345,30 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.dept-container {
-  height: calc(100% - 55px);
+.dept-search {
   padding: 10px;
-  background-color: #eeeeee;
-  .dept-search {
-    padding: 10px;
-    margin: 0 !important;
-    background-color: #ffffff;
-    border-radius: 10px;
-    .el-col {
-      display: flex;
-      align-items: center;
-      span {
-        margin-right: 10px;
-        white-space: nowrap;
-      }
+  margin: 0 !important;
+  background-color: #ffffff;
+  border-radius: 10px;
+  .el-col {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 10px;
+      white-space: nowrap;
     }
   }
-  .dept-operation {
-    padding: 10px 0;
-  }
-  .table {
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  .page-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
+}
+.dept-operation {
+  padding: 10px 0;
+}
+.table {
+  overflow: hidden;
+  border-radius: 10px;
+}
+.page-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 </style>

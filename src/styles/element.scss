@@ -1,0 +1,15 @@
+.single-table {
+  height: calc(100% - 55px);
+  padding: 10px;
+  background-color: #eeeeee;
+}
+.tree-table {
+  height: calc(100% - 55px);
+  padding: 10px;
+  background-color: #eeeeee;
+  display: flex;
+  .table-box {
+    // 这里减去的是 treeFilter 组件宽度
+    width: calc(100% - 230px);
+  }
+}

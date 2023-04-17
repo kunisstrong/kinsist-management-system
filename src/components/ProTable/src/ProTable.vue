@@ -1,5 +1,5 @@
 <template>
-  <div class="single-table">
+  <div class="pro-table">
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
         <span>员工姓名</span>
@@ -26,7 +26,7 @@
       <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出 </el-button>
     </el-row>
     <div class="table">
-      <el-table :data="tableData" style="width: 100%" border center stripe max-height="610" @selection-change="handleSelection">
+      <el-table :data="tableData" style="width: 100%" border center stripe max-height="620" @selection-change="handleSelection">
         <el-table-column type="selection" width="55" />
         <el-table-column label="序号" type="index" align="center" width="100" />
         <el-table-column prop="empName" label="员工姓名" align="center" />
@@ -427,30 +427,39 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.dept-search {
-  padding: 10px;
-  margin: 0 !important;
-  background-color: #ffffff;
-  border-radius: 10px;
-  .el-col {
-    display: flex;
-    align-items: center;
-    span {
-      margin-right: 10px;
-      white-space: nowrap;
+.pro-table {
+  box-sizing: border-box;
+  height: calc(100% - 10px);
+  //padding: 18px;
+  //background-color: #ffffff !important;
+  margin-right: 10px;
+  border-radius: 8px;
+  .dept-search {
+    padding: 10px;
+    margin: 0 !important;
+    background-color: #ffffff;
+    border-radius: 10px;
+    .el-col {
+      display: flex;
+      align-items: center;
+      span {
+        margin-right: 10px;
+        white-space: nowrap;
+      }
     }
   }
-}
-.dept-operation {
-  padding: 10px 0;
-}
-.table {
-  overflow: hidden;
-  border-radius: 10px;
-}
-.page-box {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
+  .dept-operation {
+    padding: 10px 0;
+  }
+  .table {
+    overflow: hidden;
+    border-radius: 10px;
+    min-height: 620px;
+  }
+  .page-box {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
 }
 </style>
