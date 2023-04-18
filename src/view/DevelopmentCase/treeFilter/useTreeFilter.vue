@@ -3,7 +3,6 @@
     <TreeFilter :tree-data="TreeFilterData" :title="treeTableTitle" :handle-node-click="handleNodeClick" />
     <div class="table-box">
       <div class="pro-table">
-        <!--    <TableSearch :tableData="tableData" :deptList="deptList" :tableTotal=" " />-->
         <el-form :inline="true" :model="searchParams" class="demo-form-inline dept-search">
           <el-form-item label="员工姓名">
             <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" />
@@ -510,7 +509,6 @@ const TreeFilterData = ref([
   }
 ]);
 const treeTableTitle = "部门列表(单选)";
-/* 点击节点 */
 /* 点击节点 */
 const handleNodeClick = (data: TreeFilterType) => {
   console.log("data", data);
