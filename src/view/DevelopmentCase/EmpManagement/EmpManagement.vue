@@ -447,6 +447,7 @@ onMounted(() => {
 .table {
   overflow: hidden;
   border-radius: 10px;
+  height: 610px;
 }
 .page-box {
   display: flex;

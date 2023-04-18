@@ -5,15 +5,22 @@
       <div class="pro-table">
         <el-form :inline="true" :model="searchParams" class="demo-form-inline dept-search">
           <el-form-item label="员工姓名">
-            <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" />
+            <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" @change="search" />
           </el-form-item>
           <el-form-item label="所属部门">
-            <el-select v-model="searchParams.deptId" class="m-2" placeholder="请选择所属部门" size="default" clearable>
+            <el-select
+              v-model="searchParams.deptId"
+              class="m-2"
+              placeholder="请选择所属部门"
+              size="default"
+              clearable
+              @change="search"
+            >
               <el-option v-for="item in deptList" :key="item.deptId" :label="item.deptName" :value="item.deptId" />
             </el-select>
           </el-form-item>
           <el-form-item label="职位">
-            <el-input v-model="searchParams.position" clearable placeholder="请输入职位" />
+            <el-input v-model="searchParams.position" clearable placeholder="请输入职位" @change="search" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="search"> 搜索 </el-button>

@@ -145,26 +145,26 @@ export const MenuList = [
       }
     ]
   },
-  {
-    path: "table",
-    name: "table",
-    meta: {
-      title: "表格",
-      icon: "svg-icon:table",
-      id: "5"
-    },
-    children: [
-      {
-        path: "treeFilter",
-        name: "treeFilter",
-        component: TreeFilter,
-        meta: {
-          title: "useTreeFilter",
-          id: "5-1"
-        }
-      }
-    ]
-  },
+  // {
+  //   path: "table",
+  //   name: "table",
+  //   meta: {
+  //     title: "表格",
+  //     icon: "svg-icon:table",
+  //     id: "5"
+  //   },
+  //   children: [
+  //     {
+  //       path: "treeFilter",
+  //       name: "treeFilter",
+  //       component: TreeFilter,
+  //       meta: {
+  //         title: "useTreeFilter",
+  //         id: "5-1"
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: "test",
     name: "test",
