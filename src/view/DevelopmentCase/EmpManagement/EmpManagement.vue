@@ -1,19 +1,26 @@
 <template>
   <div class="single-table">
-    <el-row class="dept-search" :gutter="20">
+    <el-row class="emp-search" :gutter="20">
       <el-col :span="5">
         <span>员工姓名</span>
-        <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" />
+        <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" @change="search" autofocus />
       </el-col>
       <el-col :span="5">
         <span>所属部门</span>
-        <el-select v-model="searchParams.deptId" class="m-2" placeholder="请选择所属部门" size="default" clearable>
+        <el-select
+          v-model="searchParams.deptId"
+          class="m-2"
+          placeholder="请选择所属部门"
+          size="default"
+          @change="search"
+          clearable
+        >
           <el-option v-for="item in deptList" :key="item.deptId" :label="item.deptName" :value="item.deptId" />
         </el-select>
       </el-col>
       <el-col :span="5">
         <span>职位</span>
-        <el-input v-model="searchParams.position" clearable placeholder="请输入职位" />
+        <el-input v-model="searchParams.position" clearable placeholder="请输入职位" @change="search" />
       </el-col>
       <el-col :span="4">
         <el-button type="primary" @click="search"> 搜索 </el-button>
@@ -427,7 +434,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.dept-search {
+.emp-search {
   padding: 10px;
   margin: 0 !important;
   background-color: #ffffff;

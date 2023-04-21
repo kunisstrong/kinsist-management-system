@@ -2,12 +2,12 @@
   <div class="single-table">
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
-        <span>部门名称</span>
-        <el-input v-model="searchParams.deptName" clearable placeholder="请输入部门名称" />
+        <span>部门名称123</span>
+        <el-input v-model="searchParams.deptName" clearable placeholder="请输入部门名称" @change="search" autofocus />
       </el-col>
       <el-col :span="5">
         <span>负责人</span>
-        <el-input v-model="searchParams.manager" clearable placeholder="请输入负责人" />
+        <el-input v-model="searchParams.manager" clearable placeholder="请输入负责人" @change="search" />
       </el-col>
       <el-col :span="4">
         <el-button type="primary" @click="search"> 搜索 </el-button>
@@ -17,7 +17,7 @@
     <el-row class="dept-operation" justify="start">
       <el-button type="primary" @click="openAddDialog"> 新增 </el-button>
       <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除 </el-button>
-      <!-- <el-button type="warning">导入</el-button>  -->
+      <el-button type="warning">导入</el-button>
       <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出 </el-button>
     </el-row>
     <div class="table">

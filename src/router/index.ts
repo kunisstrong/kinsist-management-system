@@ -9,6 +9,8 @@ const EmpManagement = () =>
 const DepartmentManagement = () =>
   defineAsyncComponent(async () => await import("@/view/DevelopmentCase/DeptManagement/DeptManagement.vue"));
 const TreeFilter = () => defineAsyncComponent(async () => await import("@/view/DevelopmentCase/treeFilter/useTreeFilter.vue"));
+// const userManagement = () =>
+//   defineAsyncComponent(async () => await import("@/view/DevelopmentCase/userManagement/userManagement.vue"));
 // const modules = import.meta.glob(['@/view/*/*.vue', '@/view/*/*/*.vue'])
 
 export const MenuList = [
@@ -56,6 +58,15 @@ export const MenuList = [
         meta: {
           title: "treeFilter",
           id: "2-3"
+        }
+      },
+      {
+        path: "userManagement",
+        name: "userManagement",
+        component: async () => await import("@/view/DevelopmentCase/userManagement/userManagement.vue"),
+        meta: {
+          title: "用户管理",
+          id: "2-4"
         }
       }
     ]
