@@ -143,7 +143,7 @@ import { onMounted, ref, reactive, computed } from "vue";
 import { AddAndUpdateFormParams, SearchParams, TableData } from "./type";
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
-import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement";
+import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement/index";
 
 /* 改变用户状态 */
 const changeStatus = async (row: TableData) => {
@@ -353,6 +353,7 @@ const search = async () => {
     tableData.value = res.data.content;
     tableTotal.value = res.data.totalSize;
   }
+  handleTableData(tableData.value as TableData[]);
 };
 /* 清空搜索参数 */
 const clearSearchParams = () => {
@@ -443,12 +444,15 @@ const getTableData = async () => {
   if (res.code === 200) {
     tableData.value = res.data.content;
     tableTotal.value = res.data.totalSize;
-    console.log("tableData1========", tableData.value);
-    tableData.value?.forEach((item: TableData) => {
-      item.status = item.status === 1;
-    });
-    console.log("tableData2========", tableData.value);
+
+    handleTableData(tableData.value as TableData[]);
   }
+};
+/* 处理tableData数据 */
+const handleTableData = (data: TableData[]) => {
+  data.forEach((item: TableData) => {
+    item.status = item.status === 1;
+  });
 };
 /* table数据 */
 const tableData = ref<TableData[]>();
