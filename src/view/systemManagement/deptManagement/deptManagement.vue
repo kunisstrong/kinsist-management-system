@@ -1,8 +1,9 @@
 <template>
   <div class="single-table">
+    <!--搜索相关-->
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
-        <span>部门名称123</span>
+        <span>部门名称</span>
         <el-input v-model="searchParams.deptName" clearable placeholder="请输入部门名称" @change="search" autofocus />
       </el-col>
       <el-col :span="5">
@@ -10,16 +11,17 @@
         <el-input v-model="searchParams.manager" clearable placeholder="请输入负责人" @change="search" />
       </el-col>
       <el-col :span="4">
-        <el-button type="primary" @click="search"> 搜索 </el-button>
-        <el-button type="warning" @click="reset"> 重置 </el-button>
+        <el-button type="primary" @click="search"> 搜索</el-button>
+        <el-button type="warning" @click="reset"> 重置</el-button>
       </el-col>
     </el-row>
     <el-row class="dept-operation" justify="start">
-      <el-button type="primary" @click="openAddDialog"> 新增 </el-button>
-      <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除 </el-button>
+      <el-button type="primary" @click="openAddDialog"> 新增</el-button>
+      <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除</el-button>
       <el-button type="warning">导入</el-button>
-      <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出 </el-button>
+      <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出</el-button>
     </el-row>
+    <!--table表单-->
     <div class="table">
       <el-table :data="tableData" style="width: 100%" border center stripe max-height="610" @selection-change="handleSelection">
         <el-table-column type="selection" width="55" />
@@ -30,8 +32,8 @@
         <el-table-column prop="remark" label="备注" align="center" />
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button link type="primary" size="small" @click="openUpdateDialog(scope.row)"> 修改 </el-button>
-            <el-button link type="primary" size="small" @click="singleDel(scope.row)"> 删除 </el-button>
+            <el-button link type="primary" size="small" @click="openUpdateDialog(scope.row)"> 修改</el-button>
+            <el-button link type="primary" size="small" @click="singleDel(scope.row)"> 删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -350,22 +352,28 @@ onMounted(() => {
   margin: 0 !important;
   background-color: #ffffff;
   border-radius: 10px;
+
   .el-col {
     display: flex;
     align-items: center;
+
     span {
       margin-right: 10px;
       white-space: nowrap;
     }
   }
 }
+
 .dept-operation {
   padding: 10px 0;
 }
+
 .table {
   overflow: hidden;
   border-radius: 10px;
+  height: 610px;
 }
+
 .page-box {
   display: flex;
   justify-content: center;

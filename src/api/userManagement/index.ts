@@ -1,5 +1,5 @@
 import service from "@/api/request";
-import { SearchParams, AddAndUpdateFormParams } from "@/view/DevelopmentCase/userManagement/type";
+import { SearchParams, AddAndUpdateFormParams } from "@/view/systemManagement/userManagement/type";
 
 export const allUserAPI = async (data: SearchParams) =>
   await service({

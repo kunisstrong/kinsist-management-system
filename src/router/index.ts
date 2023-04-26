@@ -4,19 +4,19 @@ import { createRouter, type RouteRecordRaw, createWebHashHistory } from "vue-rou
 /* 动态路由 */
 // const _import = (path: string) => defineAsyncComponent(async () => await import(`/view/${path}.vue`))
 // const Test = () => defineAsyncComponent(async () => await import('@/view/Test/Test.vue'))
-const EmpManagement = () =>
-  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/EmpManagement/EmpManagement.vue"));
-const DepartmentManagement = () =>
-  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/DeptManagement/DeptManagement.vue"));
+const empManagement = () =>
+  defineAsyncComponent(async () => await import("@/view/systemManagement/empManagement/empManagement.vue"));
+const deptManagement = () =>
+  defineAsyncComponent(async () => await import("@/view/systemManagement/deptManagement/deptManagement.vue"));
 const TreeFilter = () => defineAsyncComponent(async () => await import("@/view/DevelopmentCase/treeFilter/useTreeFilter.vue"));
-// const userManagement = () =>
-//   defineAsyncComponent(async () => await import("@/view/DevelopmentCase/userManagement/userManagement.vue"));
+const userManagement = () =>
+  defineAsyncComponent(async () => await import("@/view/systemManagement/userManagement/userManagement.vue"));
 // const modules = import.meta.glob(['@/view/*/*.vue', '@/view/*/*/*.vue'])
 
 export const MenuList = [
   {
     path: "home",
-    component: async () => await import("@/view/Home/Home.vue"),
+    component: async () => await import("@/view/Home/home.vue"),
     name: "home",
     meta: {
       title: "首页",
@@ -25,32 +25,52 @@ export const MenuList = [
     }
   },
   {
-    path: "developmentCase",
-    name: "developmentCase",
+    path: "system",
+    name: "system",
     meta: {
-      title: "开发实例",
-      icon: "svg-icon:developCase",
-      id: "2"
+      title: "系统管理",
+      icon: "mdi:user",
+      id: "5"
     },
     children: [
       {
         path: "empManagement",
         name: "empManagement",
-        component: EmpManagement,
+        component: empManagement,
         meta: {
           title: "员工管理",
-          id: "2-1"
+          id: "5-1"
         }
       },
       {
-        path: "departmentManagement",
-        name: "departmentManagement",
-        component: DepartmentManagement,
+        path: "deptManagement",
+        name: "deptManagement",
+        component: deptManagement,
         meta: {
           title: "部门管理",
-          id: "2-2"
+          id: "5-2"
         }
       },
+      {
+        path: "userManagement",
+        name: "userManagement",
+        component: userManagement,
+        meta: {
+          title: "用户管理",
+          id: "5-3"
+        }
+      }
+    ]
+  },
+  {
+    path: "developmentCase",
+    name: "developmentCase",
+    meta: {
+      title: "开发示例",
+      icon: "svg-icon:developCase",
+      id: "2"
+    },
+    children: [
       {
         path: "treeFilter",
         name: "treeFilter",
@@ -58,15 +78,6 @@ export const MenuList = [
         meta: {
           title: "treeFilter",
           id: "2-3"
-        }
-      },
-      {
-        path: "userManagement",
-        name: "userManagement",
-        component: async () => await import("@/view/DevelopmentCase/userManagement/userManagement.vue"),
-        meta: {
-          title: "用户管理",
-          id: "2-4"
         }
       }
     ]
@@ -156,26 +167,6 @@ export const MenuList = [
       }
     ]
   },
-  // {
-  //   path: "table",
-  //   name: "table",
-  //   meta: {
-  //     title: "表格",
-  //     icon: "svg-icon:table",
-  //     id: "5"
-  //   },
-  //   children: [
-  //     {
-  //       path: "treeFilter",
-  //       name: "treeFilter",
-  //       component: TreeFilter,
-  //       meta: {
-  //         title: "useTreeFilter",
-  //         id: "5-1"
-  //       }
-  //     }
-  //   ]
-  // },
   {
     path: "test",
     name: "test",
@@ -193,7 +184,7 @@ export const MenuList = [
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    component: async () => await import("@/view/Login/Login.vue"),
+    component: async () => await import("@/view/Login/login.vue"),
     name: "login",
     meta: {
       title: "登录"
