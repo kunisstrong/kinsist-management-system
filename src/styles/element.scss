@@ -3,6 +3,11 @@
   padding: 10px;
   background-color: #eeeeee;
 }
+.table {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 610px;
+}
 .tree-table {
   height: calc(100% - 55px);
   padding: 10px;

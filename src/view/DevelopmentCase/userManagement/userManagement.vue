@@ -31,7 +31,7 @@
             <el-switch v-model="scope.row.status" @change="changeStatus(scope.row)" />
           </template>
         </el-table-column>
-        <el-table-column prop="identityCard" label="身份证" align="center" width="200" />
+        <el-table-column prop="idCard" label="身份证" align="center" width="200" />
         <el-table-column prop="email" label="邮箱" align="center" width="200" />
         <el-table-column prop="address" label="居住地址" align="center" width="150" />
         <el-table-column prop="sex" label="员工性别" align="center" />
@@ -45,16 +45,8 @@
       </el-table>
     </div>
     <div class="page-box">
-      <el-pagination
-        v-model:page-size="searchParams.pageSize"
-        v-model:current-page="searchParams.pageNum"
-        background
-        :page-sizes="[5, 10, 20, 50]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="tableTotal"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <!--分页-->
+      <Pagination :table-total="tableTotal" :search-params="searchParams" :get-table-data="getTableData" />
     </div>
     <el-dialog v-model="addDialogFormVisible" title="新增用户信息">
       <el-form :model="addFormParams" label-position="top" :rules="addRules">
@@ -64,8 +56,8 @@
         <el-form-item label="年龄" :label-width="formLabelWidth" prop="age">
           <el-input v-model="addFormParams.age" autocomplete="off" placeholder="请输入年龄" />
         </el-form-item>
-        <el-form-item label="身份证" :label-width="formLabelWidth" prop="identityCard">
-          <el-input v-model="addFormParams.identityCard" autocomplete="off" placeholder="请输入身份证" />
+        <el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">
+          <el-input v-model="addFormParams.idCard" autocomplete="off" placeholder="请输入身份证" />
         </el-form-item>
         <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
           <el-input v-model="addFormParams.email" autocomplete="off" placeholder="请输入邮箱" />
@@ -102,8 +94,8 @@
           <el-form-item label="年龄" :label-width="formLabelWidth" prop="age">
             <el-input v-model="updateParams.age" autocomplete="off" placeholder="请输入年龄" />
           </el-form-item>
-          <el-form-item label="身份证" :label-width="formLabelWidth" prop="identityCard">
-            <el-input v-model="updateParams.identityCard" autocomplete="off" placeholder="请输入身份证" />
+          <el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">
+            <el-input v-model="updateParams.idCard" autocomplete="off" placeholder="请输入身份证" />
           </el-form-item>
           <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
             <el-input v-model="updateParams.email" autocomplete="off" placeholder="请输入邮箱" />
@@ -143,7 +135,8 @@ import { onMounted, ref, reactive, computed } from "vue";
 import { AddAndUpdateFormParams, SearchParams, TableData } from "./type";
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
-import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement/index";
+import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement";
+import Pagination from "@/components/Pagination/Pagination.vue";
 
 /* 改变用户状态 */
 const changeStatus = async (row: TableData) => {
@@ -151,7 +144,7 @@ const changeStatus = async (row: TableData) => {
   updateParams.value.age = row.age;
   updateParams.value.userName = row.userName;
   updateParams.value.sex = row.sex;
-  updateParams.value.identityCard = row.identityCard;
+  updateParams.value.idCard = row.idCard;
   updateParams.value.email = row.email;
   updateParams.value.address = row.address;
   updateParams.value.createTime = row.createTime;
@@ -191,7 +184,7 @@ const exportExcel = () => {
         obj.value["年龄"] = exportData[i][key];
       } else if (key === "status") {
         obj.value["状态"] = exportData[i][key] === 0 ? "离职" : "在职";
-      } else if (key === "identityCard") {
+      } else if (key === "idCard") {
         obj.value["身份证"] = exportData[i][key];
       } else if (key === "email") {
         obj.value["邮箱"] = exportData[i][key];
@@ -281,7 +274,7 @@ const addFormParams = ref<AddAndUpdateFormParams>({
   age: 0,
   userName: "",
   sex: "",
-  identityCard: "",
+  idCard: "",
   email: "",
   address: "",
   status: 1,
@@ -307,7 +300,7 @@ const addRules = reactive<FormRules>({
   userName: [{ required: true, message: "员工姓名是必填项", trigger: "blur" }],
   age: [{ required: true, message: "年龄是必填项", trigger: "blur" }],
   sex: [{ required: true, message: "性别是必填项", trigger: "blur" }],
-  identityCard: [{ required: true, message: "身份证是必填项", trigger: "blur" }],
+  idCard: [{ required: true, message: "身份证是必填项", trigger: "blur" }],
   email: [{ required: true, message: "邮箱是必填项", trigger: "blur" }],
   address: [{ required: true, message: "居住地址是必填项", trigger: "blur" }],
   createTime: [{ required: true, message: "创建时间是必填项", trigger: "blur" }]
@@ -318,7 +311,7 @@ const addDialogBtnDisabled = computed(() => {
     addFormParams.value.userName !== "" &&
     addFormParams.value.age !== 0 &&
     addFormParams.value.sex !== "" &&
-    addFormParams.value.identityCard !== "" &&
+    addFormParams.value.idCard !== "" &&
     addFormParams.value.email !== "" &&
     addFormParams.value.address !== "" &&
     addFormParams.value.createTime !== "";
@@ -331,7 +324,7 @@ const clearAddParams = () => {
     age: 0,
     userName: "",
     sex: "",
-    identityCard: "",
+    idCard: "",
     email: "",
     address: "",
     status: 0,
@@ -379,7 +372,7 @@ const updateParams = ref<AddAndUpdateFormParams>({
   age: 0,
   userName: "",
   sex: "",
-  identityCard: "",
+  idCard: "",
   email: "",
   address: "",
   status: 1,
@@ -392,7 +385,7 @@ const openUpdateDialog = (row: TableData) => {
   updateParams.value.age = row.age;
   updateParams.value.userName = row.userName;
   updateParams.value.sex = row.sex;
-  updateParams.value.identityCard = row.identityCard;
+  updateParams.value.idCard = row.idCard;
   updateParams.value.email = row.email;
   updateParams.value.address = row.address;
   updateParams.value.status = row.status;
@@ -418,7 +411,7 @@ const updateRules = reactive<FormRules>({
   userName: [{ required: true, message: "员工姓名是必填项", trigger: "blur" }],
   age: [{ required: true, message: "年龄是必填项", trigger: "blur" }],
   sex: [{ required: true, message: "性别是必填项", trigger: "blur" }],
-  identityCard: [{ required: true, message: "身份证是必填项", trigger: "blur" }],
+  idCard: [{ required: true, message: "身份证是必填项", trigger: "blur" }],
   email: [{ required: true, message: "邮箱是必填项", trigger: "blur" }],
   address: [{ required: true, message: "居住地址是必填项", trigger: "blur" }],
   createTime: [{ required: true, message: "创建时间是必填项", trigger: "blur" }]
@@ -430,7 +423,7 @@ const updateDialogBtnDisabled = computed(() => {
     updateParams.value.userName !== "" &&
     updateParams.value.age !== 0 &&
     updateParams.value.sex !== "" &&
-    updateParams.value.identityCard !== "" &&
+    updateParams.value.idCard !== "" &&
     updateParams.value.email !== "" &&
     updateParams.value.address !== "" &&
     updateParams.value.createTime !== "";
@@ -457,15 +450,6 @@ const handleTableData = (data: TableData[]) => {
 /* table数据 */
 const tableData = ref<TableData[]>();
 const tableTotal = ref(0);
-/* 改变pageSize */
-const handleSizeChange = () => {
-  getTableData();
-};
-/* 改变pageNum */
-const handleCurrentChange = () => {
-  getTableData();
-};
-
 onMounted(() => {
   /* 初始化tableData */
   getTableData();

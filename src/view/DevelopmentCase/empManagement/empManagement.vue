@@ -1,30 +1,39 @@
 <template>
-  <div class="pro-table">
-    <!--    <TableSearch :tableData="tableData" :deptList="deptList" :tableTotal=" " />-->
-    <el-form :inline="true" :model="searchParams" class="demo-form-inline dept-search">
-      <el-form-item label="员工姓名">
-        <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" />
-      </el-form-item>
-      <el-form-item label="所属部门">
-        <el-select v-model="searchParams.deptId" class="m-2" placeholder="请选择所属部门" size="default" clearable>
+  <div class="single-table">
+    <el-row class="emp-search" :gutter="20">
+      <el-col :span="5">
+        <span>员工姓名</span>
+        <el-input v-model="searchParams.empName" clearable placeholder="请输入员工姓名" @change="search" autofocus />
+      </el-col>
+      <el-col :span="5">
+        <span>所属部门</span>
+        <el-select
+          v-model="searchParams.deptId"
+          class="m-2"
+          placeholder="请选择所属部门"
+          size="default"
+          @change="search"
+          clearable
+        >
           <el-option v-for="item in deptList" :key="item.deptId" :label="item.deptName" :value="item.deptId" />
         </el-select>
-      </el-form-item>
-      <el-form-item label="职位">
-        <el-input v-model="searchParams.position" clearable placeholder="请输入职位" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="search"> 搜索 </el-button>
-        <el-button type="warning" @click="reset"> 重置 </el-button>
-      </el-form-item>
-    </el-form>
+      </el-col>
+      <el-col :span="5">
+        <span>职位</span>
+        <el-input v-model="searchParams.position" clearable placeholder="请输入职位" @change="search" />
+      </el-col>
+      <el-col :span="4">
+        <el-button type="primary" @click="search"> 搜索</el-button>
+        <el-button type="warning" @click="reset"> 重置</el-button>
+      </el-col>
+    </el-row>
     <el-row class="dept-operation" justify="start">
-      <el-button type="primary" @click="openAddDialog"> 新增 </el-button>
-      <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除 </el-button>
-      <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出 </el-button>
+      <el-button type="primary" @click="openAddDialog"> 新增</el-button>
+      <el-button type="danger" :disabled="delIds.length === 0" @click="openDelDeptMsgBox"> 删除</el-button>
+      <el-button type="warning" :disabled="exportData.length === 0" @click="exportExcel"> 导出</el-button>
     </el-row>
     <div class="table">
-      <el-table :data="tableData" style="width: 100%" border center stripe max-height="620" @selection-change="handleSelection">
+      <el-table :data="tableData" style="width: 100%" border center stripe max-height="610" @selection-change="handleSelection">
         <el-table-column type="selection" width="55" />
         <el-table-column label="序号" type="index" align="center" width="100" />
         <el-table-column prop="empName" label="员工姓名" align="center" />
@@ -36,23 +45,15 @@
         <el-table-column prop="entryDate" label="入职时间" align="center" dataformatas="yyyy-MM-dd" width="300" />
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button link type="primary" size="small" @click="openUpdateDialog(scope.row)"> 修改 </el-button>
-            <el-button link type="primary" size="small" @click="singleDel(scope.row)"> 删除 </el-button>
+            <el-button link type="primary" size="small" @click="openUpdateDialog(scope.row)"> 修改</el-button>
+            <el-button link type="primary" size="small" @click="singleDel(scope.row)"> 删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <div class="page-box">
-      <el-pagination
-        v-model:page-size="searchParams.pageSize"
-        v-model:current-page="searchParams.pageNum"
-        background
-        :page-sizes="[5, 10, 20, 50]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="tableTotal"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <!--分页-->
+      <Pagination :table-total="tableTotal" :search-params="searchParams" :get-table-data="getTableData" />
     </div>
     <el-dialog v-model="addDialogFormVisible" title="新增员工信息">
       <el-form :model="addFormParams" label-position="top" :rules="addRules">
@@ -135,6 +136,8 @@ import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData } from "./typ
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
 import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement";
+import Pagination from "@/components/Pagination/Pagination.vue";
+
 /* 导出 */
 let exportData: TableData[] = reactive([]);
 const exportExcel = () => {
@@ -396,14 +399,6 @@ const getTableData = async () => {
 /* table数据 */
 const tableData = ref<TableData[]>();
 const tableTotal = ref(0);
-/* 改变pageSize */
-const handleSizeChange = () => {
-  getTableData();
-};
-/* 改变pageNum */
-const handleCurrentChange = () => {
-  getTableData();
-};
 
 /* 部门列表 */
 const deptList = ref<DeptItem[]>();
@@ -424,43 +419,36 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-form) {
-  .el-form-item {
-    margin-bottom: 0 !important;
-  }
-  .el-input {
-    max-width: 253px;
-    width: 253px;
-  }
-}
-.pro-table {
-  box-sizing: border-box;
-  height: calc(100% - 10px);
-  //padding: 18px;
-  //background-color: #ffffff !important;
-  margin-right: 10px;
-  border-radius: 8px;
-  .dept-search {
-    padding: 10px;
-    margin: 0 !important;
-    background-color: #ffffff;
-    border-radius: 10px;
+.emp-search {
+  padding: 10px;
+  margin: 0 !important;
+  background-color: #ffffff;
+  border-radius: 10px;
+
+  .el-col {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+
+    span {
+      margin-right: 10px;
+      white-space: nowrap;
+    }
   }
-  .dept-operation {
-    padding: 10px 0;
-  }
-  .table {
-    overflow: hidden;
-    border-radius: 10px;
-    min-height: 620px;
-  }
-  .page-box {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-  }
+}
+
+.dept-operation {
+  padding: 10px 0;
+}
+
+.table {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 610px;
+}
+
+.page-box {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 </style>

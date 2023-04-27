@@ -1,4 +1,4 @@
-import { type AddAndUpdateFormParams, type SearchParams } from "@/view/DevelopmentCase/DeptManagement/type";
+import { type AddAndUpdateFormParams, type SearchParams } from "@/view/DevelopmentCase/deptManagement/type";
 import service from "../request";
 
 /* 查询所有部门 */

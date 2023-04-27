@@ -60,16 +60,8 @@
           </el-table>
         </div>
         <div class="page-box">
-          <el-pagination
-            v-model:page-size="searchParams.pageSize"
-            v-model:current-page="searchParams.pageNum"
-            background
-            :page-sizes="[5, 10, 20, 50]"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableTotal"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-          />
+          <!--分页-->
+          <Pagination :table-total="tableTotal" :search-params="searchParams" :get-table-data="getTableData" />
         </div>
         <el-dialog v-model="addDialogFormVisible" title="新增员工信息">
           <el-form :model="addFormParams" label-position="top" :rules="addRules">
@@ -156,6 +148,7 @@ import { AddAndUpdateFormParams, DeptItem, SearchParams, TableData } from "./typ
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
 import { allEmpAPI, delEmpAPI, getDeptListAPI, saveEmpAPI, searchEmpAPI, updateEmpAPI } from "@/api/empManagement";
+import Pagination from "@/components/Pagination/Pagination.vue";
 /* 导出 */
 let exportData: TableData[] = reactive([]);
 const exportExcel = () => {
@@ -417,15 +410,6 @@ const getTableData = async () => {
 /* table数据 */
 const tableData = ref<TableData[]>();
 const tableTotal = ref(0);
-/* 改变pageSize */
-const handleSizeChange = () => {
-  getTableData();
-};
-/* 改变pageNum */
-const handleCurrentChange = () => {
-  getTableData();
-};
-
 /* 部门列表 */
 const deptList = ref<DeptItem[]>();
 /* 初始化部门列表 */

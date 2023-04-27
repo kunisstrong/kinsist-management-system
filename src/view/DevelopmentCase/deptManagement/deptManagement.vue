@@ -37,16 +37,7 @@
       </el-table>
     </div>
     <div class="page-box">
-      <el-pagination
-        v-model:page-size="searchParams.pageSize"
-        v-model:current-page="searchParams.pageNum"
-        background
-        :page-sizes="[5, 10, 20, 50]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="tableTotal"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <Pagination :table-total="tableTotal" :search-params="searchParams" :get-table-data="getTableData" />
     </div>
     <el-dialog v-model="addDialogFormVisible" title="新增部门信息">
       <el-form :model="addFormParams" label-position="top" :rules="addRules">
@@ -100,6 +91,7 @@ import { AddAndUpdateFormParams, SearchParams, TableData } from "./type";
 import { addDeptAPI, allDeptAPI, removeDeptAPI, searchAPI, updateDeptAPI } from "@/api/deptManagement";
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
+import Pagination from "@/components/Pagination/Pagination.vue";
 
 /* 导出 */
 let exportData: TableData[] = reactive([]);
@@ -325,15 +317,6 @@ const getTableData = async () => {
     tableData.value = res.data.content;
     tableTotal.value = res.data.totalSize;
   }
-};
-
-/* 改变pageSize */
-const handleSizeChange = () => {
-  getTableData();
-};
-/* 改变currentPage */
-const handleCurrentChange = () => {
-  getTableData();
 };
 /* table数据 */
 const tableData = ref<TableData[]>();

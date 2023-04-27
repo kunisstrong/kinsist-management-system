@@ -103,7 +103,7 @@
 
 <script setup lang="ts">
 import type { FormRules } from "element-plus";
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 
 const activeName = ref("first");
 // 用户基础信息
@@ -157,6 +157,11 @@ const changePswRules = reactive<FormRules>({
   oldPwd: [{ required: true, message: "旧密码是必填项", trigger: "blur" }],
   againNewPwd: [{ validator: validatePass2, trigger: "blur" }],
   newPwd: [{ required: true, message: "请输入新密码", trigger: "blur" }]
+});
+
+onMounted(() => {
+  const loginUser = localStorage.getItem("loginUser");
+  console.log(loginUser);
 });
 </script>
 

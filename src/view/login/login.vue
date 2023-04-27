@@ -1,31 +1,41 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <p>kun式管理系统</p>
+      <p>kinsist管理系统</p>
       <div class="box">
         <p>用户名</p>
-        <el-input v-model="params.username" type="text" placeholder="请输入用户名" />
+        <el-input v-model="params.userName" type="text" placeholder="请输入用户名" />
       </div>
       <div class="box">
         <p>密码</p>
-        <el-input v-model="params.password" password placeholder="请输入密码" />
+        <el-input type="password" v-model="params.password" password placeholder="请输入密码" />
       </div>
-      <ElButton @click="toLogin"> 登录</ElButton>
+      <el-button @click="toLogin">登录</el-button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { login } from "@/api/login";
+import { ElMessage } from "element-plus";
 
 const router = useRouter();
-const toLogin = () => {
-  router.push("/index");
+const toLogin = async () => {
+  const res = await login(params.value);
+  if (res.code === 200) {
+    await router.push("/index");
+    localStorage.setItem("loginUser", res.data.userName);
+  } else {
+    ElMessage({
+      message: res.msg,
+      type: "error"
+    });
+  }
 };
-
-const params = reactive({
-  username: "admin",
+const params = ref({
+  userName: "admin",
   password: "123456"
 });
 </script>

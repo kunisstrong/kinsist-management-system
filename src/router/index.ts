@@ -5,9 +5,9 @@ import { createRouter, type RouteRecordRaw, createWebHashHistory } from "vue-rou
 // const _import = (path: string) => defineAsyncComponent(async () => await import(`/view/${path}.vue`))
 // const Test = () => defineAsyncComponent(async () => await import('@/view/Test/Test.vue'))
 const EmpManagement = () =>
-  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/EmpManagement/EmpManagement.vue"));
+  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/empManagement/empManagement.vue"));
 const DepartmentManagement = () =>
-  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/DeptManagement/DeptManagement.vue"));
+  defineAsyncComponent(async () => await import("@/view/DevelopmentCase/deptManagement/deptManagement.vue"));
 const TreeFilter = () => defineAsyncComponent(async () => await import("@/view/DevelopmentCase/treeFilter/useTreeFilter.vue"));
 // const userManagement = () =>
 //   defineAsyncComponent(async () => await import("@/view/DevelopmentCase/userManagement/userManagement.vue"));
@@ -193,7 +193,7 @@ export const MenuList = [
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    component: async () => await import("@/view/Login/Login.vue"),
+    component: async () => await import("@/view/login/login.vue"),
     name: "login",
     meta: {
       title: "登录"
@@ -208,7 +208,7 @@ export const routes: RouteRecordRaw[] = [
       {
         path: "PersonalCenter",
         name: "PersonalCenter",
-        component: async () => await import("@/view/PersonalCenter/PersonalCenter.vue"),
+        component: async () => await import("@/view/PersonalCenter/personalCenter.vue"),
         meta: {
           title: "个人中心"
         }

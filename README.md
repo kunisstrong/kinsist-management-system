@@ -5,11 +5,9 @@
 Vue3 + Pinia + TypeScript + Vite + Element Plus
 
 ## 分支说明
-main：精简版，适合用于毕业设计、中小型不需要权限管理的管理系统，初学者也可用于学习开发技巧的项目。没有权限管理，只拥有管理系统必要的功能
+main：毕业设计前端部分，没有权限管理，只拥有管理系统必要的功能。后端部分请移步:https://github.com/kunisstrong/springboot-management-system
 
-graduation-project：毕业设计，待完善
-
-master：不断拓展的版本，用于自己练习开发技巧、巩固学习内容、丰富项目经验。会随着学习，不断往里填充内容
+master：不断拓展的版本，用于自己练习开发技巧、巩固学习内容、丰富项目经验。会随着学习，不断往里填充内容。后端部分请移步:https://github.com/kunisstrong/springboot-management-system
 
 ## 安装步骤
 把模板下载到本地

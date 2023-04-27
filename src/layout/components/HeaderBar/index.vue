@@ -49,6 +49,7 @@ import SvgIcon from "@/components/Icon/SvgIcon.vue";
 // 退出登录
 const router = useRouter();
 const logOut = () => {
+  localStorage.removeItem("loginUser");
   router.push({ name: "login" });
 };
 // 跳转到GitHub
