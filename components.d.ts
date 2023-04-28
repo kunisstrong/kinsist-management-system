@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AddButton: typeof import('./src/components/ButtonGroup/AddButton/AddButton.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -40,11 +39,9 @@ declare module '@vue/runtime-core' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     Pagination: typeof import('./src/components/Pagination/Pagination.vue')['default']
-    ProTable: typeof import('./src/components/ProTable/ProTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/Icon/SvgIcon.vue')['default']
-    TableSearch: typeof import('./src/components/TableSearch/TableSearch.vue')['default']
     TreeFilter: typeof import('./src/components/TreeFilter/TreeFilter.vue')['default']
   }
 }
