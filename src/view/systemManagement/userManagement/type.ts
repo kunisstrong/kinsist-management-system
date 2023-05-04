@@ -9,7 +9,7 @@ export interface TableData {
   userId: number | "";
   userName: string;
   sex: string;
-  identityCard: string;
+  idCard: string;
   email: string;
   address: string;
   status: 0 | 1 | Boolean | "";
@@ -20,7 +20,7 @@ export interface AddAndUpdateFormParams {
   userId: number | "";
   userName: string;
   sex: string;
-  identityCard: string;
+  idCard: string;
   email: string;
   address: string;
   status: 0 | 1 | Boolean | "";

@@ -31,7 +31,7 @@
             <el-switch v-model="scope.row.status" @change="changeStatus(scope.row)" />
           </template>
         </el-table-column>
-        <el-table-column prop="identityCard" label="身份证" align="center" width="200" />
+        <el-table-column prop="idCard" label="身份证" align="center" width="200" />
         <el-table-column prop="email" label="邮箱" align="center" width="200" />
         <el-table-column prop="address" label="居住地址" align="center" width="150" />
         <el-table-column prop="sex" label="员工性别" align="center" />
@@ -65,7 +65,7 @@
           <el-input v-model="addFormParams.age" autocomplete="off" placeholder="请输入年龄" />
         </el-form-item>
         <el-form-item label="身份证" :label-width="formLabelWidth" prop="identityCard">
-          <el-input v-model="addFormParams.identityCard" autocomplete="off" placeholder="请输入身份证" />
+          <el-input v-model="addFormParams.idCard" autocomplete="off" placeholder="请输入身份证" />
         </el-form-item>
         <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
           <el-input v-model="addFormParams.email" autocomplete="off" placeholder="请输入邮箱" />
@@ -103,7 +103,7 @@
             <el-input v-model="updateParams.age" autocomplete="off" placeholder="请输入年龄" />
           </el-form-item>
           <el-form-item label="身份证" :label-width="formLabelWidth" prop="identityCard">
-            <el-input v-model="updateParams.identityCard" autocomplete="off" placeholder="请输入身份证" />
+            <el-input v-model="updateParams.idCard" autocomplete="off" placeholder="请输入身份证" />
           </el-form-item>
           <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
             <el-input v-model="updateParams.email" autocomplete="off" placeholder="请输入邮箱" />
@@ -143,7 +143,7 @@ import { onMounted, ref, reactive, computed } from "vue";
 import { AddAndUpdateFormParams, SearchParams, TableData } from "./type";
 import { ElMessage, ElMessageBox, FormRules } from "element-plus";
 import * as XLSX from "xlsx";
-import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement/index";
+import { allUserAPI, searchUserAPI, updateUserAPI, saveUserAPI, delUserAPI } from "@/api/userManagement";
 
 /* 改变用户状态 */
 const changeStatus = async (row: TableData) => {
@@ -151,7 +151,7 @@ const changeStatus = async (row: TableData) => {
   updateParams.value.age = row.age;
   updateParams.value.userName = row.userName;
   updateParams.value.sex = row.sex;
-  updateParams.value.identityCard = row.identityCard;
+  updateParams.value.idCard = row.idCard;
   updateParams.value.email = row.email;
   updateParams.value.address = row.address;
   updateParams.value.createTime = row.createTime;
@@ -191,7 +191,7 @@ const exportExcel = () => {
         obj.value["年龄"] = exportData[i][key];
       } else if (key === "status") {
         obj.value["状态"] = exportData[i][key] === 0 ? "离职" : "在职";
-      } else if (key === "identityCard") {
+      } else if (key === "idCard") {
         obj.value["身份证"] = exportData[i][key];
       } else if (key === "email") {
         obj.value["邮箱"] = exportData[i][key];
@@ -281,7 +281,7 @@ const addFormParams = ref<AddAndUpdateFormParams>({
   age: 0,
   userName: "",
   sex: "",
-  identityCard: "",
+  idCard: "",
   email: "",
   address: "",
   status: 1,
@@ -318,7 +318,7 @@ const addDialogBtnDisabled = computed(() => {
     addFormParams.value.userName !== "" &&
     addFormParams.value.age !== 0 &&
     addFormParams.value.sex !== "" &&
-    addFormParams.value.identityCard !== "" &&
+    addFormParams.value.idCard !== "" &&
     addFormParams.value.email !== "" &&
     addFormParams.value.address !== "" &&
     addFormParams.value.createTime !== "";
@@ -331,7 +331,7 @@ const clearAddParams = () => {
     age: 0,
     userName: "",
     sex: "",
-    identityCard: "",
+    idCard: "",
     email: "",
     address: "",
     status: 0,
@@ -379,7 +379,7 @@ const updateParams = ref<AddAndUpdateFormParams>({
   age: 0,
   userName: "",
   sex: "",
-  identityCard: "",
+  idCard: "",
   email: "",
   address: "",
   status: 1,
@@ -392,7 +392,7 @@ const openUpdateDialog = (row: TableData) => {
   updateParams.value.age = row.age;
   updateParams.value.userName = row.userName;
   updateParams.value.sex = row.sex;
-  updateParams.value.identityCard = row.identityCard;
+  updateParams.value.idCard = row.idCard;
   updateParams.value.email = row.email;
   updateParams.value.address = row.address;
   updateParams.value.status = row.status;
@@ -430,7 +430,7 @@ const updateDialogBtnDisabled = computed(() => {
     updateParams.value.userName !== "" &&
     updateParams.value.age !== 0 &&
     updateParams.value.sex !== "" &&
-    updateParams.value.identityCard !== "" &&
+    updateParams.value.idCard !== "" &&
     updateParams.value.email !== "" &&
     updateParams.value.address !== "" &&
     updateParams.value.createTime !== "";
@@ -446,8 +446,10 @@ const getTableData = async () => {
     tableTotal.value = res.data.totalSize;
 
     handleTableData(tableData.value as TableData[]);
+    console.log("tableData.value", tableData.value);
   }
 };
+
 /* 处理tableData数据 */
 const handleTableData = (data: TableData[]) => {
   data.forEach((item: TableData) => {
