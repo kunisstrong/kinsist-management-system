@@ -2,7 +2,7 @@
   <div class="single-table">
     <el-row class="dept-search" :gutter="20">
       <el-col :span="5">
-        <span>部门名称123</span>
+        <span>部门名称</span>
         <el-input v-model="searchParams.deptName" clearable placeholder="请输入部门名称" @change="search" autofocus />
       </el-col>
       <el-col :span="5">

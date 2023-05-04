@@ -1,94 +1,53 @@
 <template>
-  <div class="tree-table">
-    <TreeFilter :tree-data="TreeFilterData" :title="treeTableTitle" :handle-node-click="handleNodeClick" />
-    <div class="table-box">
-      <ProTable />
-      你要加油哦，为了你的大G。
-    </div>
-  </div>
+  <el-upload
+    ref="upload"
+    class="upload-demo"
+    :limit="1"
+    :on-exceed="handleExceed"
+    :auto-upload="false"
+    :http-request="postUpload"
+  >
+    <template #trigger>
+      <el-button type="primary">选择文件</el-button>
+    </template>
+    <el-button class="ml-3" type="success" @click="submitUpload"> 上传</el-button>
+    <template #tip>
+      <div class="el-upload__tip text-red">限制上传一个文件，新上传的文件将会覆盖旧文件</div>
+    </template>
+  </el-upload>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from "vue";
-import { TreeFilterType } from "@/types/treeFilter";
-import ProTable from "@/components/ProTable/ProTable.vue";
-import TreeFilter from "@/components/TreeFilter/TreeFilter.vue";
+import { ElMessage, genFileId } from "element-plus";
+import type { UploadInstance, UploadProps, UploadRawFile } from "element-plus";
+import { uploadAPI } from "@/api/test";
 
-const TreeFilterData = ref([
-  {
-    id: 1,
-    label: "全部"
-  },
-  {
-    id: 2,
-    label: "华东分区",
-    children: [
-      {
-        id: 5,
-        label: "研发部"
-      },
-      {
-        id: 6,
-        label: "市场部"
-      },
-      {
-        id: 7,
-        label: "商务部"
-      },
-      {
-        id: 8,
-        label: "财务部"
-      }
-    ]
-  },
-  {
-    id: 3,
-    label: "华南分区",
-    children: [
-      {
-        id: 9,
-        label: "研发部"
-      },
-      {
-        id: 10,
-        label: "市场部"
-      },
-      {
-        id: 11,
-        label: "商务部"
-      },
-      {
-        id: 12,
-        label: "财务部"
-      }
-    ]
-  },
-  {
-    id: 4,
-    label: "西北分区",
-    children: [
-      {
-        id: 13,
-        label: "研发部"
-      },
-      {
-        id: 14,
-        label: "市场部"
-      },
-      {
-        id: 15,
-        label: "商务部"
-      },
-      {
-        id: 16,
-        label: "财务部"
-      }
-    ]
+const upload = ref<UploadInstance>();
+
+const handleExceed: UploadProps["onExceed"] = files => {
+  upload.value!.clearFiles();
+  const file = files[0] as UploadRawFile;
+  file.uid = genFileId();
+  upload.value!.handleStart(file);
+};
+
+const postUpload = async (param: any) => {
+  const formData = new FormData();
+  console.log("param", param);
+  formData.append("file", param.file);
+  const res = await uploadAPI(formData);
+  if (res.code === 200) {
+    console.log(res.msg);
+  } else {
+    ElMessage({
+      message: res.msg,
+      type: "error"
+    });
   }
-]);
-const treeTableTitle = "部门列表(单选)";
-/* 点击节点 */
-const handleNodeClick = (data: TreeFilterType) => {
-  console.log("data", data);
+};
+
+const submitUpload = () => {
+  upload.value!.submit();
 };
 </script>

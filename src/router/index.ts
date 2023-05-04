@@ -156,26 +156,26 @@ export const MenuList = [
       }
     ]
   },
-  // {
-  //   path: "table",
-  //   name: "table",
-  //   meta: {
-  //     title: "表格",
-  //     icon: "svg-icon:table",
-  //     id: "5"
-  //   },
-  //   children: [
-  //     {
-  //       path: "treeFilter",
-  //       name: "treeFilter",
-  //       component: TreeFilter,
-  //       meta: {
-  //         title: "useTreeFilter",
-  //         id: "5-1"
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: "common",
+    name: "common",
+    meta: {
+      title: "常用功能",
+      id: "5",
+      icon: "mdi:user"
+    },
+    children: [
+      {
+        path: "uploadAndDownload",
+        name: "uploadAndDownload",
+        component: async () => await import("@/view/common/uploadAndDownload.vue"),
+        meta: {
+          id: "5-1",
+          title: "文件操作"
+        }
+      }
+    ]
+  },
   {
     path: "test",
     name: "test",

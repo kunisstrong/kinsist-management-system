@@ -5,3 +5,10 @@ export const testRequest = async () =>
     url: "/test",
     method: "get"
   });
+
+export const uploadAPI = async (data: any) =>
+  await service({
+    url: "/common/upload",
+    method: "post",
+    data
+  });
