@@ -12,3 +12,7 @@ export const uploadAPI = async (data: any) =>
     method: "post",
     data
   });
+export const upload = async () =>
+  await service({
+    url: "/common/upload"
+  });
